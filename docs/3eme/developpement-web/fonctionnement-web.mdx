@@ -1,0 +1,129 @@
+---
+id: web-fonctionnement
+title: Le Web, comment ça marche ?
+description: Comprendre le fonctionnement d’un site Internet
+slug: /le-web-comment-ca-marche
+sidebar_position: 2
+---
+
+# 🌐 Le Web, comment ça marche ?
+
+Quand tu tapes `www.google.com` dans ton navigateur... **il se passe plein de choses !** Et tout ça, en moins d'une seconde. Mais quoi exactement ? 🤔
+
+---
+
+## 📦 Le Web, c’est quoi ?
+
+Le **Web** (abréviation de "World Wide Web") est un **réseau mondial** de pages accessibles avec un navigateur comme **Chrome**, **Firefox** ou **Safari**.
+
+Il fonctionne grâce à :
+
+- des **navigateurs** (le client, c’est toi 🧑‍💻),
+- des **serveurs** (des gros ordinateurs partout dans le monde 🌍),
+- et des **fichiers** (HTML, CSS, images… 📄).
+
+---
+
+## 🔁 Le parcours d’une page web
+
+Quand tu vas sur un site web, voici ce qui se passe :
+
+1. Tu écris une **adresse web** (URL) comme `www.wikipedia.org`.
+2. Ton **navigateur** envoie une demande à un **serveur**.
+3. Le serveur trouve le bon fichier HTML.
+4. Il l’envoie à ton navigateur.
+5. Ton navigateur **affiche** la page.
+
+C’est un peu comme **commander un plat au resto** :
+
+- Tu es le client 🍽️
+- Le serveur prend ta commande 🧑‍🍳
+- Il te ramène ton plat (le fichier HTML) 🍝
+
+---
+
+## 🌐 Les composants du Web
+
+| Élément | Rôle |
+|--------|------|
+| **Navigateur** | Affiche les pages web (Chrome, Firefox, etc.) |
+| **URL** | Adresse d'une page web |
+| **Serveur** | Ordinateur qui stocke les fichiers du site |
+| **HTML** | Langage qui structure la page |
+| **CSS** | Langage qui stylise la page |
+| **JavaScript** | Langage qui rend la page interactive |
+
+---
+
+## 🎮 Activité n°1 : Le jeu du client/serveur
+
+:::tip À faire en binôme ou en petit groupe
+
+#### Objectif : simuler ce qui se passe entre ton ordi et un site web
+
+- **Rôle 1 : le navigateur** → il fait la demande d’un site (ex: "Je veux `www.pokemon.com`")
+- **Rôle 2 : le serveur** → il cherche le bon fichier (ex: "Voici la page HTML de Pokémon !")
+- **Rôle 3 (optionnel)** : Internet → fait passer le message entre les deux
+
+Tu peux utiliser une feuille avec des "pages web" imprimées (dessins ou pages HTML fictives) 📄
+
+Ensuite, inversez les rôles.
+
+:::
+
+---
+
+## 🔍 Exercice n°2 : Décortique une URL
+
+Voici une adresse web : `https://www.leboncoin.fr/recherche?category=10`
+
+Peux-tu dire à quoi sert chaque partie ?
+
+```md
+- `https://` → ...
+- `www.leboncoin.fr` → ...
+- `/recherche` → ...
+- `?category=10` → ...
+```
+
+<details>
+  <summary>🔍 Réponse</summary>
+
+- `https://` → Protocole sécurisé pour accéder au site
+- `www.leboncoin.fr` → Nom du site web (nom de domaine)
+- `/recherche` → Chemin vers la page de recherche
+- `?category=10` → Paramètre envoyé à la page (ex : catégorie 10 = voitures)
+
+</details>
+
+---
+
+:::tip Le savais-tu ?
+
+Le Web n'est **pas Internet !**
+
+➡️ **Internet**, c'est le réseau de câbles et de serveurs.  
+➡️ Le **Web**, c'est une des choses qu'on peut faire avec Internet (comme regarder des vidéos, envoyer des mails…). 
+
+:::
+
+## 🎲 Quiz rapide
+
+import { Question } from '@site/src/components/Markdown/Question';
+
+<Question
+  question="Quel langage est utilisé pour styliser une page web ?"
+  choices={[
+    { label: 'HTML', isCorrect: false },
+    { label: 'CSS', isCorrect: true },
+    { label: 'JavaScript', isCorrect: false },
+  ]}
+  explanation="CSS (Cascading Style Sheets) permet de définir les couleurs, les polices, les marges et tout le style visuel d'une page web."
+/>
+
+
+## 🏁 À retenir
+
+- Le **Web** fonctionne comme une **discussion** entre ton navigateur et un serveur.
+- Un **site web** est composé de fichiers **HTML**, **CSS** et **JavaScript**.
+- Le **navigateur** lit ces fichiers pour afficher la page.
