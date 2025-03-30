@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ConverterToDecimalCorrection from './ConverterToDecimalCorrection';
+import ConverterFromDecimalCorrection from './ConverterFromDecimalCorrection';
 
 const bases = ['binaire', 'décimale', 'hexadécimale'];
 const getRandomInt = () => Math.floor(Math.random() * 256); // 0 à 255
@@ -9,10 +11,10 @@ function toBase(n: number, base: string): string[] {
   return [n.toString(10), '10'];
 }
 
-export function ConvertTrainer ({ fromBase, toBaseChoice }: { fromBase: string, toBaseChoice: string }) {
+export function ConvertIntTrainer({ fromBase, toBaseChoice }: { fromBase: string, toBaseChoice: string }) {
   const [value, setValue] = useState(getRandomInt());
   const [answer, setAnswer] = useState<string[]>([]);
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState(null);
 
   const [correctValue, baseNumber] = toBase(value, toBaseChoice);
   const [displayValue, baseDisplay] = toBase(value, fromBase);
@@ -20,9 +22,14 @@ export function ConvertTrainer ({ fromBase, toBaseChoice }: { fromBase: string, 
   const check = () => {
     const userAnswer = answer.join('').trim().toLowerCase();
     if (userAnswer === correctValue.toLowerCase()) {
-      setResult('✅ Bravo, bonne réponse !');
+      setResult(<div>✅ Bravo, bonne réponse !</div>);
     } else {
-      setResult(`❌ Oups ! La bonne réponse était ${correctValue}₍${baseNumber}₎`);
+      setResult((
+        <div>
+          ❌ Oups ! La bonne réponse était {correctValue}<br />
+          {toBaseChoice === 'décimale' && <ConverterToDecimalCorrection base={baseDisplay} source={displayValue} soluce={correctValue} />}
+          {fromBase === 'décimale' && <ConverterFromDecimalCorrection base={baseNumber} source={displayValue} soluce={correctValue} />}
+        </div>));
     }
   };
 

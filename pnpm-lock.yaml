@@ -23,6 +23,9 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
+      katex:
+        specifier: ^0.16.21
+        version: 0.16.21
       prism-react-renderer:
         specifier: ^2.3.0
         version: 2.4.1(react@19.0.0)
@@ -32,6 +35,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      react-katex:
+        specifier: ^3.0.1
+        version: 3.0.1(prop-types@15.8.1)(react@19.0.0)
       rehype-katex:
         specifier: '7'
         version: 7.0.1
@@ -4156,6 +4162,12 @@ packages:
     engines: {node: '>=14'}
     peerDependencies:
       react: ^16.13.1 || ^17.0.0 || ^18.0.0
+
+  react-katex@3.0.1:
+    resolution: {integrity: sha512-wIUW1fU5dHlkKvq4POfDkHruQsYp3fM8xNb/jnc8dnQ+nNCnaj0sx5pw7E6UyuEdLRyFKK0HZjmXBo+AtXXy0A==}
+    peerDependencies:
+      prop-types: ^15.8.1
+      react: '>=15.3.2 <=18'
 
   react-loadable-ssr-addon-v5-slorber@1.0.1:
     resolution: {integrity: sha512-lq3Lyw1lGku8zUEJPDxsNm1AfYHBrO9Y1+olAYwpUJ2IGFBskM0DMKok97A6LWUpHm+o7IvQBOWu9MLenp9Z+A==}
@@ -10467,6 +10479,12 @@ snapshots:
 
   react-json-view-lite@1.5.0(react@19.0.0):
     dependencies:
+      react: 19.0.0
+
+  react-katex@3.0.1(prop-types@15.8.1)(react@19.0.0):
+    dependencies:
+      katex: 0.16.21
+      prop-types: 15.8.1
       react: 19.0.0
 
   react-loadable-ssr-addon-v5-slorber@1.0.1(@docusaurus/react-loadable@6.0.0(react@19.0.0))(webpack@5.98.0):
