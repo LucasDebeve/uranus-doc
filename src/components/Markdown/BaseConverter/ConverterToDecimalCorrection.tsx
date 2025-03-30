@@ -30,7 +30,7 @@ const ConverterToDecimalCorrection: React.FC<ConverterToDecimalCorrectionProps> 
           .map((bit, index) => `\\textcolor{red}{${bit}} \\times ${base}^{${index}}`)
           .reverse();
     
-        return `\\begin{aligned} &= ${terms.join(" + ")} \\\\ &= ${soluce} \\end{aligned}`;
+        return `\\begin{aligned} &= ${terms.join(" + ")} \\\\ &= ${soluce}_{10} \\end{aligned}`;
       };
     
       return <BlockMath math={generateLatex(source)} />;

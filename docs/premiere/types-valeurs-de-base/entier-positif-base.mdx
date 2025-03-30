@@ -48,11 +48,31 @@ $$
 
 ### Le système binaire (base 2)
 
-Le système binaire est la base la plus simple. Il est composé de deux chiffres : 0 et 1. Chaque chiffre représente un bit, qui peut être 0 ou 1. 8 bits forment un octet, qui peut représenter 256 valeurs différentes (de 0 à 255).
+- Le système binaire est la base la plus simple.
+- Il utilise donc seulement deux chiffres, 0 et 1, appelés bits (contraction de l'anglais *binary digit*).
+- 8 bits forment un octet, qui peut représenter 256 valeurs différentes (de 0 à 255).
+- Avec $n$ bits, on peut représenter $2^n$ valeurs différentes (de 0 à $2^n - 1$).
 
+:::info Utilisations
+- Système de comptage des ordinateurs.
+- Représentation du fonctionnement de l'électronique numérique (0 = éteint, 1 = allumé).
+- Représentation de la vérité d'une proposition logique (0 = faux, 1 = vrai).
+:::
+
+### Le système hexadécimal (base 16)
+
+- Le système hexadécimal est un système de numération en base 16.
+- Il utilise donc 16 chiffres, 0 à 9 et A à F.
+- Plus court que le binaire, mais plus long que le décimal.
+
+:::info Utilisations
+-  Encodage des couleurs en informatique (ex : #FF5733).
+- Représentation des adresses mémoire (ex : 0x1A3F).
+- Utilisé dans les langages de programmation pour représenter des valeurs binaires de manière plus lisible.
+:::
 ## 📊 Méthode de conversion
 
-### → Décimal ➜ Binaire / Hexa : division par la base
+### ♻️ Décimal ➜ Binaire / Hexa : division par la base
 
 On divise régulièrement par la base, en prenant les **restes** :
 
@@ -65,25 +85,25 @@ On divise régulièrement par la base, en prenant les **restes** :
 ![44 en hexadécimal](./img/decimalToHexa.png)
 
 
-### → Binaire / Hexa ➜ Décimal : multiplication positionnelle
+### ♻️ Binaire / Hexa ➜ Décimal : multiplication positionnelle
 
-> Exemple : `101100₂`
+> Exemple : $101100_2$
 
 $$
 \begin{aligned}
 &= \textcolor{red}{1} \times 2^5 + \textcolor{red}{0} \times 2^4 + \textcolor{red}{1} \times 2^3 + \textcolor{red}{1} \times 2^2 + \textcolor{red}{0} \times 2^1 + \textcolor{red}{0} \times 2^0 \\
-&= 32 + 0 + 8 + 4 + 0 + 0 = 44
+&= 32 + 0 + 8 + 4 + 0 + 0 = 44_{10}
 \end{aligned}
 $$
 
-> Exemple : `2C₁₆`
+> Exemple : $2C_{16}$
 
 ***C** se traduit par **12** en décimal*  
 
 $$
 \begin{aligned}
 &= \textcolor{red}{2} \times 16^1 + \textcolor{red}{12} \times 16^0 \\
-&= 32 + 12 = 44
+&= 32 + 12 = 44_{10}
 \end{aligned}
 $$
 
@@ -108,7 +128,7 @@ Pour convertir rapidement :
 
 ---
 
-## 📖 Entraînement interactif
+## 💪 Entraînement interactif
 
 import { ConvertIntTrainer } from '@site/src/components/Markdown/BaseConverter/ConvertIntTrainer';
 
@@ -122,11 +142,54 @@ import { ConvertIntTrainer } from '@site/src/components/Markdown/BaseConverter/C
 
 ---
 
-## 🔄 Pour aller plus loin
+## 📖 Entraînement
 
-- Essayer des conversions avec des entiers plus grands (ex : 512, 1023)
-- Créer une fonction Python qui convertit une base à l’autre
-- Explorer la table ASCII et ses codes hexadécimaux
+:::note Exercice 1
+Produis la table de conversion de base 10 vers base 2 pour les entiers de 1 à 15.
+:::
 
-➡️ Prochaine étape : opérations arithmétiques en binaire !
+:::note Exercice 2
+Combien de bits sont nécéssaires pour représenter les nombres suivants en binaire ?  
+**⚠️ Je ne demande pas la conversion de ces nombres** 
 
+- $256_{10}$
+- $10_{10}$
+- $485_{10}$
+- $2028_{10}$
+- $1023_{10}$
+
+Et pour les représenter en hexadécimal ?
+:::
+
+:::note Exercice 3
+Complête la fonction suivante afin qu'elle convertisse un entier positif en binaire **sans** utiliser la fonction `bin()`.
+
+```python
+def int_to_binary(n: int) -> str:
+    if n == 0:
+        return ...
+    binary = ""
+    while n > 0:
+        binary = ...
+        n = ...
+    return binary
+``` 
+
+Ecris une nouvelle fonction qui convertit un entier positif en hexadécimal **sans** utiliser la fonction `hex()`.
+
+```python
+def int_to_hex(n: int) -> str:
+    if n == 0:
+        return ...
+    hexa = "" 
+    hex_chars = "0123456789ABCDEF"
+    while n > 0:
+        remainder = ...
+        hexa = ...
+        n = ...
+    return hexa
+``` 
+
+:::
+
+## 🔗 Liens utiles
