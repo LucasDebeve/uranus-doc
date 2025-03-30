@@ -1,0 +1,132 @@
+---
+id: entiers-positifs-base
+title: Entiers positifs dans les bases 2, 10 et 16
+description: Comprendre la conversion entre les bases
+slug: /entiers-positifs-base
+sidebar_position: 1
+---
+
+:::info
+
+## 📈 Objectifs du cours
+
+- Savoir **convertir** un entier entre les bases 2, 10 et 16
+- Comprendre les **liens entre ces systèmes**
+- Identifier les **cas pratiques** en informatique
+
+:::
+
+---
+
+## Représentation des entiers positifs
+
+### Le système décimal (base 10)
+
+En effet, tout le monde sait compter en base 10 (décimal). Mais comment ça marche ? Comment est construit notre système ? Pour répondre à cette question à l'apparence simple, oubliez tout et reprenons depuis le début : comment avez-vous appris à compter à l'école ?
+
+Vous penserez peut-être que la base 10 vient du fait qu'on a 10 doigts, mais en tout cas deux choses sont sûres :
+
+- Il y a 10 chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+- Avec ces derniers, on peut compter jusqu'à 9.
+
+Et si l'on veut aller au-delà de 9, il faut changer de rang.
+
+Cela signifie que si le rang des unités est plein, il faut passer à celui des dizaines, puis des centaines, milliers et j'en passe.
+
+Par exemple, le nombre 1234 se décompose comme suit :
+
+4 unités, 3 dizaines, 2 centaines et 1 millier.
+
+On peut alors l'écrire comme suit :
+
+$$
+\begin{aligned}
+1234 &= 1000 + 200 + 30 + 4 \\
+1234 &= 1 \times 10^3 + 2 \times 10^2 + 3 \times 10^1 + 4 \times 10^0
+\end{aligned}
+$$
+
+### Le système binaire (base 2)
+
+Le système binaire est la base la plus simple. Il est composé de deux chiffres : 0 et 1. Chaque chiffre représente un bit, qui peut être 0 ou 1. 8 bits forment un octet, qui peut représenter 256 valeurs différentes (de 0 à 255).
+
+## 📊 Méthode de conversion
+
+### → Décimal ➜ Binaire / Hexa : division par la base
+
+On divise régulièrement par la base, en prenant les **restes** :
+
+> Exemple : 44 en binaire
+
+![44 en binaire](./img/decimalToBinaire.png)
+
+> Exemple : 44 en hexadécimal
+
+![44 en hexadécimal](./img/decimalToHexa.png)
+
+
+### → Binaire / Hexa ➜ Décimal : multiplication positionnelle
+
+> Exemple : `101100₂`
+
+$$
+\begin{aligned}
+&= \textcolor{red}{1} \times 2^5 + \textcolor{red}{0} \times 2^4 + \textcolor{red}{1} \times 2^3 + \textcolor{red}{1} \times 2^2 + \textcolor{red}{0} \times 2^1 + \textcolor{red}{0} \times 2^0 \\
+&= 32 + 0 + 8 + 4 + 0 + 0 = 44
+\end{aligned}
+$$
+
+> Exemple : `2C₁₆`
+
+***C** se traduit par **12** en décimal*  
+
+$$
+\begin{aligned}
+&= \textcolor{red}{2} \times 16^1 + \textcolor{red}{12} \times 16^0 \\
+&= 32 + 12 = 44
+\end{aligned}
+$$
+
+---
+
+## 🔬 Astuce entre binaire et hexadécimal
+
+> 1 chiffre hexa = 4 bits (car $2^4 = 16$)  
+> Exemple :
+
+| Binaire | Hexa |
+| ------- | ---- |
+| 0000    | 0    |
+| 0001    | 1    |
+| 1010    | A    |
+| 1111    | F    |
+
+Pour convertir rapidement :
+
+- Groupes de 4 bits ➜ 1 chiffre hexa
+- Inversement, chaque hexa ➜ 4 bits
+
+---
+
+## 📖 Entraînement interactif
+
+import { ConvertTrainer } from '@site/src/components/Markdown/BaseConverter';
+
+<ConvertTrainer fromBase='décimale' toBaseChoice='binaire' />
+
+<ConvertTrainer fromBase='décimale' toBaseChoice='hexadécimale' />
+
+<ConvertTrainer fromBase='binaire' toBaseChoice='décimale' /> 
+
+<ConvertTrainer fromBase='héxadécimale' toBaseChoice='décimale' /> 
+
+---
+
+## 🔄 Pour aller plus loin
+
+- Essayer des conversions avec des entiers plus grands (ex : 512, 1023)
+- Créer une fonction Python qui convertit une base à l’autre
+- Explorer la table ASCII et ses codes hexadécimaux
+
+➡️ Prochaine étape : opérations arithmétiques en binaire !
+

@@ -41,6 +41,10 @@
   --highlight-color-blue: #3a4249;
 }
 
+/* .katex-display, .katex-html {
+  text-align: left;
+} */
+
 .question-container {
   margin-bottom: 24px;
   padding: 16px;
