@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ConverterToDecimalCorrection from './ConverterToDecimalCorrection';
 import ConverterFromDecimalCorrection from './ConverterFromDecimalCorrection';
+import OtpInput from 'react-otp-input';
 
 const bases = ['binaire', 'décimale', 'hexadécimale'];
 const getRandomInt = () => Math.floor(Math.random() * 256); // 0 à 255
@@ -13,14 +14,14 @@ function toBase(n: number, base: string): string[] {
 
 export function ConvertIntTrainer({ fromBase, toBaseChoice }: { fromBase: string, toBaseChoice: string }) {
   const [value, setValue] = useState(getRandomInt());
-  const [answer, setAnswer] = useState<string[]>([]);
+  const [answer, setAnswer] = useState('');
   const [result, setResult] = useState(null);
 
   const [correctValue, baseNumber] = toBase(value, toBaseChoice);
   const [displayValue, baseDisplay] = toBase(value, fromBase);
 
   const check = () => {
-    const userAnswer = answer.join('').trim().toLowerCase();
+    const userAnswer = answer.trim().toLowerCase();
     if (userAnswer === correctValue.toLowerCase()) {
       setResult(<div>✅ Bravo, bonne réponse !</div>);
     } else {
@@ -35,38 +36,43 @@ export function ConvertIntTrainer({ fromBase, toBaseChoice }: { fromBase: string
 
   const reload = () => {
     setValue(getRandomInt());
-    setAnswer([]);
+    setAnswer('');
     setResult('');
   };
 
-  const handleInputChange = (index: number, char: string) => {
-    const newAnswer = [...answer];
-    newAnswer[index] = char;
-    setAnswer(newAnswer);
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      check();
+    }
   };
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px', marginBottom: '1rem' }}>
-      <p>
-        <strong>
+    <div className="card margin-bottom--md">
+      <div className="card__header">
           Convertis {displayValue}<sub>{baseDisplay}</sub> de la base {fromBase} vers la base {toBaseChoice}
-        </strong>
-      </p>
-      <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
-        {Array.from({ length: correctValue.length }).map((_, index) => (
-          <input
-            key={index}
-            type="text"
-            maxLength={1}
-            value={answer[index] || ''}
-            onChange={(e) => handleInputChange(index, e.target.value)}
-            style={{ width: '20px', textAlign: 'center' }}
-          />
-        ))}
       </div>
-      <button onClick={check} style={{ marginRight: '8px' }}>Vérifier</button>
-      <button onClick={reload}>Recharger</button>
-      <p>{result}</p>
+      <div className="card__body margin-bottom--md">
+        <OtpInput
+          renderInput={(props) => <input {...props} onKeyDown={handleKeyDown} />}
+          renderSeparator={''}
+          value={answer}
+          onChange={setAnswer}
+          numInputs={correctValue.length}
+          inputStyle={{
+            width: '1.5rem',
+            height: '1.5rem',
+            textAlign: 'center',
+            margin: '0 4px',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+          }}
+        />
+      </div>
+      <div className="card__footer">
+        <button className="button button--primary" onClick={check} style={{ marginRight: '8px' }}>Vérifier</button>
+        <button className="button button--secondary" onClick={reload}>Recharger</button>
+      </div>
+      {result && <p className="padding-top--sm">{result}</p>}
     </div>
   );
 }

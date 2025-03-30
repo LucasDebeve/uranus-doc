@@ -38,6 +38,9 @@ importers:
       react-katex:
         specifier: ^3.0.1
         version: 3.0.1(prop-types@15.8.1)(react@19.0.0)
+      react-otp-input:
+        specifier: ^3.1.1
+        version: 3.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       rehype-katex:
         specifier: '7'
         version: 7.0.1
@@ -4175,6 +4178,12 @@ packages:
     peerDependencies:
       react-loadable: '*'
       webpack: '>=4.41.1 || 5.x'
+
+  react-otp-input@3.1.1:
+    resolution: {integrity: sha512-bjPavgJ0/Zmf/AYi4onj8FbH93IjeD+e8pWwxIJreDEWsU1ILR5fs8jEJmMGWSBe/yyvPP6X/W6Mk9UkOCkTPw==}
+    peerDependencies:
+      react: '>=16.8.6 || ^17.0.0 || ^18.0.0'
+      react-dom: '>=16.8.6 || ^17.0.0 || ^18.0.0'
 
   react-router-config@5.1.1:
     resolution: {integrity: sha512-DuanZjaD8mQp1ppHjgnnUnyOlqYXZVjnov/JzFhjLEwd3Z4dYjMSnqrEzzGThH47vpCOqPPwJM2FtthLeJ8Pbg==}
@@ -10492,6 +10501,11 @@ snapshots:
       '@babel/runtime': 7.27.0
       react-loadable: '@docusaurus/react-loadable@6.0.0(react@19.0.0)'
       webpack: 5.98.0
+
+  react-otp-input@3.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   react-router-config@5.1.1(react-router@5.3.4(react@19.0.0))(react@19.0.0):
     dependencies:
