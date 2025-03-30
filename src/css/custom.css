@@ -15,6 +15,7 @@
   --ifm-color-primary-lightest: #FFD1B3;
   --ifm-code-font-size: 110%;
   --docusaurus-highlighted-code-line-bg: rgba(255, 187, 0, 0.3);
+  --ifm-code-font-size: 1rem;
 
   --highlight-color-yellow: #FFD700;
   --highlight-color-orange: #FFA500;
@@ -41,9 +42,9 @@
   --highlight-color-blue: #3a4249;
 }
 
-/* .katex-display, .katex-html {
-  text-align: left;
-} */
+code {
+  font-size: 1rem;
+}
 
 .question-container {
   margin-bottom: 24px;
