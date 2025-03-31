@@ -1,0 +1,129 @@
+---
+id: algebre-bool
+title: Valeurs booléennes
+description: Comprendre la représentation des valeurs booléennes
+slug: /algebre-bool
+sidebar_position: 3
+---
+
+:::info
+
+## 📈 Objectifs du cours
+
+- Compléter des tables de vérité à partir d'expressions booléennes simples
+- Implémenter une addition binaire 1 bit avec retenue en Python
+- Identifier George Boole et son influence sur les circuits logiques
+
+:::
+
+---
+
+## Valeurs booléennes
+
+### Histoire
+
+![George Boole](https://upload.wikimedia.org/wikipedia/commons/c/ce/George_Boole_color.jpg)
+
+George Boole (1815-1864) est un mathématicien et logicien britannique connu pour avoir créé la logique moderne, appelée *algèbre de Boole*.
+
+Il a introduit des concepts fondamentaux tels que les variables binaires, les opérations logiques (ET, OU, NON) et les tables de vérité. Son travail a jeté les bases de l'informatique moderne et des circuits logiques.
+Il a également été un pionnier dans l'utilisation de la logique pour résoudre des problèmes mathématiques et philosophiques.
+
+### C'est quoi la logique ?
+
+:::note Définition
+La **logique** est une science relative aux processus de la pensée rationnelle (induction, déduction, hypothèse p. ex.) et à la formulation discursive des vérités
+
+selon le [CNRTL](https://www.cnrtl.fr/definition/logique).
+:::
+
+Dans cette définition, bien que savante, la notion de vérité ressort comme centrale. En effet, la logique est un outil qui nous permet de raisonner sur des énoncés et de déterminer leur véracité.
+
+En informatique, tout comme en mathématiques, on s'intéresse à la valeur de vérité d'un énoncé. L'expression peut être **soit vraie, soit fausse**. Il n'y a pas d'entre-deux (voir le [principe du tiers exclu](https://fr.wikipedia.org/wiki/Principe_du_tiers_exclu)).  
+
+Par exemple, comment réponderiez-vous aux questions suivantes ?
+
+1. Vous êtes arrivé en retard ce matin.
+2. George Orwell a écrit *1984*.
+3. $2 + 5 = 7$.
+4. Il y a 9 étoiles dans notre système solaire.
+5. La lettre Y est une voyelle.
+6. Dans la mythologie grecque, Olympe est le dieu des montagnes.
+7. $2^n$ est un nombre premier.
+
+Vous l'avez remarqué, tous ces énoncés sont vrais ou faux. Il n'y a pas de valeur de vérité intermédiaire. 
+
+### Algèbre de Boole
+
+L'algèbre de Boole est une théorie mathématique qui définit les opérations logiques et les tableaux de vérité. Elle est basée sur la logique classique, mais elle introduit des notions de base qui sont utiles pour la programmation.
+En algèbre de Boole, l'ensemble des valeurs possibles est consititué de deux éléments qu'on appelle **booléens**.
+
+Selon le contexte (électronique, logique, mathématiques), on peut utiliser les booléens suivants :
+- Faux ($F$) / Vrai ($V$)
+- 0 / 1
+- `False` / `True` (en Python)
+
+Les opérations fondamentales de la logique sont les opérations logiques suivantes :
+- La **négation**, notée $\neg$ ou **NON** (`not` en Python)  
+- la **conjonction**, notée $\land$, $\&$, ou **ET** (`and` en Python) 
+- la **disjonction**, notée $\lor$, $|$, ou **OU** (`or` en Python)
+
+:::tip Bon à savoir
+Une quatrième opération logique peut être utile à savoir, c'est le OU qu'on utilise dans la langue française : 
+
+> Exemple : "Tu vas au cinéma ou au restaurant ?", ici tu vas soit au cinéma, soit au restaurant, mais pas les deux.
+
+- la **disjonction exclusive**, notée $\oplus$ ou **OU exclusif** (`xor` en Python)
+:::
+
+### Table de vérité
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="non" label="La négation" default> 
+    | $A$ | $\neg A$ |
+    | --- | --- |
+    | Vrai | Faux |
+    | Faux | Vrai |
+  </TabItem>
+  <TabItem value="et" label="La conjonction">
+    | $A$ | $B$ | $A \& B$ |
+    | --- | --- | --- |
+    | Faux | Faux | Faux |
+    | Vrai | Faux | Faux |
+    | Faux | Vrai | Faux |
+    | Vrai | Vrai | Vrai |
+  </TabItem>
+  <TabItem value="or" label="La disjonction">
+    | $A$ | $B$ | $A$ \| $B$ |
+    | --- | --- | --- |
+    | Faux | Faux | Faux |
+    | Vrai | Faux | Vrai |
+    | Faux | Vrai | Vrai |
+    | Vrai | Vrai | Vrai |
+  </TabItem>
+  <TabItem value="xor" label="La disjonction exclusive">
+    | $A$ | $B$ | $A \oplus B$ |
+    | --- | --- | --- |
+    | Faux | Faux | Faux |
+    | Vrai | Faux | Vrai |
+    | Faux | Vrai | Vrai |
+    | Vrai | Vrai | Faux |
+  </TabItem>
+</Tabs>
+
+### 🎯 Entraînement interactif
+
+### 
+
+## 🔗 Liens utiles
+
+- [Binary Numbers and Base Systems as Fast as Possible](https://www.youtube.com/watch?v=LpuPe81bc2w)
+- [Système binaire](https://fr.wikipedia.org/wiki/Syst%C3%A8me_binaire)
+
+## Pour aller plus loin
+
+- Ecrire un programme qui convertit un entier en binaire et en hexadécimal.
+- Ecire une fonction qui convertir un entier en [octal](https://fr.wikipedia.org/wiki/Syst%C3%A8me_octal) (base 8).
