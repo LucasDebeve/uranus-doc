@@ -64,16 +64,34 @@ Selon le contexte (électronique, logique, mathématiques), on peut utiliser les
 - `False` / `True` (en Python)
 
 Les opérations fondamentales de la logique sont les opérations logiques suivantes :
-- La **négation**, notée $\neg$ ou **NON** (`not` en Python)  
-- la **conjonction**, notée $\land$, $\&$, ou **ET** (`and` en Python) 
-- la **disjonction**, notée $\lor$, $|$, ou **OU** (`or` en Python)
+- La **négation**, notée 
+  - $\neg$ (symbole logique)
+  - $\sim$ (symbole usuel)
+  - **NON** (en français)
+  - `not` (en Python)
+  - $\bar{x}$ (notation mathématique)
+- la **conjonction**, notée
+  - $\land$ (symbole logique)
+  - $\&$ (symbole usuel)
+  - **ET** (en français)
+  - `and` (en Python)
+  - $\cdot$ (notation mathématique)
+- la **disjonction**, notée
+  - $\lor$ (symbole logique)
+  - $|$ (symbole usuel)
+  - **OU** (en français)
+  - `or` (en Python)  
+  - $+$ (notation mathématique)
 
 :::tip Bon à savoir
 Une quatrième opération logique peut être utile à savoir, c'est le OU qu'on utilise dans la langue française : 
 
 > Exemple : "Tu vas au cinéma ou au restaurant ?", ici tu vas soit au cinéma, soit au restaurant, mais pas les deux.
 
-- la **disjonction exclusive**, notée $\oplus$ ou **OU exclusif** (`xor` en Python)
+- la **disjonction exclusive**, notée
+  - $\oplus$ (symbole logique)
+  - **OU exclusif**
+  - `^` (en Python)  
 :::
 
 ### Table de vérité
@@ -104,20 +122,126 @@ import TabItem from '@theme/TabItem';
     | Faux | Vrai | Vrai |
     | Vrai | Vrai | Vrai |
   </TabItem>
-  <TabItem value="xor" label="La disjonction exclusive">
-    | $A$ | $B$ | $A \oplus B$ |
-    | --- | --- | --- |
-    | Faux | Faux | Faux |
-    | Vrai | Faux | Vrai |
-    | Faux | Vrai | Vrai |
-    | Vrai | Vrai | Faux |
-  </TabItem>
 </Tabs>
 
 ### 🎯 Entraînement interactif
 
 
-### 
+### En Python
+
+En Python, on peut utiliser les opérateurs booléens suivants :
+- La **négation**, notée `not`  
+- la **conjonction**, notée `and`  
+- la **disjonction**, notée `or`  
+
+Il existe par ailleurs d'autres opérateurs retournant des booléens :
+- `==` : égalité
+- `!=` : différence (il existe aussi `<>` mais a éviter)
+- `<` : inférieur
+- `>` : supérieur
+- `<=` : inférieur ou égal
+- `>=` : supérieur ou égal
+- `is` : identique (même objet en mémoire)
+- `is not` : différent (objets différents en mémoire)
+- `in` : appartient à (dans une liste, un tuple, un dictionnaire, etc.)
+- `not in` : n'appartient pas à (dans une liste, un tuple, un dictionnaire, etc.)
+
+## Exercices
+
+:::note Exercice 1
+Construire la table de vérité du **OU exclusif**.
+:::
+
+<details>
+  <summary>🔍 Correction</summary>
+  | $A$ | $B$ | $A \oplus B$ |
+  | --- | --- | --- |
+  | Faux | Faux | Faux |
+  | Vrai | Faux | Vrai |
+  | Faux | Vrai | Vrai |
+  | Vrai | Vrai | Faux |
+</details>
+
+:::note Exercice 2
+Construire la table de vérité de l'expression suivante :
+$(A \lor B) \land \neg{C}$
+
+| $A$ | $B$ | $C$ | $(A + B) \cdot \bar{C}$ |
+| --- | --- | --- | --- |
+| 0 | 0 | 0 |  |
+| 0 | 0 | 1 |  |
+| 0 | 1 | 0 |  |
+| 0 | 1 | 1 |  |
+| 1 | 0 | 0 |  |
+| 1 | 0 | 1 |  |
+| 1 | 1 | 0 |  |
+| 1 | 1 | 1 |  |
+:::
+
+<details>
+  <summary>🔍 Correction</summary>
+  | $A$ | $B$ | $C$ | $(A + B) \cdot \bar{C}$ |
+  | --- | --- | --- | --- |
+  | 0 | 0 | 0 |  |
+  | 0 | 0 | 1 |  |
+  | 0 | 1 | 0 |  |
+  | 0 | 1 | 1 |  |
+  | 1 | 0 | 0 |  |
+  | 1 | 0 | 1 |  |
+  | 1 | 1 | 0 |  |
+  | 1 | 1 | 1 |  |
+</details>
+
+:::note Exercice 3
+Evaluer les expressions suivantes :
+
+```python
+a = (1 == 1)
+b = (3 > 2)
+c = (3 == 1+2)
+d = (1 <= 0)
+e = (2 != 5/2)
+f = (2 != 5//2)
+g = ('c' == 'C')
+h = not f
+i = a and b
+j = a or b
+k = not d and (d or f)
+l = 'a' in 'abc'
+m = 2 in ['2', 4, '6']
+```
+:::
+
+:::note Exercice 4
+Soit `a` et `b` deux variables contenant des entier et `tabl` une varaible contenant une liste d'entiers.
+
+Ecrire pour chacune des expressions suivantes une expression booléenne (en Python) équivalente :
+
+- `a` et `b` sont nuls
+- `a` est compris entre `b` et `b + 10` inclus
+- `a` est égal à `9` ou `10`
+- `a` et `b` appartiennent à `tabl`
+- `a` appartient à `tabl` mais pas `b`
+- `a` est différent de `b` et `tabl` est vide
+:::
+
+:::note Exercice 5
+En binaire maintenant, calculer le resultat des expressions suivantes :
+
+```
+    1000110
+ |  0011011
+-----------
+
+    1001101
+ &  1001011
+-----------
+
+    0111001
+ ^  1011011
+-----------
+```
+:::
 
 ## 🔗 Liens utiles
 
