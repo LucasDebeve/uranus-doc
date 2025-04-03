@@ -1,0 +1,206 @@
+---
+id: protocole-http
+title: Protocole HTTP
+description: Comprendre le protocole HTTP et les échanges Web
+slug: /protocole-http
+sidebar_position: 1
+---
+
+## Objectifs de la séance
+
+À la fin de cette séance, vous saurez :
+
+- Expliquer ce qu'est une URL, une URI
+- Observer et analyser les échanges HTTP entre un navigateur et un serveur
+- Identifier les composants d'une requête et d'une réponse HTTP
+- Utiliser les outils de développement du navigateur
+- Réaliser des requêtes HTTP en ligne de commande (avec `curl` ou `httpie`)
+- Différencier les méthodes GET et POST
+- Comprendre les principes du cache et des requêtes conditionnelles
+
+---
+
+## Introduction
+
+Le **[protocole HTTP](https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol)** (Hypertext Transfer Protocol) est le langage utilisé par votre navigateur pour dialoguer avec les serveurs Web. Chaque fois que vous consultez une page, remplissez un formulaire ou cliquez sur un lien, vous utilisez HTTP sans le savoir.
+
+HTTP est un protocole **client-serveur** de la **couche application** du modèle [OSI](https://fr.wikipedia.org/wiki/Couche_application). Il repose sur un échange de **requêtes** envoyées par le client (le navigateur) et de **réponses** fournies par le [serveurs Web](https://fr.wikipedia.org/wiki/Serveur_web).
+
+Ce TP vous guide pas à pas dans l'exploration du protocole HTTP à travers des outils pratiques, pour en comprendre les rouages essentiels avant d'attaquer le développement Web.
+
+:::info À retenir
+HTTP permet de **récupérer des ressources** (pages HTML, images, etc.) à partir d'un **identifiant d'adresse** (URL), en respectant une syntaxe et un dialogue standardisé entre client et serveur.
+:::
+
+---
+
+## I. Premiers échanges avec un site Web
+
+### A. La barre d'adresse
+
+1. Tapez dans la barre d'adresse de votre navigateur :
+
+```
+http://httpbin.org/
+```
+
+- Que se passe-t-il ?
+- Quelle URL s’affiche réellement ? Pourquoi ?
+
+2. Essayez avec :
+```
+http://httpbin.org/html
+```
+- Quelle différence constatez-vous ?
+- Affichez et observez le code HTML reçu.
+
+> 💡 **httpbin.org** est un site conçu pour tester les requêtes HTTP. Il vous renvoie des réponses lisibles et instructives.
+
+---
+
+### B. Les outils de développement
+
+3. Ouvrez les outils de développement de votre navigateur (`F12` ou clic droit → Inspecter → onglet **Réseau**). Rechargez la page précédente.
+
+Répondez aux questions suivantes :
+
+- Méthode HTTP utilisée ?
+- URL demandée ?
+- Version du protocole HTTP ?
+- Code de retour (ex : `200 OK`) ?
+- Informations contenues dans :
+- les **en-têtes de la requête** (Request Headers)
+- les **en-têtes de la réponse** (Response Headers)
+- Contenu de la réponse
+
+4. Refaites l’opération avec :
+```
+http://httpbin.org/encoding/utf8
+```
+---
+
+### C. Ressource inexistante
+
+5. Accédez à une URL volontairement erronée :
+```
+http://httpbin.org/toto
+```
+- Que se passe-t-il ?
+- Quel est le **code de retour HTTP** ? Que signifie-t-il ?
+
+> 🧠 **Rappel** : Les codes HTTP sont standardisés. Par exemple, `404 Not Found`, `301 Moved Permanently`, `403 Forbidden`, etc.
+
+---
+
+### D. Requêtes conditionnelles (et cache)
+
+6. Accédez à :
+```
+http://httpbin.org/cache
+```
+- Quelle est la valeur de l’en-tête `Cache-Control` ?
+- Rechargez plusieurs fois : constatez-vous un comportement particulier ?
+
+7. Dans l’onglet Réseau, observez s’il apparaît un champ `If-Modified-Since` ou `If-None-Match` lors du rechargement.
+
+Si non : clic droit sur la requête → "Rejouer avec modification".
+
+- Différences par rapport à la première requête ?
+- Code de réponse (`304 Not Modified` ?) : que signifie-t-il ?
+
+> 📦 Ces mécanismes permettent de ne **pas recharger inutilement une ressource** si elle n’a pas changé, ce qui **accélère la navigation**.
+
+---
+
+### E. Méthodes GET vs POST
+
+8. Accédez au formulaire :
+```
+http://httpbin.org/forms/post
+```
+- Remplissez-le puis validez.
+- Observez la requête dans l’onglet Réseau :
+  - Méthode HTTP ?
+  - Où sont passées les données ?
+
+9. Refaites avec :
+```
+http://httpbin.org/get?nom=Dupont&prenom=Jean
+```
+- Comparez l’URL et les données envoyées avec la requête POST précédente.
+
+> 🆚 **GET** ajoute les données dans l’URL (visible), **POST** les place dans le corps de la requête (invisible, mais plus sécurisé pour les formulaires sensibles).
+
+---
+
+## II. Requêtes HTTP en ligne de commande
+
+### A. Avec `curl`
+
+1. Tapez dans un terminal :
+```
+curl http://httpbin.org/get
+```
+- Quelle est la méthode utilisée ?
+- Que contient la réponse ?
+
+2. Avec paramètres dans l’URL :
+```
+curl http://httpbin.org/get?nom=Dupont&prenom=Jean
+```
+
+3. Requête POST :
+```
+curl -X POST -d "nom=Dupont&prenom=Jean" http://httpbin.org/post
+```
+
+- Observez les différences avec la requête GET précédente.
+
+4. Pour voir les en-têtes échangés :
+```
+curl -v http://httpbin.org/get
+```
+
+5. Pour envoyer un en-tête personnalisé :
+```
+curl -H "X-Test: Coucou" http://httpbin.org/headers
+```
+---
+
+### B. Option : avec `httpie`
+
+Si vous avez installé [`httpie`](https://httpie.io/), testez :
+```
+http httpbin.org/get
+http POST httpbin.org/post nom=Durand prenom=Alice
+```
+> ✅ `httpie` est plus lisible que `curl`, notamment pour les réponses JSON.
+
+---
+
+## III. Étude de cas réel
+
+1. Trouvez un site Web avec un formulaire de connexion simple (évitez les sites sensibles).
+2. Entrez des données fictives et observez l’échange réseau.
+3. Analysez :
+   - Méthode utilisée
+   - Données envoyées
+   - En-têtes présents
+   - URL ciblée
+   - Réponse du serveur
+
+---
+
+## Conclusion
+
+Vous devez maintenant être capable de :
+
+- Identifier et analyser une requête HTTP dans le navigateur
+- Différencier les méthodes **GET** et **POST**
+- Lire et interpréter les **codes de statut** et les **en-têtes HTTP**
+- Construire des requêtes HTTP en ligne de commande
+- Comprendre les échanges client-serveur sous-jacents au Web
+
+:::tip Bon réflexe
+Conservez vos observations et scripts dans un dépôt Git. Cela vous servira pour vos projets Web (PHP, JS) et pour vos révisions.
+:::
