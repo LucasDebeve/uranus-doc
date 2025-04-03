@@ -1,0 +1,118 @@
+---
+id: gauss
+title: Algorithme du pivot de Gauss
+description: Comprendre le pivot de Gauss
+slug: /gauss
+sidebar_position: 4
+---
+
+
+```python
+import numpy as np
+```
+
+*Toutes les matrices considérées ici seront inversibles (et par conséquent des matrices carrées !)*
+
+### Préambule : permutation de lignes
+
+- Construire une fonction `permute(M, L1, L2)` qui échange la ligne `L1` et la ligne `L2` d'une matrice `M`.
+
+Exemple :
+
+```python
+M = np.array([[1, 1, 2, -1],
+              [1, 0, -1, 2],
+              [2, 1, 3, 2],
+              [-1, -2, 0, 4]])
+M
+```
+
+```python
+permute(M, 2, 3)
+```
+
+### 1. Matrice échelonnée triangulaire
+
+L'objectif de cette première partie est de transformer une matrice inversible quelconque en matrice triangulaire supérieure. 
+Afin de simplifier la réalisation de cet objectif, le problème va être découpé en plusieurs exercices, modifiant pas à pas une colonne `j` donnée en paramètre d'une matrice `M`.
+
+#### 1.1 Exercice : recherche du pivot
+
+- Construire une fonction `recherchepivot(M, j)` qui pour une matrice `M` donnée et sa colonne `j` :
+  - recherche le pivot de la colonne `j`, à savoir le premier coefficient non nul de la colonne `j`, situé à partir de la diagonale.
+  - permute ce pivot, **ainsi que toute sa ligne**, avec la ligne `j`.
+  - renvoie la matrice ainsi transformée.
+
+Exemple :
+
+```python
+M = np.array([[1, 1, 2, -1],
+              [1, 0, -1, 2],
+              [2, 1, 3, 2],
+              [-1, -2, 0, 4]])
+M
+```
+
+```python
+recherchepivot(M, 1)
+```
+
+#### 1.2 Exercice : annulation des coefficients
+
+- Créer une fonction `annulcoeff(M, j)` qui pour une matrice `M` donnée et sa colonne `j` :
+  - applique la fonction précédente,
+  - annule les coefficients situés sous le pivot de la colonne `j`, en utilisant des opérations sur les lignes.
+
+Rappel : une ligne $L_{i}$ est remplacée par :
+
+$$M[j,j] \times L_{i} - M[i,j] \times L_{j}$$
+
+Exemple :
+
+```python
+annulcoeff(M, 1)
+```
+
+#### 1.3 Exercice : pivot de Gauss
+
+- Construire une fonction `gauss(M)` qui transforme une matrice inversible `M` en matrice triangulaire supérieure, en utilisant l'algorithme du pivot de Gauss.
+
+Exemple :
+
+```python
+G = gauss(M)
+G
+```
+
+---
+
+## 2. Matrice échelonnée diagonale
+
+### 2.1 Exercice : remontée de l'algorithme de Gauss
+
+- Construire une fonction `remonte(G)` qui transforme une matrice inversible **triangulaire supérieure** `G` en matrice diagonale, en utilisant la remontée de l'algorithme du pivot de Gauss.
+
+Exemple :
+
+```python
+remonte(G)
+```
+
+- Construire une fonction `diagonale(M)` qui transforme une matrice inversible `M` en matrice diagonale, en utilisant les programmes précédents.
+
+Exemple :
+
+```python
+diagonale(M)
+```
+
+### 2.2 Bonus : inversion d'une matrice
+
+- Construire une fonction `inverse(M)` qui calcule l'inverse d'une matrice inversible `M`, en utilisant la matrice identité et la méthode vue en TD.
+
+Exemple :
+
+```python
+inverse(M)
+```
+

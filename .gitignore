@@ -16,7 +16,7 @@
 .env.production.local
 
 # archives
-archives/
+/archives/
 
 npm-debug.log*
 yarn-debug.log*

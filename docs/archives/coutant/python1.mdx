@@ -1,0 +1,241 @@
+---
+id: mise-en-route-python
+title: Mise en route Python
+description: Apprendre les bases de Python
+slug: /mise-en-route-python
+sidebar_position: 1
+---
+
+## Installation
+
+
+## 1. Syntaxe
+
+### 1.1 Manipulation des listes
+
+#### 1.1.1 liste
+
+La plupart des données que nous utiliserons seront des listes numériques.  
+La syntaxe est la suivante :
+
+```python
+x = [4,3,2,1]
+y = [2,4,6,8]
+print(x, y)
+```
+
+La variable `x` est gardée en mémoire comme telle tant qu'elle n'aura pas été modifiée.
+
+#### 1.1.2 concaténation
+
+```python
+z = x + [7,8]
+print(z)
+print([12] + x + [9] + y)
+print([3]*4)
+# création d'une liste vide
+v = []
+print(v)
+```
+
+#### 1.1.3 extraction de coefficient
+
+L'extraction de coefficient se fait à l'aide des `[..]` (commandes de *slicing*). Que font les commandes suivantes ?
+
+```python
+print(y[0])
+print(y[2])
+print(y[0:3])
+print(y[1:3])
+print(y[2:3])
+print(y[1:])
+print(y[2:])
+```
+
+Attention, si vous voulez recopier la liste `x` dans une nouvelle variable `w`, la commande suivante ne fonctionne pas :
+
+```python
+w = x
+```
+
+`w` n'est pas une copie, mais une nouvelle référence vers la liste `x`.
+
+```python
+w[2] = 88
+print(x)
+```
+
+Pour créer un nouvel objet liste, on pourra utiliser la méthode `.copy()` :
+
+```python
+x = [4,3,2,1]
+w = x.copy()
+w[2] = 88
+print(x)
+print(w)
+```
+
+#### 1.1.4 séquence
+
+- Taper les commandes suivantes :
+
+```python
+# les commandes suivantes renvoient la même liste
+[0,1,2,3]
+list(range(0,4))
+list(range(4))
+
+# si on souhaite créer une séquence avec un pas différent de 1 :
+list(range(12,2,-1))
+list(range(1,9,2))
+```
+
+### 1.2 Fonctions
+
+Les fonctions en `Python` ont toutes la même syntaxe : `nomfonction(variables)`.  
+Exemples : que font les fonctions suivantes ?
+
+```python
+len(y)
+sum(y)
+del(y[2])
+```
+
+#### 1.2.1 créations de fonctions
+
+Nous cherchons à créer nos propres fonctions.  
+La syntaxe de création d'une fonction est la suivante :
+
+```python
+def nomdemafonction(x1, x2, ..., xp):
+    instructions
+    return y
+```
+
+Exemple :
+- Copier-coller la fonction suivante `pm(a,b)`, qui retourne l'addition et la soustraction de `a` et `b`.
+
+```python
+def pm(a, b):
+    plus = a + b
+    moins = a - b
+    res = (plus, moins)
+    return res
+```
+
+- Tester dans la console votre fonction :
+
+```python
+pm(12, 7)
+# Résultat : (19, 5)
+```
+
+### 1.3 Structures de contrôle
+
+#### 1.3.1 le test "si"
+
+Nous utiliserons le test `if ... else` :
+
+```python
+if conditions:
+    instructions1
+else:
+    instructions2
+```
+
+#### 1.3.2 la boucle "pour"
+
+On peut parcourir directement les éléments d'une liste donnée :
+
+```python
+for i in liste:
+    instructions
+```
+
+Pour parcourir des indices entiers :
+
+```python
+for i in range(début, fin):
+    instructions
+```
+
+#### 1.3.3 la boucle "tant que"
+
+```python
+while conditions:
+    instructions
+```
+
+---
+
+## 2. Applications
+
+### 2.1 Exercice : modification de listes
+
+- Construire une fonction `nulpos(liste)` qui met à 0 les éléments positifs d'une liste numérique.
+
+```python
+a = [8, 5, -2, 1, 2]
+nulpos(a)
+# Résultat : [0, 0, -2, 0, 0]
+```
+
+- Construire une fonction `puiss(liste)` qui met à la puissance *i* le *i*-ème élément de `liste`.
+
+```python
+puiss(a)
+# Résultat : [8, 25, -8, 1, 32]
+```
+
+- Construire une fonction `nbre_pairs(liste)` qui compte le nombre d'entiers pairs dans la `liste`.
+
+```python
+nbre_pairs(a)
+# Résultat : 3
+```
+
+- Construire une fonction `minval(liste)` qui retourne la plus petite valeur et son indice.
+
+```python
+minval(a)
+# Résultat : (-2, 2)
+```
+
+### 2.2 Exercice : algorithme d'Euclide
+
+- Construire une fonction `algoeucli(a, b)` qui calcule le pgcd de deux entiers non nuls.
+
+```python
+algoeucli(237, 18)
+# Résultat : 3
+```
+
+---
+
+## 3. Base 2
+
+### 3.1 Exercice : écriture en base 2
+
+- Construire une fonction `base2(n)` pour obtenir l'écriture en base 2 d’un entier `n`.
+
+```python
+base2(103)
+# Résultat : [1, 1, 0, 0, 1, 1, 1]
+```
+
+### 3.2 Bonus : écriture en base 8
+
+- Construire une fonction `base8(n)` basée sur le modèle précédent.
+
+```python
+base8(103)
+# Résultat : [1, 4, 7]
+```
+
+- Construire une fonction `base2_8(L)` qui convertit une liste `L` (base 2) en base 8.
+
+```python
+base2_8(base2(103))
+# Résultat : [1, 4, 7]
+```
+
