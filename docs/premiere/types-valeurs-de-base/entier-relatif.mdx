@@ -1,0 +1,122 @@
+---
+id: entier-relatif-base
+title: Entiers relatifs en base 2
+description: Comprendre la représentation des entiers relatifs
+slug: /entiers-relatifs-base
+sidebar_position: 2
+---
+
+:::info
+
+## 📈 Objectifs du cours
+
+- Comprendre la représentation des entiers relatifs en binaire (valeurs positives et négatives)
+- Appliquer la méthode du complément à 2 pour coder des entiers signés sur 8 bits
+- Évaluer le nombre de bits nécessaires à la représentation d’un entier dans un contexte donné
+
+:::
+
+---
+
+## Représentation binaire d'un entier relatif (signé) 
+
+### Représentation signée : pourquoi ?
+
+Les ordinateurs représentent les nombres sous forme binaire, mais les entiers peuvent être positifs ou négatifs.
+
+On peut alors choisir de les représenter avec un bit de signe (0 pour positif, 1 pour négatif). 
+Par exemple, $7_{10}$ s'écrit $111_{2}$. Pour représenter $7_{10}$, on peut écrire $0111_{2}$ (avec un bit de signe). Pour $-7_{10}$, on peut écrire $1111_{2}$ (avec un bit de signe). Cependant, il y a un problème : $1111_{2}$ peut aussi être interprété comme $15_{10}$ (sans bit de signe).
+
+Pour lever cette ambiguïté, il faut décider :
+- de la **taille du mot binaire** qui va représenter l'entier, c'est-à-dire le nombre de bits
+- d'une façon efficace de représenter les nombres négatifs
+
+:::danger Attention
+Fixons une taille de 8 bits (1 octet). On serait tenter de s'arrêter là, mais il y deux gros problèmes :
+- Le nombre $0_{10}$ peut être représenté de plusieurs façons, par exemple $00000000_{2}$ ou $10000000_{2}$.
+- L'addition telle qu'on l'a connait ne fonctionnerait plus.
+:::
+
+Pour éviter ces problèmes, il existe une méthode magique, la technique du complément à 2 (ou C2).
+
+### Le complément à 2 : principe
+
+#### Codage des entiers signés sur 8 bits
+
+- Les valeurs possibles vont de -128 à 127
+- Le bit de poids fort (le premier à gauche) est le bit de signe :
+    - `0xxxxxxx` ➜ positif
+    - `1xxxxxxx` ➜ négatif
+
+#### ✅ Pour coder un entier négatif :
+
+1. On prend la valeur positive de l'entier et on la code sur 8 bits 
+2. On inverse les bits (complément à 1)
+3. On ajoute 1 au résultat
+
+> Exemple : $-42_{10}$ en binaire
+>
+> $$
+> \begin{aligned}
+> 42 &= 00101010_{2} \\
+> \text{Complément à 1} &= \textcolor{red}{11010101}_{2} \\ 
+> + 1 &= 110101\textcolor{red}{10}_{2} \\
+> -42 &= 11010110_{2}
+> \end{aligned}
+> $$
+
+### 🔠 Décodage : retrouver l'entier signé
+
+- Si le bit de gauche est `0`, on lit normalement
+- Si le bit de gauche est `1`, on applique le complément à 1 inverse
+    1. On inverse les bits
+    2. On ajoute 1 au résultat
+    3. On lit le résultat en décimal et on ajoute le signe $-$ à la valeur
+
+> Exemple : $11111101_{2}$
+> 
+> $$
+> \begin{aligned}
+> &: 11111101_{2} \\
+> \text{Inverse} &: \textcolor{red}{00000010}_{2} \\
+> + 1 &: 0000001\textcolor{red}{1}_{2} \\ 
+> 00000011_{2} &= 3_{10} \\
+> 11111101_{2} &= -3_{10}
+> \end{aligned}
+> $$
+
+## 🦜 Astuce
+
+Sur 8 bits, on peut coder :
+- $2^7$ = 128 valeurs positives (de 0 à 127)
+- $2^7$ = 128 valeurs négatives (de -128 à -1)
+
+Donc $2^8$ = 256 combinaisons totales.
+
+## 📊 Cas concrets : combien de bits ?
+
+Quel est le nombre de bits nécessaire pour coder une température allant de -20 à +30°C ?
+
+<details>
+    <summary>Réponse</summary>
+- L'amplitute totale est de $30 - (-20) + 1 = 51$.
+- $2^n \geq 51$.
+- On trouve $n = 6$.
+- Donc il faut 6 bits minimum pour coder une température allant de -20 à +30°C.
+</details>
+
+### 🎯 Entraînement interactif
+
+import { SignedBinaryTrainer } from '@site/src/components/Markdown/Trainers/BaseConverter/ComplementA2/SignedBinaryTrainer';
+
+<SignedBinaryTrainer />
+
+## 🔗 Liens utiles
+
+- [Binary Numbers and Base Systems as Fast as Possible](https://www.youtube.com/watch?v=LpuPe81bc2w)
+- [Système binaire](https://fr.wikipedia.org/wiki/Syst%C3%A8me_binaire)
+
+## Pour aller plus loin
+
+- Ecrire un programme qui convertit un entier en binaire et en hexadécimal.
+- Ecire une fonction qui convertir un entier en [octal](https://fr.wikipedia.org/wiki/Syst%C3%A8me_octal) (base 8).

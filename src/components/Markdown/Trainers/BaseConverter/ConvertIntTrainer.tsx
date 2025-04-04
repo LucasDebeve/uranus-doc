@@ -49,7 +49,7 @@ export function ConvertIntTrainer({ fromBase, toBaseChoice }: { fromBase: string
   return (
     <div className="card margin-bottom--md">
       <div className="card__header">
-          Convertis {displayValue}<sub>{baseDisplay}</sub> vers la base {toBaseChoice}
+        Convertis {displayValue}<sub>{baseDisplay}</sub> vers la base {toBaseChoice}
       </div>
       <div className="card__body margin-bottom--md">
         <OtpInput

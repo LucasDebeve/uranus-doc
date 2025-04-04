@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-export default function Highlight ({ children, color }: {children: ReactNode, color: string}) {
+export default function Highlight ({ children, color = 'yellow' }: {children: ReactNode, color: string}) {
     const highlightColors = {
         yellow: 'var(--highlight-color-yellow)',
         orange: 'var(--highlight-color-orange)',

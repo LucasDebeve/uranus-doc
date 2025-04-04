@@ -1,0 +1,140 @@
+---
+id: nombres-premiers
+title: Autour des nombres premiers
+description: Comprendre les nombres premiers
+slug: /nombres-premiers
+sidebar_position: 2
+---
+
+Remarque : nous aurons besoin des modules `numpy` et `time` de python.
+
+```python
+import time
+import numpy as np
+```
+
+Nous verrons plus en détails le module Numpy plus tard, pour l'instant nous l'utiliserons pour la racine carrée :
+
+```python
+np.sqrt(9)
+# 3.0
+```
+
+## 1. Tests de primalité
+
+Nous allons chercher à écrire différents tests de primalité, c'est-à-dire des algorithmes permettant de savoir si un nombre $n \ge 2$ est un nombre premier.
+
+**Test de divisibilité**
+
+Le test le plus simple est le suivant : on parcourt successivement les valeurs entre 2 et $n - 1$ tant qu'on n'a pas trouvé de diviseur de $n$.
+
+Si aucun entier $d$ ne divise $n$, alors $n$ est premier. Sinon, $n$ est un nombre composé.
+
+### 1.1 Exercice : mise en œuvre de l'algorithme
+
+- Construire une fonction `primal1(n)` reposant sur le principe exposé plus haut.
+
+*(on pourra retourner un booléen : `True` si $n$ est premier, `False` sinon)*
+
+Exemples :
+
+```python
+print(primal1(561), primal1(562), primal1(563), primal1(41579))
+# False False True True
+```
+
+- À l'aide de la fonction `temps()` ci-dessous, noter le temps de calcul effectué par votre fonction pour le nombre premier 41579.
+
+```python
+def temps(f, n):
+    t0 = time.time()
+    f(n)
+    t1 = time.time()
+    return t1 - t0
+
+temps(primal1, 41579)
+# ~0.007 secondes
+```
+
+### 1.2 Exercice : amélioration de la fonction précédente
+
+- Construire une fonction `primal2(n)` qui teste au début si 2 divise n, puis si ce n'est pas le cas, teste uniquement les nombres impairs inférieurs à $n$.
+
+- Mesurer son temps d'exécution avec `temps()`.
+
+- On rappelle qu'un nombre composé $n$ possède forcément un diviseur $d \le \sqrt{n}$.
+
+  Utiliser ce résultat pour construire une fonction `primal3(n)`, améliorant la fonction précédente.
+
+- Comparer les temps d'exécution avec `temps()` pour le nombre 41579.
+
+### 1.3 Exercice : affichage des nombres premiers
+
+- À l'aide de `primal3`, construire une fonction `premiers(k)`, qui renvoie une liste contenant tous les nombres premiers compris entre 2 et `k`.
+
+```python
+print(premiers(200))
+# [2, 3, 5, 7, 11, 13, ..., 199]
+```
+
+## 2. Un test probabiliste
+
+On dit que $n$ est **probablement premier** s'il vérifie le test de Fermat, à savoir si :
+
+$2^{n - 1} \equiv 1 \mod n$ 
+
+### 2.1 Exercice : test de Fermat
+
+- Construire une fonction `testfermat(n)` qui renvoie `True` si $n$ est probablement premier, `False` sinon.
+
+Exemples :
+
+```python
+print(testfermat(561), testfermat(562), testfermat(563))
+# True False True
+```
+
+### 2.2 Exercice : affichage des nombres pseudopremiers
+
+Il existe des nombres non premiers qui vérifient le test de Fermat. Ces nombres sont appelés **pseudopremiers**.
+
+- Construire une fonction `pseudopremiers(k)` qui renvoie les nombres pseudopremiers compris entre 2 et `k`.
+
+```python
+pseudopremiers(1200)
+# [341, 561, 645, 1105]
+```
+
+## 3. Bonus
+
+### 3.1 Exercice : nombres de Mersenne
+
+Les nombres de Mersenne sont ceux s'écrivant $2^n - 1$, avec **n premier**. Attention, tous ne sont pas premiers.
+
+Exemple : $2^{19} - 1$ est premier, mais $2^{23} - 1$ ne l'est pas.
+
+- Construire une fonction `mersenne(k)` qui renvoie les `k` premiers nombres de Mersenne.
+
+```python
+mersenne(8)
+# [3, 7, 31, 127, 2047, 8191, 131071, 524287]
+```
+
+### 3.2 Exercices : décomposition en produits de nombres premiers
+
+- Écrire une fonction `decomposition(n)` qui renvoie la décomposition en produit de nombres premiers d'un nombre entier `n ≥ 2`.
+
+```python
+decomposition(1080)
+# [2, 2, 2, 3, 3, 3, 5]
+
+decomposition(5850)
+# [2, 3, 3, 5, 5, 13]
+```
+
+- Écrire une fonction `pgcd_decompo(a, b)` qui retourne la décomposition en produits de nombres premiers du PGCD de deux entiers `a` et `b`, en utilisant les deux décompositions de `a` et de `b`.
+
+```python
+pgcd_decompo(1080, 5850)
+# [2, 3, 3, 5]
+```
