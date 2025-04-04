@@ -1,0 +1,131 @@
+---
+id: conteneur
+title: Lancer un conteneur
+description: Lancer un conteneur avec Docker
+slug: /conteneur
+---
+
+:::info Objectifs
+
+:::
+
+## Le Docker Hub
+
+Avant de démarrer votre premier conteneur Docker, rappelez-vous quand vous avez créé votre compte sur le Docker Hub pour télécharger votre version de Docker. Celui-ci est aussi la **registry officielle de Docker**.
+
+:::note
+Un registry ?
+:::
+
+:::info
+Une **registry** est un logiciel qui permet de partager des images à d'autres personnes. C’est un composant majeur dans l’écosystème Docker, car il permet :
+- à des **développeurs** de **distribuer des images** prêtes à l’emploi et de les **versionner** avec un système de tags ;
+- à des **outils** d’intégration en continu de jouer une suite de **tests**, sans avoir besoin d’autre chose que de Docker ;
+- à des** systèmes automatisés** de **déployer ces applications** sur vos environnements de développement et de production.
+:::
+
+### Démarer votre premier conteneur
+
+Pour démarrer votre premier conteneur, il vous suffit de taper la commande suivante :
+
+```bash
+docker run hello-world
+```
+Cette commande va télécharger l'image `hello-world` sur votre machine, si elle n'est pas déjà présente, et la démarrer. Vous devriez voir un message de bienvenue de Docker.
+
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+1. The Docker client contacted the Docker daemon.
+2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+(amd64)
+3. The Docker daemon created a new container from that image which runs the
+executable that produces the output you are currently reading.
+4. The Docker daemon streamed that output to the Docker client, which sent it
+to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+$ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+https://hub.docker.com/
+
+For more examples and ideas, visit:
+https://docs.docker.com/get-started/
+```
+
+:::info
+Dans notre cas, le conteneur a démarré, puis affiché du contenu, et il a fini par s'arrêter. Si vous souhaitez que votre **conteneur reste allumé jusqu’à l'arrêt du service** qu'il contient, vous devez ajouter l’argument `--detach` (`-d`) .
+Celui-ci permet de ne pas rester attaché au conteneur, et donc de pouvoir lancer plusieurs conteneurs. Nous allons voir dans la section suivante comment utiliser l’argument `-d`.
+:::
+
+### Lancer un serveur Nginx avec Docker
+
+Vous savez maintenant lancer un conteneur, et vous avez compris les actions effectuées par le daemon Docker lors de l'utilisation de la commande `docker run`.
+
+Maintenant, nous allons aller plus loin avec celui-ci. Nous allons lancer un conteneur qui démarre un serveur Nginx en utilisant deux options : 
+
+```bash
+docker run -d -p 8080:80 nginx
+```
+
+Cette commande utilise 2 options :
+- `-d` : pour détacher le conteneur et le laisser tourner en arrière-plan ;
+- `-p` : pour publier le port 80 du conteneur sur le port 8080 de l’hôte. Cela signifie que vous pouvez accéder au serveur Nginx en utilisant l'URL `http://localhost:8080` ou `http://127.0.0.1:8080`.
+
+Vous pourriez aussi avoir besoin de "rentrer" dans votre conteneur Docker pour pouvoir y effectuer des actions. Pour cela, vous devez utiliser la commande :
+
+```bash
+docker exec -it <container_id> bash
+```
+
+Dans cette commande, l'argument -ti permet d'avoir un shell bash pleinement opérationnel. Une fois que vous êtes dans votre conteneur, vous pouvez vous rendre, via la commande : `cd /usr/share/nginx/html`, dans le répertoire où se trouve le fichier `index.html`, pour modifier son contenu et voir le résultat en direct à l'adresse `http://localhost:8080`. 
+
+### Arrêtez un conteneur Docker
+
+Vous avez créé un conteneur avec l'option `--detach`, vous aurez donc sûrement besoin de l'arrêter !
+Pour cela, faites appel à la commande `docker stop <container_id>`.
+
+Maintenant que votre conteneur Docker a été arrêté, vous pouvez le supprimer avec la commande `docker rm <container_id>`.
+
+Celle-ci va détruire le conteneur et son contenu ; cependant, vous pouvez toujours recréer votre conteneur avec la commande `docker run` vue plus haut.
+
+### Récupérer une image du Docker Hub
+
+Vous pouvez aussi avoir besoin de récupérer des images sur le Docker Hub sans pour autant lancer de conteneur. Pour cela, vous avez besoin de lancer la commande suivante :
+
+```bash
+docker pull <image_name>
+```
+
+### Afficher l'ensemble des conteneurs existants
+
+```bash
+docker ps
+```
+Cette commande va vous afficher l'ensemble des conteneurs en cours d'exécution. Si vous souhaitez afficher l'ensemble des conteneurs, même ceux qui ne sont pas en cours d'exécution, vous devez ajouter l'option `-a` :
+
+```bash
+docker ps -a
+```
+
+### Nettoyer mon système
+
+Après avoir fait de nombreux tests sur votre ordinateur, vous pouvez avoir besoin de faire un peu de ménage. Pour cela, vous pouvez supprimer l'ensemble des ressources manuelles dans Docker.
+
+Ou vous pouvez laisser faire Docker pour qu'il fasse lui-même le ménage.
+
+```bash
+docker system prune
+```
+
+Cette commande va supprimer l'ensemble des conteneurs, images et volumes non utilisés.
+
+## En résumé
+
+- Démarage de conteneur `docker run` ;
+- Utilisation des arguments `-d` et `-p` ;
+- Récupération d'images avec `docker pull` ;
+- Nettoyer le système avec `docker system prune` ;
