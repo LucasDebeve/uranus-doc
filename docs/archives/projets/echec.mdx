@@ -1,0 +1,63 @@
+---
+id: echec
+title: Le jeu d'echec
+description: Créer un jeu d'echec
+slug: /echec
+---
+
+## Représenter l'échiquier
+
+L'échiquier est une grille 8x8. On peut la représenter par :
+- Une liste de listes (`board[row][col]`)
+- Un dictionnaire avec des clés comme "e4", "b1", etc...
+
+Nous choisirons de le modéliser sous la forme d'une liste de liste.
+
+```python
+board = [[None for _ in range(8)] for _ in range(8)]
+```
+
+## Représenter les pièces
+
+Chaque pièce peut être un objet avec les propriétés suivantes :
+
+- Type: `"pion"`, `"tour"`, `"roi"`, etc...
+- Couleur: `"blanc"`, `"noir"`
+- Position actuelle
+- Méthodes pour déterminer les coups possibles
+
+Exemple de base :
+
+```python
+class Piece:
+    def __init__(self, couleur, type_piece):
+        self.couleur = couleur
+        self.type_piece = type_piece
+
+    def coups_possibles(self, position, board):
+        # À définir dans les sous-classes
+        return []
+```
+
+On dérivera des classes comme `Pion(Piece)`, `Roi(Piece)`, etc.
+
+## Gérer les déplacements
+
+On auras besoin de plusieurs fonctions pour :
+- Vérifier si un coup est valide
+- Déplacer la pièce
+- Gérer la prise, la promotion, le rochade, l'en passant
+
+## Détection d’état de jeu
+
+Il faut savoir détecter :
+- Echec
+- Echec et mat
+- Pat
+- Match nul (répétition, 50 coups, etc)
+
+Cela implique de simuler des coups et voir si le roi est en danger après.
+
+## Gérer les tours de jeu
+
+## Interface
