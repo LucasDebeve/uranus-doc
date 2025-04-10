@@ -30,11 +30,11 @@ Exemple de base :
 
 ```python
 class Piece:
-    def __init__(self, couleur, type_piece):
+    def __init__(self, couleur: str, type_piece: str):
         self.couleur = couleur
         self.type_piece = type_piece
 
-    def coups_possibles(self, position, board):
+    def coups_possibles(self, position: list, board: list):
         # À définir dans les sous-classes
         return []
 ```
