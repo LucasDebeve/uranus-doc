@@ -1,0 +1,74 @@
+---
+id: intro-docker
+title: Introduction à Docker
+sidebar_label: Introduction à Docker
+description: Introduction à la conteneurisation avec Docker
+slug: /intro-docker
+---
+
+:::info Objectifs
+
+:::
+
+## Découvrir les conteneurs
+
+Historiquement, quand nous avions besoin de serveurs, nous achetions des sereveurs physiques avec une quantité définie de CPU, de mémoire RAM ou de stockage sur le disque.
+
+Or, on avait souvent besoin d'avoir de la puissance supplémentaire pour des périodes de forte charge. Ainsi, vous deviez acheter plus de serveurs pour répondre aux pics d'utilisation. Une solution a donc été créée : **la machine virtuelle**.
+
+### Machine virtuelle
+
+Lorsque vous utilisez une machine virtuelle (VM), vous faites ce qu’on appelle de la virtualisation lourde. En effet, vous recréez un système complet dans le système hôte, pour qu’il ait ses propres ressources.
+L'isolation avec le système hôte est donc totale ; cependant, cela apporte plusieurs contraintes :
+- Une VM prend du temps à démarrer ;
+- Une VM réserve les ressources (CPU/RAM) sur le système hôte ;
+
+Mais cette solution présente aussi de nombreux avantages :
+- Un VM est complètement isolée du système hôte ;
+- Les ressources attribuées à une VM lui sont totalement réservées ;
+- Il est possible d'installer différents système d'exploitation (Linux, Windows, etc.).
+
+Mais il arrive très souvent que l'application qu'elle fait tourner ne consomme pas l'ensemble des ressources disponibles sur la machine virtuelle. Alors est né un nouveau système de virtualisation plus léger : les conteneurs.
+
+### Conteneur
+
+Un conteneur Linux est un processus ou un ensemble de processus isolés du reste du système, tout en étant légers.
+
+Le conteneur permet de faire de la virtualisation légère, c'est-à-dire qu'il ne virtualise pas les ressources, il ne crée qu'une isolation des processus. Le conteneur partage donc les ressources avec le système hôte.
+
+:::danger
+Attention, les conteneurs existent depuis plus longtemps que Docker. OpenVZ ou LXC sont des technologies de conteneur qui existent depuis de nombreuses années.
+:::
+
+<img src={require('./images/vm-vs-conteneur.png').default} alt="VM vs Conteneur" style={{maxHeight : "200px"}}/>
+
+
+Les conteneurs, au sens d'OpenVZ et LXC, apportent une isolation importante des processus systèmes ; cependant, les ressources CPU, RAM et disque sont totalement partagées avec l'ensemble du système. Les conteneurs partagent entre eux le kernel Linux ; ainsi, il n'est pas possible de faire fonctionner un système Windows ou BSD dans celui-ci.
+
+Voyons ensemble quelques avantages des conteneurs.
+
+#### Avantages des conteneurs
+
+- **Allocation dynamique des ressources** : les conteneurs partagent les ressources du système hôte, ce qui permet de ne pas avoir de ressources réservées. Ainsi, si un conteneur consomme plus de ressources, il peut le faire sans problème ;
+- **Légèreté** : un conteneur est léger, il démarre en quelques secondes et consomme peu de ressources. En effet, il n'y a pas de système d'exploitation complet à démarrer, mais juste un processus isolé ;
+- **Portabilité** : un conteneur peut être exécuté sur n'importe quel système hôte qui supporte la technologie de conteneurisation. Ainsi, vous pouvez créer un conteneur sur votre machine de développement et l'exécuter sur votre serveur de production sans problème ;
+
+#### Pourquoi utiliser des conteneurs ?
+
+Les conteneurs permettent de réduire les coûts, d'augmenter la densité de l'infrastructure, tout en améliorant le cycle de déploiement.
+
+:::info
+Nous retrouvons les conteneurs dans de nombreux contextes. Par exemple, les outils d'intégration continue (CI) de grandes sociétés utilisent des conteneurs. BlaBlaCar utilise des conteneurs pour créer et isoler rapidement des tests/builds d'application.
+:::
+
+Les conteneurs étant capables de démarrer très rapidement, ils sont souvent utilisés en production pour ajouter des ressources disponibles, et ainsi répondre à des besoins de mise à l'échelle ou de scalabilité. Mais ils répondent aussi à des besoins de préproduction ; en étant légers et rapides au démarrage, il permettent de créer des environnements dynamiques et ainsi de répondre à des besoins métier.
+
+:::danger
+Attention, bien que le fonctionnement des conteneurs et des machines virtuelles soient très proches, l'un ne remplace pas l'autre ! Pour faire tourner un conteneur, il faut toujours une machine (virtuelle ou non). Ce sont donc deux outils complémentaires à utiliser en connaissance de cause. 
+:::
+
+## En résumé
+
+- Machine virtuelle = virtualisation lourde
+- Conteneur = virtualisation légère
+- Un conteneur doit être léger, il ne faut pas ajouter de contenu superflu dans celui-ci afin de le démarrer rapidement, mais il apporte une isolation moindre. À contrario, les machines virtuelles offrent une très bonne isolation, mais elle sont globalement plus lentes et bien plus lourdes.

@@ -1,0 +1,56 @@
+---
+id: docker
+title: Découvrir Docker
+sidebar_label: Introduction à Docker
+description: Introduction à la conteneurisation avec Docker
+slug: /docker
+---
+
+:::info Objectifs
+
+:::
+
+## Docker c'est quoi ?
+
+Docker a été créé pour les besoins d'une société de Platform as a Service (PaaS) appelée **DotCloud**. Finalement, en mars 2013, l'entreprise a créé une nouvelle structure nommée **Docker In**c et a placé en **open source** son produit Docker.
+
+Docker apporte une notion importante dans le monde du conteneur. Dans la vision Docker, un conteneur ne doit faire tourner qu'un **seul processus**. Ainsi, dans le cas d'une stack LAMP (Linux, Apache, MySQL, PHP), nous devons créer **3 conteneurs différents**, un pour Apache, un pour MySQL et un dernier pour PHP. Alors que dans un conteneur LXC ou OpenVZ, nous aurions fait tourner l'ensemble des 3 services dans un seul et unique conteneur.
+
+## Pourquoi utiliser Docker ?
+
+Docker répond à une problématique forte dans le monde du développement.
+
+> Prenons un exemple : vous avez développé votre projet de Twitter Lite en local. Tout fonctionne bien, mais au moment de mettre en production, vous vous rendez compte que vous ne savez pas comment déployer votre projet. Un autre exemple : vous êtes dans une équipe de 10 personnes et chacun utilise un OS différent (Ubuntu, macOS, Windows, CentOS, etc.). Comment faire pour avoir un environnement unifié et fonctionnel chez l'ensemble des développeurs ?
+
+Docker répond à ces problématiques en créant des conteneurs. Grâce à Docker, vous n'aurez plus de problème de différence d'environnement, et votre code marchera partout !
+
+### Utilisez Docker sur tous vos environnements
+
+Docker est utilisé par de très nombreuses sociétés pour différents usages. Ainsi, un des premiers usages de Docker se trouve dans la création d'environnements locaux. Il est plus simple d'utiliser Docker en local quand on travaille avec de nombreuses versions différentes des logiciels, et ainsi ne pas avoir de problèmes de compatibilité entre elles.
+
+On retrouve aussi Docker dans les domaines de la CI (Continous Integration, ou Intégration Continue) et de la CD (Continous Delivery, ou Livraison Continue). Cela permet à la CI/CD de créer rapidement des espaces isolés pour faire tourner vos tests.
+
+Plus globalement, vous pouvez utiliser Docker sur l'ensemble de vos environnements.
+
+:::danger
+Attention, cependant, Docker ne convient pas à tous les usages. Par exemple, lorsqu'il s'agit de faire persister de grandes quantités de mémoire disque et d'assurer une grande continuité de service. Docker n'est pas vraiment adapté à ce type d'usage.
+:::
+
+### Stateless et immutabilité
+
+#### Stateless vs Stateful
+
+Dans le monde de Docker, vous allez souvent entendre parler de **stateless et stateful**, deux catégories de conteneurs, et vous devez savoir à quoi correspond chaque catégorie.
+
+Si nous prenons le cas d'une base de donnée MySQL, celle-ci est stateful car elle stocke un état. Ainsi, si vous éteignez et rallumez votre base de données, vous la retrouverez dans le même état de fonctionnement.
+
+Stateless est donc l'inverse : l'application ne stocke pas d'état. Vous pouvez prendre le cas du protocole HTTP, celui-ci est stateless. À chaque nouvelle requête HTTP, les mêmes séries d'actions seront réalisées.
+
+#### Un conteneur est immuable
+
+L'immutabilité d'un conteneur est aussi importante. Un conteneur ne doit pas stocker de données qui doivent être pérennes, car il les perdra (à moins que vous les ayez pérennisées). Mais si vous souhaitez en local mettre une base de données dans un conteneur Docker, vous devez créer un volume pour que celui-ci puisse stocker les données de façon pérenne.
+
+## En résumé
+
+- Les conteneurs Docker sont immuables et stateless ;
+- Docker est utilisé à tous les niveaux de l'infrastructure (CI / Développement / Production) ;

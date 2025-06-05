@@ -1,0 +1,141 @@
+---
+id: cryptographie
+title: Cryptographie - chiffrement affine
+description: Comprendre la cryptographie
+slug: /cryptographie
+sidebar_position: 3
+---
+
+:::info Objectifs
+:::
+
+**Remarque :** nous aurons besoin de votre fonction `algoeucli()` de la page précédente.
+
+## 1. Correspondance numérique / alphabétique
+
+Nous utiliserons la correspondance Lettre-Nombre suivante (en modulo 26) :
+
+| A | B | C | D | E | F | G | H | I | J | K | L | M | N | O |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 
+
+| P | Q | R | S | T | U | V | W | X | Y | Z |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 |
+
+Pour ce faire, nous allons avoir besoin de la chaîne de caractères suivante :
+
+```python
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+```
+
+### 1.1 Exercice : passage à l'alphabétique
+
+- Construire une fonction `alpha(m: list)` qui fait à correspondre à un message numérique `m` (donné sous forme de liste) le message alphabétique correspondant (sous forme de chaîne de caractères).
+
+Exemple :
+
+```python
+alpha([18, 0, 11, 20, 19])
+# Résultat : 'SALUT'
+```
+
+### 1.2 Exercice : passage au numérique
+
+- Construire une fonction `num(m: str)` qui fait correspondre à un message alphabétique `m` le message numérique correspondant.
+
+Exemple :
+
+```python
+num("SALUT")
+# Résultat : [18, 0, 11, 20, 19]
+```
+
+## 2. Chiffrement affine
+
+Le chiffrement affine repose sur des calculs dans $\mathbb{Z}_{26}$. La clé $k$ est formée d'un couple $(\bar{a}, \bar{b})$ avec $\bar{a}$ inversible, d'inverse $(\bar{a})^{-1}$.
+
+**Fonction de chiffrement :** $e_k(\bar{m}) = \bar{a} \times \bar{m} + \bar{b}$
+
+**Fonction de déchiffrement :** $d_k(\bar{c}) = (\bar{a})^{-1} \times (\bar{c}-\bar{b})$
+
+### 2.1 Exercice : chiffrement
+
+- Construire une fonction `chiffre(m: str, a: int, b: int)` permettant de chiffrer un mot $m$ à l'aide de la clé $(\bar{a}, \bar{b})$.
+
+Exemple :
+
+```python
+chiffre("IUT", 3, 2)
+# Explication : "I" donne 8, qui se chiffre en 26 (=3*8+2), et 26 donne "A".
+# Résultat : 'AKH'
+```
+
+### 2.2 Exercice : inverse
+
+- Construire une fonction `inverse(x: int, n: int)` qui renvoie l'inverse de $\bar{x}$ modulo $n$ s'il existe (dans le cas contraire, renvoyer un message d'erreur).
+
+Exemple :
+
+```python
+inverse(3, 26)
+# Résultat : 9
+
+inverse(4, 26)
+# Résultat : 'pas inversible'
+```
+
+### 2.3 Exercice : déchiffrement
+
+- Construire une fonction `dechiffre(c: str, a: int, b: int)` permettant de déchiffrer un message codé `c`.
+
+Exemple :
+
+```python
+dechiffre("AKH", 3, 2)
+# Résultat : 'IUT'
+```
+
+Déchiffrer le message suivant, avec la clé (5, 2) :
+
+```python
+c = "EYCPRTYDWYNWTWQPRJWIQPRUIOTYCZZYQWOOYJFWHUYTUPRWKCJJWJ"
+```
+
+## 3. Bonus : analyse fréquentielle
+
+La cryptanalyse regroupe les techniques permettant de déchiffrer des messages codés sans disposer de la clé de chiffrement. L'analyse fréquentielle est une de ces techniques. Elle consiste à examiner la fréquence des lettres employées dans un message chiffré, et à la comparer avec la fréquence "théorique".
+
+En français, la répartition "théorique" des lettres est la suivante (en %) :
+
+| A | B | C | D | E | F | G | H | I | J | K | L | M | N | O |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 9.42 | 1.02 | 2.64 | 3.39 | 15.87 | 0.95 | 1.04 | 0.77 | 8.41 | 0.89 | 0.0 | 5.34 | 3.24 | 7.15 | 5.14 |
+
+
+| P | Q | R | S | T | U | V | W | X | Y | Z |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2.86 | 1.06 | 6.46 | 7.90 | 7.26 | 6.24 | 2.15 | 0.0 | 0.3 | 0.24 | 0.32 |
+
+### 3.1 Calcul de la fréquence d'apparition
+
+Soit un message chiffré suivant :
+
+```python
+message = "OYQVARYYBWGAYTYIAYLLYOSFSHYEJWLTTYFESQQYEAPQBEVSEAPWBYLERVEBELVSLTARYJEQYOEONYYHYQLYJYHHYQWRVYMBWLVYHYALBLYMSYLYFSOVWSLYQALHYMEHYDSGAYYMBSLYIEHEOVSGAYEAOWALQTYHEJEVESHHYTYQYQBSWRQLYJYHHYQWRVLYAQQSETYLWJYLHYQBHERQQYOLYVQTYHELMYEJQWHAYTYHYMBSLYHYVWSHYTYHEMWLVARYQVEVSWRQBEVSEHYJHSRTYYTWVYYTARYGASBYMYRVEQQYZBASQQERVBWALERRSNSHYLARYBHERYVYVWAVYRVSYLYBWALQASFSYBELTYQQJSLYQQSRSQVLYQTYHYMBSLYHEBLSROYQQYHYSEDSHYFYLQQEJEQYTERQQWRFESQQYEAOWQMSGAYBWLVYAQYTYQBHERQFWHYQEHYRRYMSGASBWALLWRVQEAFYLQWRBYABHYYVLYQVEALYLHEHSJYLVYTERQHEIEHEPSY"
+```
+
+- Construire une fonction `frequence(c: str)` qui renvoie une liste contenant la fréquence de chaque lettre de l'alphabet dans un message `c`. Le 1er élement de la liste contiendra la fréquence d'apparition de A, le deuxième la fréquence de B, etc.
+
+Exemple :
+
+```python
+print(frequence(message))
+# Résultat : [5.88, 4.55, 0.0, 0.38, 8.73, 1.52, 1.14, 7.02, 0.57, 2.09, 0.0, 7.78, 2.09, 0.38, 1.9, 0.57, 9.68, 5.31, 7.4, 3.42, 0.0, 5.5, 4.74, 0.0, 19.17, 0.19]
+```
+
+### 3.2 Déchiffrement du message codé
+
+- D'après la question précédente, en quoi la lettre $E$ a été chiffrée ? Et la lettre $A$ ? Quelle hypothèse peut-on alors faire sur la valeur de la clé $(\bar{a}, \bar{b})$ ? Essayer de déchiffrer le message en utilisant cette clé.
+
+- Faire une autre hypothèse sur le chiffrement de la lettre $A$. Quelle serait alors la valeur de la clé $(\bar{a}, \bar{b})$ ? Essayer de déchiffrer le message en utilisant cette clé.
