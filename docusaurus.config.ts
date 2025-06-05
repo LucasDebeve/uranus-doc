@@ -89,7 +89,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/LucasDebeve',
           label: 'GitHub',
           position: 'right',
         },
@@ -108,11 +108,11 @@ const config: Config = {
           ],
         },
         {
-          title: 'Community',
+          title: 'Liens utiles',
           items: [
             {
               label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              href: 'https://stackoverflow.com/',
             },
             {
               label: 'Discord',
@@ -125,7 +125,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'More',
+          title: 'Plus',
           items: [
             {
               label: 'Blog',
@@ -138,7 +138,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Lucas Debeve. Built with Docusaurus.`,
+      copyright: `Contenu sous licence CC BY-NC-ND 4.0 - Lucas Debeve ${new Date().getFullYear() === 2025 ? '2025' : '2025-' + new Date().getFullYear()}`,
     },
     prism: {
       theme: prismThemes.github,
