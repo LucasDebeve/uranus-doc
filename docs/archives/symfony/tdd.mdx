@@ -1,0 +1,111 @@
+---
+id: tdd
+title: 'Test Driven Development avec PHPUnit'
+description: Le Test Driven Development (TDD) est une approche de développement logiciel qui consiste à écrire les tests avant le code de production.
+slug: /tdd
+---
+
+## Introduction
+
+## Le développement dirigé par les tests (TDD)
+
+Imaginez construire une maison en ne posant les briques **que** quand vous savez **exactement** pourquoi elles sont là. C'est ça, le TDD (Test-Driven Development) : écrire un test **avant** même d'écrire le code.
+
+
+### La boucle TDD : Red → Green → Refactor
+
+Le TDD repose sur un cycle simple en trois étapes :
+
+1. **Red** : Écrire un test **qui échoue** parce que la fonctionnalité n'existe pas encore.
+2. **Green** : Écrire **le minimum de code** pour faire passer le test.
+3. **Refactor** : Nettoyer et améliorer le code **sans casser le test**.
+
+Et on recommence !
+
+### Exemple pas à pas : une classe `StringHelper`
+
+Nous allons développer une méthode `isPalindrome(string $input): bool`, qui vérifie si une chaîne est un palindrome.
+
+#### Étape 1 : Red — écrire un test qui échoue
+
+```php
+<?php
+
+use PHPUnit\Framework\TestCase;
+use App\StringHelper;
+
+class StringHelperTest extends TestCase
+{
+    public function testIsPalindromeReturnsTrueForSimplePalindrome(): void
+    {
+        $helper = new StringHelper();
+        $this->assertTrue($helper->isPalindrome('radar'));
+    }
+}
+```
+
+À ce stade, `StringHelper` n'existe même pas. Le test échoue avec une erreur de type Class not found.
+
+#### Étape 2 : Green — créer juste assez de code
+
+On crée la classe et la méthode pour que le test passe (même en "trichant" un peu) :
+
+```php	
+<?php
+
+namespace App;
+
+class StringHelper
+{
+    public function isPalindrome(string $input): bool
+    {
+        return true; // solution temporaire pour passer le test
+    }
+}
+```
+
+Lancez PHPUnit : ✅ Le test passe. Mais… on a codé un cas très spécifique.
+
+#### Étape 3 : Refactor — généraliser et améliorer
+
+On ajoute un deuxième test pour un mot qui n'est pas un palindrome :
+
+```php
+public function testIsPalindromeReturnsFalseForNonPalindrome(): void
+{
+    $helper = new StringHelper();
+    $this->assertFalse($helper->isPalindrome('bonjour'));
+}
+```
+
+Ce test échoue (Red 🔴) ? Parfait. Maintenant, on écrit une vraie logique :
+
+```php
+public function isPalindrome(string $input): bool
+{
+    $normalized = strtolower(preg_replace('/[^a-z]/i', '', $input));
+    return $normalized === strrev($normalized);
+}
+```
+
+Relancez les tests : ✅ Green. Les deux cas passent. Vous pouvez maintenant faire un peu de refactor si besoin.
+
+## Pourquoi faire du TDD ?
+
+- Vous pensez **d'abord au besoin**, pas à l'implémentation.
+- Vous obtenez une **documentation vivante** du comportement attendu.
+- Vous avez plus confiance pour refactorer : les tests garantissent que le comportement ne change pas.
+
+## Bonnes pratiques TDD
+
+- **Commencez simple**. Testez d'abord les cas évidents, puis les exceptions.
+- **Un test à la fois**. Ne pas écrire dix assertions en une méthode.
+- N'écrivez **pas de code sans test**. Même un peu.
+- **Refactorez souvent**, mais entre deux étapes Green.
+
+## Et dans Symfony ?
+
+Vous pouvez tout à fait faire du TDD avec vos services Symfony (et même vos contrôleurs, via les tests fonctionnels).
+
+Exemple : vous écrivez le test d'un service `UserSlugger`, puis vous l'implémentez petit à petit en suivant la boucle Red → Green → Refactor.
+

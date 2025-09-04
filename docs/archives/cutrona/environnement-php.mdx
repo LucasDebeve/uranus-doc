@@ -1,0 +1,42 @@
+---
+id: environnement-php
+title: Environnement PHP sur Windows
+description: Installer PHP et les outils de développement sur Windows
+slug: /environnement-php
+sidebar_position: 2
+---
+
+## Installation / configuration de XAMPP
+
+:::danger
+Si vous aviez déjà installé une version de **XAMPP**, désinstallez-la. Attention, lors de la désinstallation, le répertoire **htdocs** et les bases de données MySQL 
+seront supprimées. Il convient donc de copier le répertoire **htdocs** et d'exporter les bases de données à l'aide de **phpMyAdmin** avant désinstallation si vous 
+souhaitez les préserver.
+
+### Travail à réaliser
+
+1. Rendez vous sur la [page de téléchargement de XAMPP](https://www.apachefriends.org/fr/download.html)
+
+2. Téléchargez la version **XAMPP** pour la version **8.2** (ou supérieure) de PHP.
+
+3. Lancez l'installation de XAMPP
+
+    1. Acceptez l'alerte concernant votre antivirus qui peut ralentir ou perturber l'installation (tout devrait bien se dérouler)
+
+    2. Acceptez l'alerte concernant le « User Account Control (UAC) »
+
+    3. Terminer l'installation.
+
+### Configuration de Windows pour utiliser PHP en ligne de commande
+
+1. Ouvrez votre menu démarrer, tapez **env** puis cliquez sur **Modifier les variables d'environnement système**
+2. Cliquer sur le bouton **Variables d'environnement...**
+3. Dans cet outil, effectuez un double-clic sur la ligne de la variable **Path**
+4. Ajoutez le chemin d'accès à PHP (par exemple : `C:\xampp\php`)
+5. Cliquez sur **OK** pour fermer l'outil
+
+Pour tester que PHP est bien installé, ouvrez une invite de commande (touche Windows + R puis tapez `cmd`) et tapez la commande suivante :
+
+```bash
+php --version
+```
