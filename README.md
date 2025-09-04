@@ -1,6 +1,15 @@
-# Website
+# Uranus
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+## Licenses
+
+Ce site utilise [Docusaurus](https://github.com/facebook/docusaurus) sous licence MIT.
+Voir le fichier `LICENSE-DOCUSAURUS.txt` pour les détails.
+
+Modification apportées par Lucas Debeve sous licence GPLv3.
+Voir le fichier `LICENSE.txt` pour les détails.
+
+Le contenu est sous licence CC BY-NC-ND 4.0.
+Voir le fichier `LICENSE-COURS.txt` pour les détails.
 
 ### Installation
 
