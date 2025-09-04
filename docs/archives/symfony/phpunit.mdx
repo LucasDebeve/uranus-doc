@@ -1,0 +1,134 @@
+---
+id: phpunit
+title: 'PHPUnit: Les tests unitaires avec PHPUnit'
+description: Apprendre à écrire des tests unitaires avec PHPUnit
+slug: /phpunit
+---
+
+## Introduction
+
+Attendez… quelqu'un a ENCORE construit un parc de dinosaures sans AUCUN test !?!? J'ai déjà vu ce film, et c'est à nous de jouer : ajouter une suite complète de tests avant que les dinos ne viennent pour nous…
+
+Plus sérieusement : les tests sont géniaux. Ce n'est pas seulement un outil pour éviter les bugs, c'est aussi une philosophie de développement qui peut vous aider à écrire du code plus ciblé, centré sur ce que vous voulez réellement construire.
+
+Dans ce tutoriel, vous allez atteindre le niveau super-héros des tests unitaires, avec notamment :
+
+- Les bases des tests unitaires
+- Le développement dirigé par les tests (TDD) : comment le faire, et quand le faire !
+- L'utilisation de Fixtures pour exécuter plusieurs fois les tests avec différentes entrées
+- Les mocks et doubles de test ! Créer des mocks avec PHPUnit
+- L'exécutable PHPUnit et sa configuration
+- Tester les exceptions
+
+## Initiation à PHPUnit
+
+### Installation via Composer (recommandé)
+
+PHPUnit s'installe le plus souvent via Composer comme dépendance de développement :
+
+```bash
+composer require --dev phpunit/phpunit
+```
+
+Cela permet à PHPUnit d'être intégré à votre projet, versionné, et exécuté depuis le répertoire `vendor`.
+
+### Vérification de l'installation
+
+Une fois installé, vous pouvez vérifier que tout fonctionne :
+
+```bash
+./vendor/bin/phpunit --version
+```
+
+Si tout est prêt, vous verrez s'afficher une version de type `PHPUnit x.y.z`.
+
+:::info
+💡 Pour simplifier, vous pouvez créer un alias dans votre fichier composer.json :
+```json
+"scripts": {
+    "test": "vendor/bin/phpunit"
+}
+```
+
+Et exécuter vos tests simplement avec :
+
+```bash
+composer test
+```
+:::
+
+### Structure de base d'un test PHPUnit 
+
+Un test unitaire est une classe qui hérite de `PHPUnit\Framework\TestCase`. Chaque méthode publique qui commence par `test` sera considérée comme un test par PHPUnit.
+
+#### Exemple minimal
+Créeons un fichier `Calculator.php` :
+
+```php
+<?php
+
+namespace App;
+
+class Calculator
+{
+    public function add(int $a, int $b): int
+    {
+        return $a + $b;
+    }
+}
+```
+
+Créons ensuite un fichier de test `tests/CalculatorTest.php` :
+
+```php
+<?php
+
+use PHPUnit\Framework\TestCase;
+use App\Calculator;
+
+class CalculatorTest extends TestCase
+{
+    public function testAddReturnsTheCorrectSum(): void
+    {
+        $calculator = new Calculator();
+        $this->assertEquals(4, $calculator->add(2, 2));
+    }
+}
+```
+
+Pour exécuter le test :
+
+```bash
+./vendor/bin/phpunit tests/CalculatorTest.php
+```
+
+#### Résultat attendu
+
+```bash
+OK (1 test, 1 assertion)
+```
+
+Si le test échoue, vous verrez un message explicite indiquant l'échec.
+
+### Les assertions les plus courantes
+
+PHPUnit propose une grande variété d'assertions :
+
+- `assertEquals($expected, $actual)`: Vérifie que les deux valeurs sont égales.
+- `assertNotEquals($expected, $actual)`: Vérifie que les deux valeurs ne sont pas égales.
+- `assertTrue($condition)`: Vérifie que la condition est vraie.
+- `assertFalse($condition)`: Vérifie que la condition est fausse.
+- `assertNull($actual)`: Vérifie que la valeur est nulle.
+- `assertCount($expectedCount, $haystack)`: Vérifie que le nombre d'éléments dans `$haystack` est égal à `$expectedCount`.
+- `assertInstanceOf($expectedClass, $actual)`: Vérifie que `$actual` est une instance de `$expectedClass`.
+- `assertContains($needle, $haystack)`: Vérifie que `$needle` est présent dans `$haystack`.
+
+### Organisation des tests dans Symfony
+
+Dans un projet Symfony, les tests sont généralement situés dans le dossier `tests/`. Par convention :
+
+- Les tests fonctionnels sont dans `tests/Functional/`
+- Les tests unitaires sont dans `tests/Unit/`
+- Les tests d'intégration sont dans `tests/Integration/`
+
+Symfony fournit un environnement de test isolé par défaut (`APP_ENV=test`) et des outils comme le `KernelTestCase` pour tester avec le container de service.

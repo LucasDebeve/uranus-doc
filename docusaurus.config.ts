@@ -108,23 +108,6 @@ const config: Config = {
           ],
         },
         {
-          title: 'Liens utiles',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
           title: 'Plus',
           items: [
             {
