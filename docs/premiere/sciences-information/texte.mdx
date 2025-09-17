@@ -1,0 +1,149 @@
+---
+title: Représentation d'un texte
+description: Comprendre la représentation d'un texte sur une machine
+sidebar_position: 5
+---
+
+Comme les nombres, les caractères, lettres et symboles doivent pouvoir être stockées dans une mémoire. Le langage binaire étant le seul possible, il faut donc coder chaque caractère en binaire.
+
+Il existe pour cela plusieurs système de codage, chacun ayant ses propres avantages et inconvénients. Nous allons dans ce cours nous essayer aux plus répandus.
+
+Pour encoder du texte, il y a plusieurs contraintes :
+- Il faut que tous les ordinateurs utilisent le même encodage.
+- Il doit permettre de représenter le plus de caractères possibles, en particulier les caractères non-imprimables (ex : *retoour à la ligne*, *espace*, etc...).
+- Il doit être le plus compact possible pour économiser de la mémoire.
+
+## Le code ASCII
+
+Le code ASCII (American Standard Code for Information Interchange) a été créé en 1951 et permet de coder les caractères sur 7 bits (donc 128 possibilités).
+
+Pour établir une correspondance entre les caractères et leurs codes ASCII, il existe la table ASCII.
+Pour trouver l'octet (représenté par un nombre en héxadécimal) associé à un caractère, il suffit de concaténer le chiffre de sa ligne avec celui de sa colonne.
+
+> Exemple : `A` correspond au nombre $41_{16}$ et `+` au nombre $2B_{16}$.
+
+:::note Exercice
+
+- Quel est le code ASCII du caractère `e` ? et celui du caractère `E` ?
+- Quel est le code ASCII du caractère `é` ? Quel conclusion en tirer ?
+- Traduire le texte suivant en code ASCII : `Hello world!`.
+- Traduire le code ASCII en texte : `43 65 63 69 20 65 73 74 20 75 6E 20 74 65 78 74 65 21`.
+
+:::
+
+L'inconvénient du code ASCII est donc sa faible taille de 128 caractères. Il est donc impossible de coder tous les caractères.
+
+## La norme ISO 8859
+
+Les caractères de la table ASCII se sont vite avérés insuffisants pour transmettre des textes dans des langues autres que l'anglais.
+Pour remédier à ce problème, la norme ISO 8859 a été créée. Elle est une extension de la table ASCII où les 8 bits de chaque octet sont utilisé pour coder les caractères.
+Au total, ce sont donc 256 caratères qui peuvent être encodés. Malgré une grande augmentation du nombre de caratères encodables, cela reste insuffisant pour représenter tous les caractères utilisés dans d'autres langues.
+
+De nombreux système d'encodage sont issus de cette norme. Par exemple, la norme ISO 8859-1 ou encore le "latin-1".
+
+## L'Unicode
+
+L'Unicode n'est pas un encodage mais une liste de tous les caracères avec un numéro unique de référence. 
+
+> Exemple : `é` est le caractère qui a le code Unicode `U+00E9`.
+
+Celui ci permet de coder tous les caractères (même les émojis) et donc de stocker des textes sur une machine.
+
+:::note Exercice
+
+- Quel est sont les codes Unicode de `G`, `∑` et `♕` ?
+- Et celui de `🂃` ?
+:::
+
+L'inconvénient du système Unicode est qu'il prend beaucoup de place en mémoire : la plupart des caractères dont on 
+a besoin peuvent se coder sur un seul octet.
+
+## L'UTF-8
+
+C'est là qu'entre en jeu le code UTF-8 qui mélange la simplicité du code ASCII avec l'efficacité de l'Unicode.
+
+En UTF-8 les caractères sont codés sur 1 à 4 octets.
+- Les caractères de base (lettres latines) sont codées comme en ASCII.
+- Les caractères supérieurs sont codées sur plusieurs octets.
+
+Le principe de l'encodage UTF-8 est le suivant :
+- Si le bit de poid fort d'un octet est à `0`, alors il s'agit d'un caractère ASCII codé sur 7 bits.
+- Sinon, les premiers bits de poids fort de l'octet indiquent le nombre d'octets utilisés pour encoder le caractère à l'aide d'une séquence de bits à `1` et se terminant par `0`. Par exemple, `110xxxxx` signifiie que le caractère est codé sur 2 octets car la séquence possède 2 bits à `1`.
+- Enfin, dans le cas d'un encodage sur $k$ octets, les $k-1$ octets qui suivent doivent être de forme `10xxxxxx`, c'est-à-dire commencer par deux bits de poids fort valant `10`.
+
+| Plage | Suite d'octets (en binaire) | bits codant le caractère |
+| ----- | --------------------------- | ------------------------ |
+| `U+0000` à `U+007F` | `0xxxxxxx` | 7 bits |
+| `U+0080` à `U+07FF` | `110xxxxx 10xxxxxx` | 11 bits |
+| `U+0800` à `U+FFFF` |  `1110xxxx 10xxxxxx 10xxxxxx` | 16 bits |
+| `U+1000` à `U+10FFFF` |  `11110xxxx 10xxxxxx 10xxxxxx 10xxxxxx` | 21 bits |
+
+
+
+## Exercices
+
+:::note QCM
+import { Question } from '@site/src/components/Markdown/Trainers/Question';
+
+<Question
+  question="Combien de caractères différents peuvent être encodés avec le code ASCII ?"
+  choices={[
+    { label: '127', isCorrect: false },
+    { label: '128', isCorrect: true },
+    { label: '255', isCorrect: false },
+    { label: '256', isCorrect: false },
+  ]}
+  explanation="C'était écrit plus haut... Le code ASCII permet de coder 128 caractères."
+/>
+
+<Question
+  question="Avec l'encodage UTF-8, les caractères sont codés sur ..."
+  choices={[
+    { label: 'un seul octet', isCorrect: false },
+    { label: 'deux octet', isCorrect: false },
+    { label: 'trois octets', isCorrect: false },
+    { label: 'un, deux, trois ou quatre octets suivant les cas', isCorrect: true },
+  ]}
+  explanation="C'était écrit plus haut... Le code ASCII permet de coder 128 caractères."
+/>
+
+<Question
+  question="Quel était le défaut principal de l'encodage ASCII qui empêchait qu'il devienne universel ?"
+  choices={[
+    { label: 'Il ne codait pas les lettres latines', isCorrect: false },
+    { label: 'L\'encodage de chaque caractère prenait trop de place', isCorrect: false },
+    { label: 'Il ne permettait pas de coder tous les caractères existants', isCorrect: true },
+    { label: 'Le nom était trop dur à prononcer', isCorrect: false },
+  ]}
+  explanation="Certains caratères n'était pas encodable car ils n'existaient pas dans la table ASCII (ex : é)."
+/>
+
+:::
+
+:::note Exercice 1
+Voici une séquence d'octets, représentées en base 10, dire si elle représente une séquence de caractères UTF-8 valide ou non. Si elle est valide, combien de caractères y a-t-il ?
+
+- `126` `64` `100`
+- `198` `129` `129`
+- `227` `180` `140`
+
+:::
+
+<details>
+  <summary>Solution</summary>
+  <ol>
+    <li>
+        La séquence est valide car chaque octets est inféreieur à 127, ils resprésentent chacun un caractère ASCII. 
+        La séquence fait donc 3 caractères.
+    </li>
+    <li>
+        On a $198 = 128 + 64 + 4+ 2 = 1100 0110_2$ et $129 = 128 + 1 = 1000 0001_2$. Le premier octet indique un encodage sur 2 octets. 
+        Le deuxième octet est bien un octet intermédiaire. Mais le troisième octet l'est aussi donc la séquence est invalide.
+    </li>
+    <li>
+        On $227 = 128 + 64 + 32 + 2 + 1 = 1110 0011_2$ (début d'encodage sur 3 octets), 
+        $180 = 128 + 32 + 16 + 4 = 1011 0100_2$ (octet intermédiaire) et 
+        $140 = 128 + 8 + 2 = 1000 1100_2$ (dernier octet intermédiaire). La séquence est valide est fait donc 1 caractère.
+    </li>
+  </ol>
+</details>

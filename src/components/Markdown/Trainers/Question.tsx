@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
+import { Equation } from 'react-equation'
 
 type Choice = {
     label: string;
     isCorrect: boolean;
+    isEquation?: boolean;
 };
 
 type QuestionProps = {
@@ -78,7 +80,11 @@ export const Question: React.FC<QuestionProps> = ({ question, choices, explanati
                             className={buttonClass}
                             disabled={selectedIndex !== null}
                         >
-                            {choice.label}
+                            {choice.isEquation ? 
+                            <Equation
+                                value={choice.label}
+                            />
+                            : choice.label}
                         </button>
                     );
                 })}

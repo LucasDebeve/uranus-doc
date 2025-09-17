@@ -20,14 +20,17 @@
     "@mdx-js/react": "^3.0.0",
     "canvas-confetti": "^1.9.3",
     "clsx": "^2.0.0",
+    "equation-resolver": "^1.0.0",
     "katex": "^0.16.21",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-equation": "^1.0.0",
     "react-katex": "^3.0.1",
     "react-otp-input": "^3.1.1",
     "rehype-katex": "7",
-    "remark-math": "6"
+    "remark-math": "6",
+    "remark-rehype": "^11.1.2"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.8.1",

@@ -3,17 +3,14 @@ id: entiers-positifs-base
 title: Entiers positifs dans les bases 2, 10 et 16
 description: Comprendre la conversion entre les bases
 slug: /entiers-positifs-base
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 :::info
 
 ## 📈 Objectifs du cours
 
-- Savoir **convertir** un entier entre les bases 2, 10 et 16
-- Comprendre les **liens entre ces systèmes**
-- Identifier les **cas pratiques** en informatique
-
+- Savoir **convertir** un entier entre les bases 2, 10 et 16.
 :::
 
 ---
@@ -24,7 +21,7 @@ sidebar_position: 1
 
 En effet, tout le monde sait compter en base 10 (décimal). Mais comment ça marche ? Comment est construit notre système ? Pour répondre à cette question à l'apparence simple, oubliez tout et reprenons depuis le début : comment avez-vous appris à compter à l'école ?
 
-Vous penserez peut-être que la base 10 vient du fait qu'on a 10 doigts, mais en tout cas deux choses sont sûres :
+On peut penser que la base 10 vient du fait qu'on a 10 doigts (c'est possible mais pas sûr), mais en tout cas deux choses sont certaines :
 
 - Il y a 10 chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 - Avec ces derniers, on peut compter jusqu'à 9.
@@ -65,6 +62,10 @@ $$
 - Il utilise donc 16 chiffres, 0 à 9 et A à F.
 - Plus court que le binaire, mais plus long que le décimal.
 
+| Base 10 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 |
+| ------- | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| Base 16 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F |
+
 :::info Utilisations
 -  Encodage des couleurs en informatique (ex : #FF5733).
 - Représentation des adresses mémoire (ex : 0x1A3F).
@@ -74,16 +75,17 @@ $$
 
 ### ♻️ Décimal ➜ Binaire / Hexa : division par la base
 
-On divise régulièrement par la base, en prenant les **restes** :
+On divise régulièrement par la base, en prenant les **restes**. On concatène ensuite les restes (du dernier au premier) pour obtenir la représentation binaire de la valeur.
 
 > Exemple : 44 en binaire
 
 ![44 en binaire](./img/decimalToBinaire.png)
 
+Le premier bit (le plus à gauche) est le bit de poids fort et le denrier (le plus à droite) est le bit de poids faible.
+
 > Exemple : 44 en hexadécimal
 
 ![44 en hexadécimal](./img/decimalToHexa.png)
-
 
 ### ♻️ Binaire / Hexa ➜ Décimal : multiplication positionnelle
 
@@ -144,6 +146,33 @@ import { ConvertIntTrainer } from '@site/src/components/Markdown/Trainers/BaseCo
 
 ## 📖 Entraînement
 
+:::note QCM
+import { Question } from '@site/src/components/Markdown/Trainers/Question';
+
+<Question
+  question="Les entiers positifs écrits en base 2 et qui se terminent par un 0 sont tous ..."
+  choices={[
+    { label: 'pairs', isCorrect: true },
+    { label: 'impairs', isCorrect: false },
+    { label: 'divisible par 3', isCorrect: false },
+    { label: 'divisible par 5', isCorrect: false },
+  ]}
+  explanation="Le dernier bit d'un nombre en binaire est égale à 1 si le nombre est impair et égale à 0 si le nombre est pair."
+/>
+
+<Question
+  question="Combien de nombres entiers différents peut-on coder avec 32 bits ?"
+  choices={[
+    { label: '2^32', isCorrect: true, isEquation: true },
+    { label: '2^32 - 1', isCorrect: false, isEquation: true },
+    { label: '32^2', isCorrect: false, isEquation: true },
+    { label: '32 * 2', isCorrect: false, isEquation: true },
+  ]}
+  explanation="Pour chacun des 32 bits, il y a 2 possibiltés."
+/>
+
+:::
+
 :::note Exercice 1
 Produis la table de conversion de base 10 vers base 2 pour les entiers de 1 à 15.
 :::
@@ -161,7 +190,7 @@ Combien de bits sont nécéssaires pour représenter les nombres suivants en bin
 Et pour les représenter en hexadécimal ?
 :::
 
-:::note Exercice 3
+:::note Supplément Python
 Complête la fonction suivante afin qu'elle convertisse un entier positif en binaire **sans** utiliser la fonction `bin()`.
 
 ```python
@@ -173,7 +202,7 @@ def int_to_binary(n: int) -> str:
         binary = ...
         n = ...
     return binary
-``` 
+```
 
 Ecris une nouvelle fonction qui convertit un entier positif en hexadécimal **sans** utiliser la fonction `hex()`.
 
@@ -191,11 +220,6 @@ def int_to_hex(n: int) -> str:
 ``` 
 
 :::
-
-## 🔗 Liens utiles
-
-- [Binary Numbers and Base Systems as Fast as Possible](https://www.youtube.com/watch?v=LpuPe81bc2w)
-- [Système binaire](https://fr.wikipedia.org/wiki/Syst%C3%A8me_binaire)
 
 ## Pour aller plus loin
 
