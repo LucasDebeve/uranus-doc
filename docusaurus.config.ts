@@ -62,6 +62,17 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'pedagogie',
+        path: 'pedagogie',
+        routeBasePath: 'pedagogie',
+        sidebarPath: './sidebars.ts',
+      },
+    ],
+  ],
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
@@ -86,6 +97,13 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Cours',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Techniques pédagogiques',
+          docsPluginId: 'pedagogie',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
