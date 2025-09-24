@@ -1,0 +1,241 @@
+---
+title: 🧱 HTML - La structure
+sidebar_position: 3
+---
+
+## C'est quoi un fichier HTML ?
+
+La base d'un site web, c'est un ensemble de fichiers HTML. L'extension de ces fichiers est `.html`. 
+Selon les bonnes pratiques de développement, le fichier initiale se nomme `index.html`.
+
+Le fichier HTML est un fichier qui décrira le contenu de votre site.
+
+## Ecrire du HTML
+
+Le HTML est un langage de balisage, c'est-à-dire un langage qui permet de structurer du contenu grâce à des balises. On les écrit entre chevrons `<`  et  `>`  :
+
+![](https://user.oc-static.com/upload/2022/11/25/16693910453649_FR_1603881_HTML-CSS_Static-Graphics_p1c3-1.jpg)
+
+Voici un exemple de balisage HTML :
+```html
+<p>Bonjour</p>
+```
+
+Pour faire les chevrons sur le clavier, il faut presser :
+1. la touche `<` pour faire le chevron ouvrant ;
+2. et `Maj`  + `<` pour le chevron fermant.
+
+
+Les balises décrivent le type de contenu que l'on souhaite afficher. Par exemple, pour afficher un paragraphe, 
+on utilise la balise `<p>`, pour un titre, on utilise la balise `<h1>` et pour une image, on utilise la balise `<img>`.
+
+Il existe 2 types de balises :
+- les **balises en paires** `<p></p>` qui contiennent du contenu ;
+- les **balises autofermantes** `<br>` qui permettent de créer des sauts de ligne.
+
+Les balises peuvent avoir des attributs qui permettent de préciser ou modifier leur comportement. Par exemple,
+pour spécifier l'url d'une image, on utilise l'attribut `src` :
+
+```html
+<img src="https://user.oc-static.com/upload/2022/11/25/16693911549083_FR_1603881_HTML-CSS_Static-Graphics_p1c3-2.jpg">
+```
+
+![](https://user.oc-static.com/upload/2022/11/25/16693911549083_FR_1603881_HTML-CSS_Static-Graphics_p1c3-2.jpg)
+
+## La base HTML d'un site
+
+Le contenu minimum d'un fichier html est :
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Le titre de ma page</title>
+    </head>
+    <body>
+    </body>
+</html>
+```
+
+Décortiquons les différentes lignes :
+
+- `<!DOCTYPE html>` : déclaration de la version du langage html ;
+- `<html lang="fr">` : déclaration de la langue du site, la balise `html` est la base de tout contenu html ;
+- `<head>` : ce qui se trouve dans cette balise ne sera pas visible sur le site, mais qui contiendra des informations utiles à l'utilisateur et à la mise en page du site ;
+- `<meta charset="utf-8">` : la balise `meta` permet de déclarer des métadonnées du site, ici on déclare le l'encodage du texte du site ;
+- `<title>Le titre de ma page</title>` : le titre de la page (c'est ce que vous voyez dans la barre de titre de votre navigateur) ;
+- `<body>` : contenu visible de la page, ici il est vide.
+
+Pour bien écrire du HTML, il ne faut pas entre-croiser les balises, il faut seulement les imbriquer.
+
+Par exemple, il **ne faut pas écrire le code suivant** car les balises s'entre-croisent :
+```html
+<html>
+    <body>
+    </html>
+</body>
+``` 
+
+:::info A toi de jouer !
+
+Ta première mission est de créer un fichier html nommé `index.html` qui contient :
+
+- un titre de site : "Accueil - Mon site" ;
+- un titre de premier niveau : "Bienvenue sur mon site" ;
+- un paragraphe ;
+- une image ;
+- une liste à puces ;
+- un lien vers cette [page](https://cours.lucasdebeve.eu/docs/college/developpement-web/structure-html/)
+
+Tu peux t'aider de la documentation de [MDN](https://developer.mozilla.org/fr/docs/Web/HTML/Element/) pour trouver les balises à utiliser.
+
+:::
+
+## Les balises utiles
+
+:::danger Important
+Toutes les balises HTML sont décrites dans la documentation de [MDN](https://developer.mozilla.org/fr/docs/Web/HTML/Element).
+
+Si vous avez un doute sur la syntaxe d'une balise, il faut vous référer à la documentation.
+:::
+
+### Les titres
+
+Les titres sont des balises qui permettent de structurer le contenu de la page. Ils sont utilisés pour indiquer le titre de la page, de son premier niveau, de son second niveau, etc.
+
+Il existe 6 niveaux de titres :
+
+- `<h1>` : titre de niveau 1 ;
+- `<h2>` : titre de niveau 2 ;
+- `<h3>` : titre de niveau 3 ;
+- `<h4>` : titre de niveau 4 ;
+- `<h5>` : titre de niveau 5 ;
+- `<h6>` : titre de niveau 6 ;
+
+```html
+<h1>Titre de niveau 1</h1>
+<h2>Titre de niveau 2</h2>
+<h2>Titre de niveau 2</h2>
+<h3>Titre de niveau 3</h3>
+<h4>Titre de niveau 4</h4>
+<h5>Titre de niveau 5</h5>
+<h6>Titre de niveau 6</h6>
+```
+
+### Les liens hypertextes
+
+Les liens hypertextes permettent de créer des liens vers des pages internes ou externes.
+
+Ils sont définis avec la balise `<a>` et ont un attribut `href` qui indique l'url vers laquelle on souhaite accéder.
+
+Voici un exemple vers un site externe :
+```html
+<a href="https://cours.lucasdebeve.eu">Lien vers la page d'accueil</a>
+```
+
+Pour les liens vers des pages internes, il faut utiliser l'attribut `href` avec un chemin relatif vers un fichier html.
+
+```html
+<a href="./autre_page.html">Lien vers la page d'accueil</a>
+```
+
+Pour que ce lien fonctionne, il faut que le fichier html `autre_page.html` soit présent dans le même dossier que le fichier html courant.
+
+:::info
+
+Le chemin relatif `./autre_page.html` signifie que le lien va vers le fichier html `autre_page.html` qui se trouve dans le même dossier que le fichier html courant.
+
+:::
+
+### Les images
+
+Elles sont définies avec la balise `<img>` et ont un attribut `src` qui indique l'url ou le chemin vers l'image.
+
+Voici un exemple avec une image tirée d'un autre site :
+```html
+<img src="https://user.oc-static.com/upload/2022/11/25/16693911549083_FR_1603881_HTML-CSS_Static-Graphics_p1c3-2.jpg">
+```
+
+De la même manière que les liens hypertextes, les images peuvent être liées à des ressources internes.
+
+Par exemple, si j'ai la structure de fichier suivante :
+
+```
+- index.html
+- images/
+    - image.jpg
+```
+
+Je peux afficher l'image avec la balise `<img>` suivante :
+```html
+<img src="./images/image.jpg">
+```
+
+:::info
+
+Le chemin relatif `./images/image.jpg` signifie que l'image va se trouver dans le dossier `images` du même dossier que le fichier html courant.
+
+:::
+
+### Les listes à puces/numérotées
+
+Les listes à puces sont des balises qui permettent de créer des listes dans le contenu de la page.
+
+Elles sont définies avec la balise `<ul>` et `<li>` pour les éléments de la liste.
+
+Voici un exemple :
+```html
+<ul>
+    <li>Element 1</li>
+    <li>Element 2</li>
+    <li>Element 3</li>
+</ul>
+```
+
+Résultat : 
+<ul>
+    <li>Element 1</li>
+    <li>Element 2</li>
+    <li>Element 3</li>
+</ul>
+
+Pour les listes numérotées, il faut utiliser la balise `<ol>` au lieu de `<ul>`.
+
+Voici un exemple :
+```html
+<ol>
+    <li>Element 1</li>
+    <li>Element 2</li>
+    <li>Element 3</li>
+</ol>
+```
+Résultat : 
+<ol>
+    <li>Element 1</li>
+    <li>Element 2</li>
+    <li>Element 3</li>
+</ol>
+
+### Les balises de division
+
+Les balises de division permettent de mieux strcuturer le contenu de la page.
+
+Il en existe 2 types : les explicites et les "passe-partout".
+
+#### Les balises explicites
+
+On retrouve les balises suivantes :
+- `<section>` : sections ;
+- `<article>` : articles ;
+- `<aside>` : contenu secondaire ;
+- `<nav>` : navigation ;
+- `<header>` : entête ;
+- `<footer>` : pied de page ;
+- `<main>` : contenu principal ;
+
+#### Les balises "passe-partout"
+
+On retrouve les balises suivantes :
+- `<div>` ;
+- `<span>` ;

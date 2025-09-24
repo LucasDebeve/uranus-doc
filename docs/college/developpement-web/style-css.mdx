@@ -1,0 +1,279 @@
+---
+title: 🎨 CSS - La mise en forme
+sidebar_position: 4
+---
+
+## C'est quoi le CSS ?
+
+Le CSS est un langage qui permet de styliser les éléments d'un site web. Il est utilisé pour définir la couleur, la police, la taille, etc. des éléments du site.
+
+## Ecrire du CSS
+
+Pour écrire du CSS, il faut d'abord un fichier HTML. Voici celui qu'on utilisera pour apprendre à écrire du CSS :
+
+```html
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Démarrer avec CSS</title>
+  </head>
+
+  <body>
+    <h1>Je suis un titre de niveau un</h1>
+
+    <p>
+      Ceci est un paragraphe. Dans ce texte il y a un
+      <span>élément span</span> et aussi un
+      <a href="http://example.com">lien</a>.
+    </p>
+
+    <p>
+      Ceci est un second paragraphe. On y trouve un élément
+      <em>mis en valeur</em>.
+    </p>
+
+    <ul>
+      <li>Item un</li>
+      <li>Item deux</li>
+      <li>Item <em>trois</em></li>
+    </ul>
+  </body>
+</html>
+```
+
+Nous allons également créer un fichier CSS nommé `style.css` qui sera pour le moment vide.
+
+:::info
+
+Le fichier HTML et le fichier CSS doivent être dans le même dossier.
+
+:::
+
+Pour lier le fichier HTML à un fichier CSS, il faut utiliser la balise suivante placée dans le `<head>` du fichier HTML :
+
+```html
+<link rel="stylesheet" href="style.css" />
+```
+
+Pour tester le lien, on ajoute cette instruction au fichier CSS:
+
+```css
+h1 {
+  color: red;
+}
+```
+
+:::info Avant de tester
+A votre avis, que fait le code CSS ci-dessus ?
+:::
+
+
+## Les instructions CSS utiles
+
+:::danger Important
+Toutes les instrcutions CSS sont décrites dans la documentation de [MDN](https://developer.mozilla.org/fr/docs/Web/CSS).
+:::
+
+Je vous présente ici quelques instructions CSS utiles que vous pouvez utiliser pour commencer à écrire du CSS.
+
+### Les sélecteurs
+
+Pour selectionner un élément HTML, il faut utiliser un sélecteur CSS. Il existe 3 types de sélecteurs :
+
+- les sélecteurs de type "tag" qui sélectionnent tous les éléments HTML du même type ;
+- les sélecteurs de type "id" qui sélectionnent un élément HTML avec un attribut `id` ;
+- les sélecteurs de type "class" qui sélectionnent un élément HTML avec un attribut `class` ;
+
+Voici un exemple de sélecteur de type "tag" :
+```css
+h1 {
+  color: red;
+}
+```
+
+Ce sélecteur sélectionne tous les éléments HTML de type `<h1>` et les met en rouge.
+
+Pour les deux autres types de sélecteurs, il faut ajouter un attribut `id` ou `class` à l'élément HTML.
+
+L'attribut `id` permet de sélectionner un élément HTML avec un **identifiant unique**. Cela signifie qu'il ne peut pas y avoir 2 éléments HTML avec le même attribut `id`.
+
+Contrairement à l'attribut `id`, l'attribut `class` permet de sélectionner un ou plusieurs éléments HTML. Il peut y avoir plusieurs éléments HTML avec le même attribut `class`, c'est même tout l'intérêt de l'utiliser.
+
+```html
+<p id="super-paragraphe">Ceci est un paragraphe.</p>
+<p> Ceci est un autre paragraphe.</p>
+```
+
+```css
+#super-paragraphe {
+  color: red;
+}
+```
+
+:::info
+Pour sélectionner un élément HTML avec son `id` on utilise la syntaxe `#` + l'identifiant.
+
+Par exemple `#super-paragraphe` sélectionne l'élément HTML avec l'identifiant "super-paragraphe".
+:::
+
+Ce sélecteur sélectionne l'élément HTML `<p>` avec l'attribut `id` "super-paragraphe" et le met en rouge.
+
+```html
+<p class="paragraphe">Ceci est un paragraphe.</p>
+<p class="paragraphe"> Ceci est un autre paragraphe.</p>
+<p> Ceci est encore un autre paragraphe.</p>
+```
+
+```css
+.paragraphe {
+  color: red;
+}
+```
+
+:::info
+Pour sélectionner un élément HTML avec son `class` on utilise la syntaxe `.` + le nom de la classe.
+
+Par exemple `.paragraphe` sélectionne l'élément HTML avec la classe "paragraphe".
+:::
+
+
+### Polices d'écriture
+
+#### Taille de police
+
+```css
+font-size: 20px;
+```
+
+:::info
+Il existe plusieurs unités de mesure pour la taille de police, on peut utiliser :
+- `px` pour la taille en pixels ;
+- `rem` pour la taille par rapport à la taille de la police par défaut ;
+:::
+
+#### Police
+
+```css
+font-family: Comic Sans MS;
+```
+
+#### Couleur de police
+
+```css
+color: red;
+```
+
+:::info
+Pour les couleurs, on peut utiliser les noms de couleurs prédéfinis ou les codes hexadécimaux.
+
+Par exemple :
+- `red` pour la couleur rouge ;
+- `#ff0000` pour la couleur rouge avec un code hexadécimaux.
+:::
+
+### Tailles
+
+```css
+height: 100px;
+width: 100px;
+```
+
+:::info
+De la même manière que pour la taille de police, il existe plusieurs unités de mesure pour les tailles, on peut utiliser :
+- `px` pour la taille en pixels ;
+- `rem` pour la taille par rapport à la taille de la police par défaut ;
+- `%` pour la taille par rapport à la taille du conteneur ;
+:::
+
+### Fond
+
+#### Couleur de fond
+
+```css
+background-color: red;
+```
+
+:::info
+Pour les couleurs, on peut utiliser les noms de couleurs prédéfinis ou les codes hexadécimaux.
+
+Par exemple :
+- `red` pour la couleur rouge ;
+- `#ff0000` pour la couleur rouge avec un code hexadécimaux.
+:::
+
+### Bordures
+
+```css
+border: 1px solid red;
+```
+
+### Espacement
+
+Pour gérer l'espacement, on peut utiliser 2 propriétés :
+
+- `padding` pour gérer l'espacement interne à un élément ;
+- `margin` pour gérer l'espacement externe à un élément.
+
+![](https://cdn.prod.website-files.com/687e8d1b96312cc631cafec7/68c492a402f02a35c435fea4_680bd50e063190f807d7b219_66ce45417d9488e626903aac_61faef292259e74468db3cfd_image4.jpeg)
+
+```css
+padding: 10px;
+margin: 20px;
+```
+
+Pour spécifier l'espacement uniquement sur un coté, on peut utiliser les propriétés :
+
+- `padding-top` pour le haut ;
+- `padding-bottom` pour le bas ;
+- `padding-left` pour la gauche ;
+- `padding-right` pour la droite ;
+
+Pareil pour `margin`.
+
+## Activités
+
+### Création d'un CV web
+
+Un CV est un document qui contient des informations sur une personne. Il est utilisé dans le cadre de l'obtention d'un emploi.
+
+Votre mission est maintenant de créer la structure HTML d'un CV web puis de la mettre en forme avec du CSS.
+
+Pour créer un CV web, on va utiliser les balises suivantes :
+
+- `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>` pour les titres de niveaux ;
+- `<p>` pour les paragraphes ;
+- `<ul>` pour les listes à puces ;
+- `<li>` pour les éléments de listes à puces ;
+- `<a>` pour les liens hypertextes ;
+- `<img>` pour les images ;
+- `<div>` pour les éléments de division ;
+- `<span>` pour les éléments de division ;
+
+Voici un exemple de CV :
+
+<div style={{display: "flex", justifyContent: "center", gap: "10px", marginBottom: "20px"}}>
+    <img src="https://static.onlinecv.fr/wp-content/uploads/sites/36/2023/12/12113530/FRE_Munich_Photo-1040x1433.webp" alt="CV web" style={{maxHeight: "90svh"}} />
+</div>
+
+[Exemple](www.github.com)
+
+
+### Création d'une carte TCG (Pokémon, One Piece, etc...)
+
+Les TCG (*Trading Card Game* ou Jeu de Cartes à Jouer et à Collectionner) sont des jeux de cartes qui permettent de jouer des jeux de cartes avec des amis ou des joueurs distants.
+
+Il existe de nombreux jeux de cartes, mais voici quelques exemples :
+- Pokémon
+- One Piece
+- Yu-Gi-Oh
+- Magic: The Gathering
+
+Notre mission aujourd'hui va être de créer une version Web d'une carte TCG.
+
+<div style={{display: "flex", justifyContent: "center", gap: "10px", marginBottom: "20px"}}>
+    <img src="https://static.opecards.fr/cards/fr/st21/image-cartes-a-collectionner-one-piece-card-game-tcg-opecards-st21-014-sr-version-2-monkey-d-luffy.webp" alt="Carte One Piece" style={{maxHeight: "50svh"}} />
+    <img src="https://static.pkmcards.fr/cards/fr/mew/image-cartes-a-collectionner-pokemon-card-game-tcg-pkmcards-mew-fr-025-ecarlate-et-violet-151-pikachu.webp" alt="Carte One Piece" style={{maxHeight: "50svh"}} />
+</div>
+
+[Exemple](www.github.com)
