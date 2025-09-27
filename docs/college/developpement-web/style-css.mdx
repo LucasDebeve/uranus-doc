@@ -1,6 +1,6 @@
 ---
 title: 🎨 CSS - La mise en forme
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 ## C'est quoi le CSS ?
@@ -231,6 +231,16 @@ Pour spécifier l'espacement uniquement sur un coté, on peut utiliser les propr
 
 Pareil pour `margin`.
 
+### Flexbox
+
+La flexbox est une méthode de mise en page qui permet de faire des mises en page complexes. Elle permet de définir des éléments comme étant en colonne ou en ligne, de les aligner verticalement ou horizontalement, et de les distribuer de manière égale.
+
+![](https://cdn.masto.host/indiewebsocial/media_attachments/files/112/026/763/254/902/361/original/4a09a04a7df6c6e7.jpeg)
+
+:::tip exercice
+Pour apprendre à utiliser la flexbox, entrainez-vous grâce au jeu sur [Flexbox Froggy](https://flexboxfroggy.com/#fr).
+:::
+
 ## Activités
 
 ### Création d'un CV web
@@ -275,5 +285,13 @@ Notre mission aujourd'hui va être de créer une version Web d'une carte TCG.
     <img src="https://static.opecards.fr/cards/fr/st21/image-cartes-a-collectionner-one-piece-card-game-tcg-opecards-st21-014-sr-version-2-monkey-d-luffy.webp" alt="Carte One Piece" style={{maxHeight: "50svh"}} />
     <img src="https://static.pkmcards.fr/cards/fr/mew/image-cartes-a-collectionner-pokemon-card-game-tcg-pkmcards-mew-fr-025-ecarlate-et-violet-151-pikachu.webp" alt="Carte One Piece" style={{maxHeight: "50svh"}} />
 </div>
+
+Pour vous aider, voici une guide pour la disposition simplifiée des flexbox d'une carte Pokémon :
+
+<div style={{display: "flex", justifyContent: "center", gap: "10px", marginBottom: "20px"}}>
+    <img src={require('./img/carte_layout.png').default} alt="Layout 1" style={{maxHeight: "50svh"}} />
+    <img src={require('./img/carte_layout2.png').default} alt="Layout 2" style={{maxHeight: "50svh"}} />
+</div>
+
 
 [Exemple](https://lucasdebeve.github.io/example-cv/tcg/)

@@ -1,0 +1,138 @@
+---
+title: 💻 Outils de développement
+sidebar_position: 2
+---
+
+Pour développer un site web, il faut avoir un environnement de développement. Voici de quoi se compose cet environnement :
+
+- un **navigateur** qui permet de visualiser le site ;
+- un **éditeur de code** qui permet de créer et de modifier le code source du site ;
+- un **dépôt git** qui permet de stocker le code source du site ;
+- un **serveur** qui permet de servir le site (optionnel);
+
+## 🖥️ Navigateur
+
+Le navigateur est un logiciel qui permet de visualiser le site web. Il est utilisé pour naviguer sur le site, lire les contenus, et pour interagir avec le site.
+
+:::tip On utilisera
+
+Pour visualiser le site en développement, nous utiliserons le navigateur Chrome.
+
+:::
+
+## 💻 Éditeur de code
+
+L'éditeur de code est un logiciel qui permet de créer et de modifier des fichiers texte. Il est utilisé pour écrire du code source, pour créer des pages web, des styles, etc.
+
+Il en existe de nombreux allant de très simples à très complexes. 
+Le plus populaire est **VS Code**, c'est un éditeur de code gratuit, open source et très puissant.
+
+:::tip On utilisera
+
+Dans le cadre de cet atelier, nous n'utiliserons pas directement VS Code, mais un dérivé de celui ci, qui a l'avantage d'être disponible en ligne gratuitement.
+
+Nosu reviendrons sur ce dernier dans la prochaine section.
+
+:::
+
+## 📁 Dépôt git
+
+Un dépôt git est un système de gestion de version de code. Il permet de stocker le code source d'un projet, de voir l'historique des modification et de le partager entre plusieurs personnes.
+
+:::tip On utilisera
+
+Pour stocker le code source du site, nous utiliserons la plateforme [Github](https://github.com/).
+
+:::
+
+## Tutoriel d'utilisation de Github
+
+### Création d'un compte
+
+Pour utiliser Github, il faut d'abord créer un compte. Pour ce faire, allez sur [github.com](https://github.com/) et cliquez sur le bouton **Sign up** (*Inscription* en anglais).
+
+Il est nécéssaire de renseigner les informations suivantes :
+
+- Votre adresse email ;
+- Un mot de passe ;
+- Un nom d'utilisateur.
+- Votre pays : France.
+
+Astuce : ne cochez pas la case **Receive occasional product updates and announcements** car nous n'en aurons pas besoin.
+
+Une fois votre compte créé, vous serez redirigé vers la page d'accueil de Github.
+
+### Création d'un dépôt
+
+Pour créer un dépôt, il faut cliquer sur le bouton **New** (*Nouveau* en anglais) situé en haut à gauche de la page d'accueil. 
+
+Puis renseigner les informations comme ceci *(sauf le owner qui doit correspondre à votre nom d'utilisateur)* :
+
+<img src={require('./img/tuto-creation-repo.png').default} alt="Tuto création dépôt" style={{maxHeight: "90svh"}} />
+
+:::danger Attention
+
+La visibilité du dépôt doit être **public** et dans notre cas l'option **Add README** doit être cochée.
+
+:::
+
+:::info 
+
+La visibilité public permet à tout le monde de voir le dépôt.
+
+Le fichier README est un fichier texte qui permet de décrire le dépôt. Il est utilisé par Github pour afficher une page d'accueil sur le dépôt.
+
+:::
+
+Une fois le dépôt créé, vous serez redirigé vers la page d'accueil du dépôt.
+
+### Ouverture dans l'éditeur de code
+
+Pour ouvrir le dépôt dans l'éditeur de code, il faut cliquer sur le bouton **Code** situé en haut à droite de la page d'accueil.
+
+Puis cliquer sur l'onglet **Codespaces** et et cliquer sur le bouton **New codespace**.
+
+Une nouvelle fenêtre s'ouvrira et vous permettra de visualiser les fichiers à gauche de l'écran et voir leur contenu et les modifier à droite de l'écran.
+
+Pour plus de sobriété, cliquez sur la croix à droite de l'écran (voir la capture ci-dessous).
+
+<img src={require('./img/vscode.png').default} alt="VS Code" style={{maxHeight: "90svh"}} />
+
+### Configuration
+
+En bas à droite de l'écran, vous devriez sûrement voir un icone de petite tête de robot, c'est le logo de Copilot, un assistant de code que nous n'utiliserons pas dans cet atelier.
+
+Pour le désactiver, cliquez sur le'icone **Copilot** et décochez la case **Tous les fichiers**.
+
+Ensuite, nous allons ajouter une extension pour le développement web. Pour ce faire, cliquez sur le bouton **Extensions** tout à gauche de l'écran. Puis recherchez **Live Preview** et installez-la.
+
+### Création d'un fichier
+
+Pour créer un fichier, il faut cliquer droit sur la partie gauche de l'écran et sélectionner **Nouveau fichier**.
+
+Nommez le fichier `index.html`. 
+
+:::danger Attention
+Après avoir modifié le fichier, il est impératif de sauvegarder le fichier en pressant les touches **Ctrl + S**, sinon vous allez perdre vos modifications.
+:::
+
+### Visualisation de la page
+
+Pour visualiser la page, on va utiliser l'extension **Live Preview**. Si une page html est ouverte, un bouton apparaît en haut à droite de l'écran (deux rectangles avec une petite loupe), cliquez dessus pour afficher l'aperçu de la page web à droite de l'écran.
+
+Voici à quoi ressemble notre environnement de développement :
+
+<img src={require('./img/environnement-dev.png').default} alt="Environnement de développement" style={{maxHeight: "90svh"}} />
+
+
+:::danger Ultra, méga, hyper important
+### A la fin de chaque séance !
+
+Il faut absolument faire ce qu'on appelle un **commit** puis un **push** pour enregistrer les modifications que vous avez apportées sur le dépôt Github. 
+
+Pour ce faire, cliquez sur le bouton **Contrôle de code source** situé sur la barre latérale à gauche de l'écran. Puis cliquez sur le petit + à coté du mot **Changement** (cela va sélectionner toute vos modifications). 
+Enfin, rentrez un message explicite pour votre commit et cliquez sur le bouton **Validation** (cela effectue un commit), puis sur **Synchroniser les modifications** (pour push).
+
+Si un message s'affiche, cliquez sur **ok**.
+
+:::
