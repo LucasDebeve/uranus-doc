@@ -72,6 +72,7 @@ const config: Config = {
         sidebarPath: './sidebars.ts',
       },
     ],
+    'docusaurus-plugin-image-zoom',
   ],
   stylesheets: [
     {
@@ -145,6 +146,16 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    zoom: {
+        background: {
+          light: 'rgb(50, 50, 50)',
+          dark: 'rgb(50, 50, 50)'
+        },
+        config: {
+          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+          margin: 50,
+        }
+      }
   } satisfies Preset.ThemeConfig,
 };
 
