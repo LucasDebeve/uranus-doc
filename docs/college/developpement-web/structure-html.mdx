@@ -239,3 +239,60 @@ On retrouve les balises suivantes :
 On retrouve les balises suivantes :
 - `<div>` ;
 - `<span>` ;
+
+
+## Exercice
+
+Pour vous aidez à maîtriser le code HTML, voici un exercice.
+
+Le but est de créer une page web pour votre animal préféré.
+
+Pour cela, vous suivrez les étapes suivantes :
+
+1. Créer un dossier `animals` dans le dépôt Github de votre projet.
+2. Créer un fichier `index.html` dans ce dossier.
+3. Dans ce fichier, créer le code HTML de base d'une page web.
+4. Ajouter une balise `<h1>` qui sera le nom de votre animal.
+5. Ajouter une balise `<h2>` qui contiendra les mots : `Description physique`.
+6. Ajouter une balise `<p>` qui contiendra la description physique de votre animal.
+7. Ajouter une balise `<h2>` qui contiendra les mots : `Galerie d'images`.
+8. Ajouter au moins 2 balises `<img>` qui contiendront des images de votre animal.
+    - Au moins 1 image sera téléchargée sur votre ordinateur.
+    - Au moins 1 image sera tiré d'un lien internet.
+9. Ajouter un lien `<a href=...>` qui pointe vers la page Wikipédia de votre animal.
+10. Au début de votre page, ajouter la balise `<nav>` qui représente le menu principal de votre page.
+11. Dans le menu, ajouter un lien `<a href=...>` qui pointe vers le titre `Description physique` de votre page.
+    - Le lien doit pointer vers la balise `<h2>` qui contient les mots `Description physique`.
+    - Pour cela, on ajoute l'attribut `id="physique"` à la balise `<h2>` qui contient les mots `Description physique`.
+    - On ajoute l'attribut `href="#physique"` à la balise `<a>`.
+12. Dans le menu, ajouter un lien `<a href=...>` qui pointe vers le titre `Galerie d'images` de votre page.
+
+<details>
+    <summary>Exemple de code HTML</summary>
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="fr">
+        <head>
+        <meta charset="utf-8" />
+        <title>Ma page d'accueil</title>
+        </head>
+        <body>
+            <nav>
+                <a href="#physique">Description physique</a>
+                <a href="#galerie">Galerie d'images</a>
+            </nav>
+
+            <h1>Le léopard</h1>
+            <h2 id="physique">Description physique</h2>
+            <p>
+                Le léopard est une espèce de félins. Il a un pelage fauve tacheté de rosettes. Excellent grimpeur et sauteur, le léopard a la particularité de hisser ses proies à la fourche d'un arbre pour les mettre hors de portée des autres prédateurs.
+            </p>
+            <h2 id="galerie">Galerie d'images</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Namibie_Etosha_Leopard_01edit.jpg/1024px-Namibie_Etosha_Leopard_01edit.jpg" alt="Léopard" />
+            <img src="./images/leopard.jpg" alt="Léopard 2" />
+            <a href="https://fr.wikipedia.org/wiki/L%C3%A9opard">Wikipédia</a>
+        </body>
+    </html>
+    ```
+</details>
