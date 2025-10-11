@@ -3,3 +3,89 @@ title: Nombre flottant en base 2
 description: Ecriture des nombres flottants en base 2
 sidebar_position: 4
 ---
+
+:::info
+
+## 📈 Objectifs du cours
+
+- Calculer la représentation binaire de nombres réels
+- Comprendre les problèmes liés à la représentation des nombres réels
+
+:::
+
+---
+
+## Première approche 
+
+### Notation scientifique d'un nombre
+
+En sciences, pour représenter les nombres décimaux, on utilise la **notation scientifique**.
+
+Un nombre est en notation scientifique s’il s’écrit sous la forme $± a \times 10^n$.
+
+- $±$ signifie le signe du nombre
+- $a$ est la mantisse où $a \in [1, 10[$
+- $n$ est l'exposant où $n \in \mathbb{Z}$
+
+Exemples :
+Prenons $103,56 = +1,0356 \times 10^2$.
+
+### En base 2
+
+Pour représenter un nombre décimal, on va utiliser une méthode semblable en base 2.
+
+- Un signe
+- Une mantisse commençant par 1
+- Un exposant entier
+
+Exemples :
+
+$1011,1101_{2} = +1,0111101 \times 10^3$
+
+Le signe est **+**, la mantisse est **1,0111101** et l’exposant **3** car on a décalé la virgule de 3 rangs
+vers la droite.
+
+En utilisant cette norme on a nécessairement 1 comme chiffre le plus à gauche et on peut sousentendre la virgule qui vient juste après. Il reste à voir comment on procède dans une machine où la
+place mémoire attribuée pour représenter un flottant est définie à l’avance. Avant voyons comment
+convertir en binaire la partie décimale d’un nombre.
+
+### Convertir un réel en binaire
+
+On divise notre nombre en 2 partie : la partie entière et la partie décimale.
+
+Prenons $11,375_{10}$ comme exemple.
+
+La partie entière est $11_{10}$ et la partie décimale est $375_{10}$.
+
+
+Pour convertir un réel en binaire, on va utiliser 2 méthodes différentes :
+- Pour la partie entière, nous avons vu la méthode des divisions successives par 2.
+
+  Par exemple, on a $11_{10} = 1011_{2}$.
+- Par la partie décimale on effectue des multiplications successives par $2$ en conservant à
+chaque fois la partie entière du produit ($0$ ou $1$) jusqu’à ce qu’il reste $0$.
+
+  Par exemple, on a :
+  $$
+  \begin{aligned}
+  0,375_{10} \times 2 = 0,75 &\rightarrow 0 \\
+  0,75_{10} \times 2 = 1,5 &\rightarrow 1 \\
+  0,50_{10} \times 2 = 1,00 &\rightarrow 1 \\
+  0,00_{10} \times 2 = 0,00 &\rightarrow 0 \\
+  \end{aligned}
+  $$
+  Donc $0,375_{10} = 0110_{2}$.
+
+:::note Exercice
+Donnez les représentations binaires des nombres suivants :
+
+- $0,578125_{10}$
+- $0,8_{10}$
+
+:::
+
+:::danger Attention
+Un nombre à développement décimal fini en base 10 ne l’est pas forcément en base 2.
+
+Ex: $0,8$ a un développement binaire infini en base 2.
+:::
