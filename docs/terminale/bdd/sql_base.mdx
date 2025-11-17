@@ -1,0 +1,68 @@
+---
+title: Le langage SQL
+description: Introduction au langage SQL.
+sidebar_position: 2
+---
+
+Le langage SQL est un langage informatique servant à exploiter des bases de données relationnelles.
+
+Une instruction SQL est appelé **requête**.
+Il existe différents types de requêtes:
+- Manipulation de données
+    - Recherche/sélection de données : `SELECT`
+    - Ajout de données : `INSERT`
+    - Modification de données : `UPDATE`
+    - Suppression de données : `DELETE`
+- Définition des données
+    - Manipule la structure de données
+    - Création de tables et autres structures : `CREATE`
+    - ...
+- Contrôle des données et des transactions
+    - Gestions des autorisations d'accès aux données
+    - Gestion de l'exécution de transactions
+        - Transaction = suite d'opérations de modification de la base de données
+
+## Système de Gestion de Bases de Données Relationnelles (SGBDR)
+
+Pour fonctionner, une base de données a besoin d'un logiciel, c'est le SGBD (on rajoute le R pour relationnelle). Ce logiciel permet de manipuler le contenu des bases de données, il garantit la qualité, la pérennité et la confidentialité des informations.
+
+Les SGBDR optimisent automatiquement les opérations effectuées sur les données. 
+
+:::note Exemple
+- SQLite : un SGBDR léger et open source
+- PostgreSQL : un SGBDR très puissant et open source
+- MySQL : un SGBDR très puissant et commercial
+- ...
+:::
+
+Un des points communs entre tous les SGBDR est l'utilisation du langage SQL, c'est pour cela qu'on va l'apprendre.
+
+## Syntaxe SQL
+
+### Commentaires
+
+Pour commenter une ligne, on utilise `--`.
+
+```sql
+-- Ceci est un commentaire
+```
+
+### Extraction de données (lecture)
+
+```sql
+SELECT noms_colonnes_séparées_par_une_virgule
+FROM nom_de_la_table;
+```
+
+:::danger Attention
+A la fin d'une requête, il faut absolument mettre un point-virgule.
+:::
+
+:::info
+Le mot-clé `*` permet de sélectionner toutes les colonnes de la table.
+
+```sql
+SELECT * --Sélectionne toutes les colonnes de la table
+FROM nom_de_la_table; 
+```
+:::

@@ -1,0 +1,133 @@
+---
+title: Introduction
+description: Introduction au la base de données
+sidebar_position: 1
+---
+
+Pour stocker les données, nous avons vu en classe de première que nous pouvons utiliser des **fichiers textuelles** (csv, json, xml, etc.). Cependant, cette méthode n'est optimale que pour une quantité raisonnable de données. Pour stocker une **immense quantité de données**, on utilise des **bases de données**.
+
+Il existe différentes types de bases de données, mais la plupart sont des **bases de données relationnelles** (qui se base sur les relations entre les données), elles sont apparues dans les années 60 et sont encore aujourd'hui majoriatire dans le monde professionnel mais aussi dans la vie quotidienne.
+
+Aujourd'hui, tout les informaticiens doivent maîtriser un minimum de concepts clés relatifs aux bases de données et doivent être capables de réaliser des manipulations de base.
+
+## Définitions
+
+**Base de données (sens large)** : tout ensemble de données stockées numériquement et pourvant servir à un (ou plusieurs) programmes.
+
+**Base de données (sens plus précis)** : on appellera base de données un ensemble
+de données numériques qui possède une structure ; c’est à dire dont l’organisation
+répond à une logique systématique.
+
+**BDD** : base de données
+
+**Table (ou Relation)** : ensemble de données qui possède la même structure.
+
+**Attribut (ou Champ)** : colonne d'une table.
+
+**Enregistrement** : ligne d'une table.
+
+## Base de données relationnelle
+
+Dans une même base de données, on retrouve (souvent) plusieurs tables.
+
+:::note Exemple
+Table des utilisateurs :
+- nom (ex: Turing)
+- prenom (ex: Alan)
+- date de naissance (ex: 1912-06-23)
+- login (ex: alan)
+- mot de passe (ex: passwordDifficile)
+
+Table des biens :
+- numero de serie (ex: 1)
+- nom (ex: Machine de Turing)
+- prix (ex: 1000$)
+
+**UTILISATEUR**
+| nom | prenom | date de naissance | login | mot de passe |
+| --- | --- | --- | --- | --- |
+| Turing | Alan | 1912-06-23 | alan | passwordDifficile |
+
+**BIEN**
+| numero de serie | nom | prix |
+| --- | --- | --- |
+| 1 | Machine de Turing | 1000$ |
+:::
+
+### Clés
+
+Chaque fois qu’on enregistre quelque chose dans la base de donnée il faut s’assurer que
+la donnée n’est pas déjà présente. Pour cela on utilise la notion de **clé**.
+
+Il existe deux types de clés:
+- Clé primaire (Primary Key) :   
+    - Identifie de manière unique une ligne dans la table.  
+    - Ne peut pas être nulle.
+    - Peut être composée d'une ou plusieurs colonnes.
+    - Ajout d'une colonne dédiée si besoin.
+- Clé étrangère (Foreign Key) :
+    - Référence une ou plusieurs colonnes d'une autre table (clé primaire).
+    - Les colonnes référencées doivent pré-exister dans la table cible.
+
+:::note Exemple
+Dans notre exemple, quels sont les clés primaires ?
+
+Quant aux clé étrangère, il n'y en a pas. Pour lier les tables UTILISATEUR et BIEN, il faudrait ajouter une colonne clé étrangère dans la table BIEN.
+
+**BIEN**
+| numero de serie | nom | prix | login propriétaire |
+| --- | --- | --- | --- |
+| 1 | Machine de Turing | 1000$ | alan |
+:::
+
+### Construire une structure
+
+1. **Regrouper les données en tables**
+    - Mettre dans la même table les données relative à une même notion.
+2. **Etablir les relations entre les tables**
+    - Définir les clés primaires (Unique et non nulle)
+    - Définir les clés étrangères (Référence les clés primaires)
+3. **Définir des colonnes pertinentes**
+    - Facilité d'interrogation des colonnes
+    - Données cohérentes au sein d'une colonne
+    - Ne pas conserver les données calculées (ex: âge)
+    - Ne pas conserver les données redondantes
+
+Prenons un exemple concret:
+Voici les données relatives au [Diplôme National du Brevet par établissement ](https://www.data.gouv.fr/api/1/datasets/r/576fc1c9-ec6e-44bd-817f-f21bc9ebf3a3).
+
+1. **Regrouper les données en tables**
+
+| Nom de la table/notion | Colonnes |
+| --- | --- |
+| Etablissement | numéro d'établissement, type d'établissement, patronyme, secteur d'enseignement, commune, libellé commune |
+| Département | code département, libellé département |
+| Académie | code académie, libellé académie |
+| Région | code région, libellé région |
+| Résultats DNB | session, inscrits, presents, admis, admis sans mention, Nombre_d_admis_Mention_AB, Admis Mention bien, Admis Mention très bien, taux de réussite |
+
+2. **Etablir les relations entre les tables**
+
+| Nom de la table/notin | Clés primaires | Clés étrangères |
+| --- | --- | --- |
+| Etablissement | numéro d'établissement | code département, code académie, code région |
+| Département | code département | ∅ |
+| Académie | code académie | ∅ |
+| Région | code région | ∅ |
+| Résultats DNB | session, numero d'établissement | numero d'établissement |
+
+:::danger Attention
+A partir des exemples ci-dessus, essayer de trouver une règle pour savoir où placer la clé étrangère.
+
+Par exemple :  
+Pourquoi a-t-on mis la clé étrangère dans la table `Etablissement` et non dans la table `Département` pour l'association entre `Etablissement` et `Département` ?
+:::
+
+3. **Définir des colonnes pertinentes**
+
+Quelles colonnes ne sont pas pertinentes ?
+
+- Taux de réussite : on peut le calculer à partir des autres colonnes.
+- Nombre d'admis : on peut le calculer à partir des autres colonnes.
+
+Quelles données sont redondantes ?
