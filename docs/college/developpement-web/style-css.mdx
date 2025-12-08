@@ -295,10 +295,59 @@ Notre mission aujourd'hui va être de créer une version Web d'une carte TCG.
 
 Pour vous aider, voici une guide pour la disposition simplifiée des flexbox d'une carte Pokémon :
 
+- Chaque rectangle correspond à un bloc qui pourra être:
+  - `<div class=""></div>`
+  - `<span class=""></span>`
+  - ou un élément HTML avec un attribut `class` ou un `id`
+
 <div style={{display: "flex", justifyContent: "center", gap: "10px", marginBottom: "20px"}}>
     <img src={require('./img/carte_layout.png').default} alt="Layout 1" style={{maxHeight: "50svh"}} />
     <img src={require('./img/carte_layout2.png').default} alt="Layout 2" style={{maxHeight: "50svh"}} />
 </div>
 
+- Voici un code HTML de base pour une carte :
 
-[Exemple](https://lucasdebeve.github.io/example-cv/tcg/)
+```html
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Carte TCG Pokémon - Prototype</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="card-wrapper" role="img" aria-label="Carte Pokémon prototype"></div>
+  </body>
+</html>
+```
+
+- Voici un code css à compléter pour une carte :
+
+```css
+body{
+    min-height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.card-wrapper{
+    width: 350px;
+    height: 490px;
+    border-radius: 14px;
+    background: linear-gradient(180deg,#f5b431 0%, #ffe488 60%);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+    position: relative;
+    overflow: hidden;
+    border: 12px solid #b7b7b7; /* thin inner border */
+    display: flex;
+    flex-direction: column;
+}
+```
+
+
+:::info Regarde par ici, c'est important...
+Voici un [Exemple](https://lucasdebeve.github.io/example-cv/tcg/) de carte Pokémon.
