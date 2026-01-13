@@ -8,6 +8,8 @@ sidebar_position: 4
 
 :::info
 
+import { SignedBinaryTrainer } from '@site/src/components/Markdown/Trainers/BaseConverter/ComplementA2/SignedBinaryTrainer';
+
 ## 📈 Objectifs du cours
 
 - Comprendre la représentation des entiers relatifs en binaire (valeurs positives et négatives)
@@ -59,7 +61,7 @@ Pour éviter ces problèmes, il existe une méthode magique, la technique du com
 > $$
 > \begin{aligned}
 > 42 &= 00101010_{2} \\
-> \text{Complément à 1} &= \textcolor{red}{11010101}_{2} \\ 
+> \text{Complément_à_1} &= \textcolor{red}{11010101}_{2} \\ 
 > + 1 &= 110101\textcolor{red}{10}_{2} \\
 > -42 &= 11010110_{2}
 > \end{aligned}
@@ -85,6 +87,7 @@ Pour éviter ces problèmes, il existe une méthode magique, la technique du com
 > \end{aligned}
 > $$
 
+
 ## 🦜 Astuce
 
 Sur 8 bits, on peut coder :
@@ -106,8 +109,6 @@ Quel est le nombre de bits nécessaire pour coder une température allant de -20
 </details>
 
 ### 🎯 Entraînement interactif
-
-import { SignedBinaryTrainer } from '@site/src/components/Markdown/Trainers/BaseConverter/ComplementA2/SignedBinaryTrainer';
 
 <SignedBinaryTrainer />
 

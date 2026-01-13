@@ -43,6 +43,17 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+          versions: {
+            current: {
+              label: '2025-2026 (en cours)',
+              path: '2025-2026',
+              banner: 'none',
+            },
+            '2024-2025': {
+              label: 'Archives 2024-2025',
+              path: '2024-2025',
+            },
+          },
         },
         blog: {
           showReadingTime: true,
@@ -105,6 +116,10 @@ const config: Config = {
           position: 'left',
           label: 'Techniques pédagogiques',
           docsPluginId: 'pedagogie',
+        },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {

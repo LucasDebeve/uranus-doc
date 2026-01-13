@@ -1,0 +1,78 @@
+---
+title: Escape Game de Noël
+sidebar_position: 7
+---
+
+Le site du collège a été piraté !
+Le serveur principal est verrouillé et va s’éteindre dans 30 minutes.
+Pour le relancer, vous devez récupérer le mot de passe admin, découpé en 5 fragments, cachés dans le code du site.
+
+## ENIGME 1
+
+Le navigateur n’affiche pas correctement la page. Corrigez les erreurs pour révéler le premier code.
+
+```html
+<h1>Bienvenue</h1>
+<p>Site officiel du collège
+<div>
+  <p>Actualités</p>
+  <ul>
+    <li>Nouveautés</li>
+    <li>Evènements<li>
+    <li>Annonces</li>
+</div>
+<ul>
+```
+
+Pour proposer votre réponse, aller voir M.DEBEVE.
+
+## ENIGME 2
+
+La réponse se dévoile quand il fait sombre.
+
+<div style={{color: '#fff', padding: '1rem'}}>
+  <p>Le code est présent dans Rouge et Noir et absent de Wow.</p>
+</div>
+
+## ENIGME 3
+
+Classez les actions : CLIENT ou SERVEUR
+
+- Afficher une page HTML
+- Stocker une base de données
+- Appliquer du CSS
+- Répondre à une requête HTTP
+- Cliquer sur un bouton
+- Vérifier un mot de passe
+
+| CLIENT | SERVEUR |
+| ------ | ------- |
+| | |
+
+Pour proposer votre réponse, aller voir M.DEBEVE.
+
+## ENIGME 4
+
+Quel est le mot de passe envoyé au serveur ?
+
+`https://serveur-college.fr/login?user=admin&pass=1234`
+
+Est-il sécurisé ? Pourquoi ?
+
+## ENIGME 5
+
+La réponse est sous vos yeux.
+
+<div style={{display: 'none'}}>
+    WEB
+</div>
+
+Pour proposer votre réponse, aller voir M.DEBEVE.
+
+## ENIGME FINALE
+
+Entrer le code du site ci-dessous :
+
+import PasswordInput from '@site/src/components/Markdown/password-input';
+
+<PasswordInput truePassword="4R1234WEB" />
