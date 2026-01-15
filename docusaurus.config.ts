@@ -48,6 +48,7 @@ const config: Config = {
               label: '2025-2026 (en cours)',
               path: '2025-2026',
               banner: 'none',
+              badge: false,
             },
             '2024-2025': {
               label: 'Archives 2024-2025',

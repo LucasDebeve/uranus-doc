@@ -1,0 +1,51 @@
+---
+title: Introduction
+description: Introduction au projet
+sidebar_position: 1
+---
+
+Le but de ce premier projet est de programmer un jeu de pendu de A à Z grâce au langage Python.
+
+## Objectifs du projet
+
+- Manipuler des variables et différents types de données
+- Utiliser les structures conditionnelles (if/else)
+- Créer et utiliser des boucles (while, for)
+- Travailler avec des listes et des chaînes de caractères
+- Concevoir et appeler des fonctions simples
+
+## Présentation du projet
+
+Le jeu du pendu est un jeu de devinettes où le joueur doit trouver un mot caché en proposant des lettres.
+À chaque erreur, un élément du pendu est dessiné. 
+Le joueur perd s'il fait trop d'erreurs avant de trouver le mot.
+
+## Règles du jeu
+
+1. L'ordinateur choisit un mot secret au hasard dans une liste
+2. Le joueur voit le nombre de lettres du mot (représentées par des tirets : `_ _ _ _`)
+3. Le joueur propose une lettre :
+    - Si la lettre est dans le mot : elle apparaît à sa/ses position(s)
+    - Si la lettre n'est pas dans le mot : le joueur perd une vie
+4. Le joueur gagne s'il trouve toutes les lettres avant d'avoir perdu toutes ses vies
+5. Le joueur perd s'il atteint le nombre maximum d'erreurs (7 par défaut)
+
+## Cahier des charges
+
+Votre programme doit :
+- Choisir un mot aléatoirement dans une liste prédéfinie d'au moins 10 mots
+- Afficher le mot masqué sous forme de tirets (`_`) au début du jeu
+- Demander une lettre au joueur
+- Vérifier la lettre proposée :
+    - Indiquer si elle est présente ou absente du mot
+    - Révéler la/les lettre(s) à la bonne position si elle est trouvée
+    - Décrémenter le nombre de vies restantes en cas d'erreur
+- Afficher l'état actuel :
+    - Le mot avec les lettres trouvées
+    - Le nombre de vies restantes
+    - Les lettres déjà proposées
+- Gérer la fin du jeu :
+    - Détecter la victoire (toutes les lettres trouvées)
+    - Détecter la défaite (nombre de vies = 0)
+    - Afficher un message approprié
+
