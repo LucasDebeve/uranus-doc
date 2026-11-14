@@ -1,0 +1,422 @@
+/* ===== Base commune ===== */
+.container {
+  --q-ok: #1e7e34;
+  --q-ok-bg: #e3f4e7;
+  --q-ko: #c82333;
+  --q-ko-bg: #fbe5e7;
+  margin: 0 0 24px;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.score {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.8em;
+  height: 1.8em;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.label {
+  flex: 1;
+}
+
+.disabled {
+  cursor: default;
+}
+
+.feedback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: 16px;
+}
+
+.message {
+  font-weight: 600;
+}
+
+.feedbackOk .message {
+  color: var(--q-ok);
+}
+
+.feedbackKo .message {
+  color: var(--q-ko);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.action {
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.explanation {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+/* ===== Thème sérieux ===== */
+.serieux {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.serieux .score {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.serieux .button {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.serieux .button:hover:not(.disabled) {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.serieux .letter {
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: 4px;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.serieux .disabled:not(.correct):not(.wrong):not(.revealed) {
+  opacity: 0.6;
+}
+
+.serieux .correct,
+.serieux .revealed {
+  border-color: var(--q-ok);
+  background: var(--q-ok-bg);
+}
+
+.serieux .revealed {
+  border-style: dashed;
+}
+
+.serieux .wrong {
+  border-color: var(--q-ko);
+  background: var(--q-ko-bg);
+}
+
+.serieux .correct .letter,
+.serieux .revealed .letter {
+  border-color: var(--q-ok);
+  color: var(--q-ok);
+}
+
+.serieux .wrong .letter {
+  border-color: var(--q-ko);
+  color: var(--q-ko);
+}
+
+.serieux .action {
+  padding: 6px 14px;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 6px;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-color-white);
+}
+
+.serieux .action:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+.serieux .actionSecondary {
+  background: transparent;
+  color: var(--ifm-color-primary);
+}
+
+.serieux .actionSecondary:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.serieux .explanation {
+  background: var(--ifm-color-emphasis-100);
+  border-left: 3px solid var(--ifm-color-emphasis-500);
+}
+
+/* ===== Thème ludique =====
+   Esprit « carte de jeu » : trait d'encre épais, ombres portées franches,
+   boutons qui s'enfoncent au clic, couleurs du site + un jaune vif. */
+.ludique {
+  --q-ink: #1a1a1a;
+  --q-paper: #fffdf6;
+  --q-card: #ffffff;
+  --q-accent: #0799b8;
+  --q-sun: #ffc93c;
+  --q-shadow: 4px 4px 0 var(--q-ink);
+  background: var(--q-paper);
+  border: 2px solid var(--q-ink);
+  border-radius: 6px;
+  box-shadow: var(--q-shadow);
+  color: var(--q-ink);
+}
+
+.ludique .title {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.ludique .score {
+  padding: 2px 8px;
+  border: 2px solid var(--q-ink);
+  border-radius: 4px;
+  background: var(--q-sun);
+  font-weight: 800;
+  transform: rotate(3deg);
+}
+
+.ludique .choices {
+  gap: 10px;
+}
+
+.ludique .button {
+  border: 2px solid var(--q-ink);
+  border-radius: 6px;
+  background: var(--q-card);
+  color: var(--q-ink);
+  font-weight: 600;
+  box-shadow: 3px 3px 0 var(--q-ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.15s ease;
+}
+
+.ludique .button:hover:not(.disabled) {
+  background: #e6f6fa;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--q-ink);
+}
+
+.ludique .button:active:not(.disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--q-ink);
+}
+
+.ludique .button:focus-visible,
+.ludique .action:focus-visible {
+  outline: 3px solid var(--q-accent);
+  outline-offset: 2px;
+}
+
+/* Lettre façon touche de clavier */
+.ludique .letter {
+  border: 2px solid var(--q-ink);
+  border-bottom-width: 4px;
+  border-radius: 4px;
+  background: var(--q-card);
+  color: var(--q-ink);
+}
+
+/* Réponse choisie : le bouton reste « enfoncé » */
+.ludique .correct,
+.ludique .wrong {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--q-ink);
+}
+
+.ludique .disabled:not(.correct):not(.wrong):not(.revealed) {
+  opacity: 0.45;
+}
+
+.ludique .correct {
+  background: #b9f0c9;
+  animation: q-bounce 0.35s ease;
+}
+
+.ludique .wrong {
+  background: #ffc2c2;
+  animation: q-shake 0.35s ease;
+}
+
+.ludique .revealed {
+  border-style: dashed;
+  background: #e3f8ea;
+  box-shadow: none;
+}
+
+.ludique .correct .letter,
+.ludique .revealed .letter {
+  background: #2f9e55;
+  border-color: var(--q-ink);
+  color: #ffffff;
+}
+
+.ludique .wrong .letter {
+  background: #d63a3a;
+  color: #ffffff;
+}
+
+.ludique .message {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.ludique .feedbackOk .message,
+.ludique .feedbackKo .message {
+  color: var(--q-ink);
+}
+
+.ludique .feedbackOk .message {
+  background: linear-gradient(transparent 55%, #b9f0c9 55%);
+}
+
+.ludique .feedbackKo .message {
+  background: linear-gradient(transparent 55%, #ffc2c2 55%);
+}
+
+.ludique .action {
+  padding: 6px 16px;
+  border: 2px solid var(--q-ink);
+  border-radius: 6px;
+  background: var(--q-sun);
+  color: var(--q-ink);
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--q-ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.ludique .action:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--q-ink);
+}
+
+.ludique .action:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--q-ink);
+}
+
+.ludique .actionSecondary {
+  background: var(--q-card);
+}
+
+.ludique .explanation {
+  border: 2px solid var(--q-ink);
+  border-left-width: 8px;
+  border-left-color: var(--q-accent);
+  border-radius: 6px;
+  background: var(--q-card);
+  color: var(--q-ink);
+}
+
+/* ===== Mode sombre ===== */
+:global([data-theme='dark']) .container {
+  --q-ok: #5fd37a;
+  --q-ok-bg: rgba(40, 167, 69, 0.18);
+  --q-ko: #ff7b88;
+  --q-ko-bg: rgba(220, 53, 69, 0.18);
+}
+
+/* Ludique en sombre : l'« encre » devient claire, le papier sombre. */
+:global([data-theme='dark']) .ludique {
+  --q-ink: #f2efe6;
+  --q-paper: #1d1f22;
+  --q-card: #26292d;
+  --q-accent: #07b880;
+}
+
+:global([data-theme='dark']) .ludique .button:hover:not(.disabled) {
+  background: #2e3a36;
+}
+
+:global([data-theme='dark']) .ludique .score,
+:global([data-theme='dark']) .ludique .action:not(.actionSecondary) {
+  color: #1a1a1a;
+}
+
+:global([data-theme='dark']) .ludique .correct {
+  background: #1f5a35;
+}
+
+:global([data-theme='dark']) .ludique .wrong {
+  background: #6a2626;
+}
+
+:global([data-theme='dark']) .ludique .revealed {
+  background: #1f3a2a;
+}
+
+:global([data-theme='dark']) .ludique .feedbackOk .message {
+  background: linear-gradient(transparent 55%, #1f5a35 55%);
+}
+
+:global([data-theme='dark']) .ludique .feedbackKo .message {
+  background: linear-gradient(transparent 55%, #6a2626 55%);
+}
+
+/* ===== Animations ===== */
+@keyframes q-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes q-bounce {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(1.04); }
+  70% { transform: scale(0.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container *,
+  .container {
+    animation: none !important;
+    transition: none !important;
+  }
+}
