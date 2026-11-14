@@ -1,0 +1,16 @@
+.canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Au-dessus du contenu mais sous la barre de navigation et les fenêtres. */
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@media print {
+  .canvas {
+    display: none;
+  }
+}

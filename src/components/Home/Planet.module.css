@@ -1,0 +1,88 @@
+.planet {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.stars circle {
+  fill: #c9d3ee;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.stars circle:nth-child(2n) {
+  animation-delay: -2s;
+}
+
+.stars circle:nth-child(3n) {
+  animation-delay: -1s;
+}
+
+.orbit {
+  fill: none;
+  stroke: rgb(201 211 238 / 0.25);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 7;
+}
+
+.body {
+  fill: var(--uranus-ice);
+}
+
+.shade {
+  fill: #4fc4c2;
+}
+
+.band {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.35);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.ringBack,
+.ringFront {
+  fill: none;
+  stroke: var(--uranus-accent);
+  stroke-width: 14;
+}
+
+.ringBack {
+  opacity: 0.5;
+}
+
+.moon {
+  fill: #ffffff;
+}
+
+/* La lune parcourt l'orbite (ellipse dans le repère incliné du groupe parent). */
+.moon {
+  offset-path: path('M 385 200 A 185 62 0 1 1 15 200 A 185 62 0 1 1 385 200');
+  offset-rotate: 0deg;
+  animation: orbit 24s linear infinite;
+}
+
+@keyframes orbit {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon,
+  .stars circle {
+    animation: none;
+  }
+}

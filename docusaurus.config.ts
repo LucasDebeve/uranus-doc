@@ -8,8 +8,8 @@ import rehypeKatex from 'rehype-katex';
 
 const config: Config = {
   title: 'Uranus',
-  tagline: 'Apprendre avec style',
-  favicon: 'img/favicon.ico',
+  tagline: 'Les cours de SNT et de NSI, en orbite toute l\'année.',
+  favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
   url: 'https://cours.lucasdebeve.eu/',
@@ -47,6 +47,8 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+          // L'année en cours est la version de référence ; les années passées sont des archives.
+          lastVersion: 'current',
           versions: {
             current: {
               label: '2025-2026 (en cours)',
@@ -79,16 +81,48 @@ const config: Config = {
     ],
   ],
   plugins: [
+    'docusaurus-plugin-image-zoom',
+    // Applique les réglages d'accessibilité avant le premier affichage (pas de flash).
+    './src/plugins/a11y-preferences.ts',
     [
-      '@docusaurus/plugin-content-docs',
+      '@docusaurus/plugin-client-redirects',
       {
-        id: 'pedagogie',
-        path: 'pedagogie',
-        routeBasePath: 'pedagogie',
-        sidebarPath: './sidebars.ts',
+        // Anciennes adresses (avant la réorganisation SNT / NSI) → nouvelles pages.
+        createRedirects(existingPath: string) {
+          const base = '/docs/2025-2026/';
+          if (existingPath === `${base}nsi/premiere/algorithmique/crepier/`) {
+            return `${base}sansPC/test/`;
+          }
+          for (const level of ['premiere', 'terminale']) {
+            const now = `${base}nsi/${level}/`;
+            if (existingPath.startsWith(now) && existingPath !== now) {
+              return existingPath.replace(now, `${base}${level}/`);
+            }
+          }
+          return undefined;
+        },
+        redirects: [
+          {from: '/docs/2025-2026/intro/', to: '/'},
+          // Le parcours Collège a quitté la version en cours : on renvoie vers les archives.
+          {from: '/docs/2025-2026/developpement-web/', to: '/docs/2024-2025/developpement-web/'},
+          {from: '/docs/2025-2026/le-web-comment-ca-marche/', to: '/docs/2024-2025/le-web-comment-ca-marche/'},
+          {from: '/docs/2025-2026/college/developpement-web/projet-fan/', to: '/docs/2024-2025/college/developpement-web/projet-fan/'},
+          {from: '/docs/2025-2026/college/developpement-web/escape-game/', to: '/docs/2024-2025/college/developpement-web/escape-game/'},
+          {
+            from: [
+              '/docs/2025-2026/college/developpement-web/outils-developpement/',
+              '/docs/2025-2026/college/developpement-web/structure-html/',
+              '/docs/2025-2026/college/developpement-web/style-css/',
+            ],
+            to: '/docs/2024-2025/developpement-web/',
+          },
+        ],
       },
     ],
-    'docusaurus-plugin-image-zoom',
+  ],
+  headTags: [
+    {tagName: 'link', attributes: {rel: 'apple-touch-icon', href: '/img/apple-touch-icon.png'}},
+    {tagName: 'meta', attributes: {name: 'theme-color', content: '#0f1a3c'}},
   ],
   stylesheets: [
     {
@@ -100,33 +134,53 @@ const config: Config = {
     },
   ],
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/uranus-social-card.png',
+    metadata: [
+      {name: 'description', content: 'Les cours de SNT (Seconde) et de NSI (Première, Terminale) : chapitres, exercices et projets.'},
+    ],
+    colorMode: {
+      respectPrefersColorScheme: true,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
     navbar: {
       title: 'Uranus',
+      hideOnScroll: false,
       logo: {
-        alt: 'Logo',
+        alt: 'Uranus, accueil',
         src: 'img/logo.svg',
+        width: 36,
+        height: 36,
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'sntSidebar',
           position: 'left',
-          label: 'Cours',
+          label: 'SNT',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          type: 'dropdown',
+          label: 'NSI',
           position: 'left',
-          label: 'Techniques pédagogiques',
-          docsPluginId: 'pedagogie',
+          items: [
+            {type: 'docSidebar', sidebarId: 'nsiPremiereSidebar', label: 'Première'},
+            {type: 'docSidebar', sidebarId: 'nsiTerminaleSidebar', label: 'Terminale'},
+          ],
         },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           type: 'docsVersionDropdown',
           position: 'right',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'custom-a11ySettings',
+          position: 'right',
+        },
         {
           href: 'https://github.com/LucasDebeve',
           label: 'GitHub',
@@ -136,27 +190,34 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
+      logo: {
+        alt: 'Uranus',
+        src: 'img/logo.svg',
+        width: 48,
+        height: 48,
+        href: '/',
+      },
       links: [
         {
-          title: 'Docs',
+          title: 'Cours',
           items: [
-            {
-              label: 'Cours',
-              to: '/docs/2025-2026/intro',
-            },
+            {label: 'SNT — Seconde', to: '/docs/2025-2026/snt/presentation/'},
+            {label: 'NSI — Première', to: '/docs/2025-2026/nsi/premiere/'},
+            {label: 'NSI — Terminale', to: '/docs/2025-2026/nsi/terminale/'},
+            {label: 'Archives 2024-2025', to: '/docs/2024-2025/intro/'},
+          ],
+        },
+        {
+          title: 'Le site',
+          items: [
+            {label: 'Accessibilité et réglages', to: '/accessibilite/'},
+            {label: 'Blog', to: '/blog'},
           ],
         },
         {
           title: 'Plus',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+            {label: 'GitHub', href: 'https://github.com/LucasDebeve'},
           ],
         },
       ],
