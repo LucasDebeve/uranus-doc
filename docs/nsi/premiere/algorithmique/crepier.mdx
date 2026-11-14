@@ -4,9 +4,7 @@ sidebar_position: 1
 
 # Le crêpier psychorigide
 
-:::info
-
-## 📈 Objectifs pédagogique
+:::objectifs
 
 - Résoudre un problème simple
 - Se questionner sur les étapes de résolution
@@ -27,21 +25,21 @@ Glisser sa spatule entre deux crêpes et retourner le haut de la pile.
 
 ## Votre mission
 
-:::note Exercice 1
+:::exercice Exercice 1
 
 Manipuler la pile de crêpes pour les ranger dans l'ordre demandé.
 
 :::
 
-:::note Exercice 2 (en binôme)
+:::exercice Exercice 2 (en binôme)
 
 L'un des élèves du groupe sera l'ordinateur et un autre sera le programmeur.
 Le programmeur dicte à l'ordinateur une série d'instructions qui vont permettre de trier la pile de crêpe.
-L'ordinateur exécute mécaniquement les instructions proposées par l'ordinateur. Si les instructions ne sont pas claires, l'ordinateur demande une reformulation.
+L'ordinateur exécute mécaniquement les instructions proposées par le programmeur. Si les instructions ne sont pas claires, l'ordinateur demande une reformulation.
 
 :::
 
-:::note Exercice 3
+:::exercice Exercice 3
 
 En vous inspirant de l'exercice 2, rédiger un algorithme en langage naturel qui permet de trier la pile de crêpes.
 
@@ -50,67 +48,62 @@ En vous inspirant de l'exercice 2, rédiger un algorithme en langage naturel qui
 ## Aides à la résolution
 
 <details>
-  <summary>🔎 Aide 1</summary>
-  <p>
-    Essayer d'abord de mettre la plus grande crêpe en bas de la pile.
-  </p>
+<summary>🔎 Aide 1</summary>
+
+Essayer d'abord de mettre la plus grande crêpe en bas de la pile.
+
 </details>
 
 <details>
-  <summary>🔎 Aide 2</summary>
-  <p>
-    Où doit se trouver la grande crêpe pour pouvoir l'amener en bas ?
-  </p>
+<summary>🔎 Aide 2</summary>
+
+Où doit se trouver la grande crêpe pour pouvoir l'amener en bas ?
+
 </details>
 
 <details>
-  <summary>🔎 Aide 3</summary>
-  <p>
-      Pour amener la grande crêpe en bas, il faut d'abord la mettre en haut.
-  </p>
+<summary>🔎 Aide 3</summary>
+
+Pour amener la grande crêpe en bas, il faut d'abord la mettre en haut.
+
 </details>
 
 
 ## Prolongements
 
-:::note Prolongement 1
+:::::exercice Prolongement 1
 
 Calculer la complexité de l'algorithme que vous avez rédigé.
 
+:::correction Solution
+
+- Pour ranger une crêpe, il faut entre $0$ coup (si la crêpe est déjà rangée) et $2$ coups (la mettre en haut puis à sa place).
+- Pour $n$ crêpes, il faut entre $0$ coup (si toutes les crêpes sont déjà rangées) et $2n$ coups (pire situation).
+
+On a donc une complexité algorithmique de $O(2n)$, c'est-à-dire $O(n)$.
+
 :::
 
-<details>
-  <summary>Solution au prolongement 1</summary>
-  <ul>
-    <li>Pour ranger une crêpe: il faut entre $0$ coup (si la crêpe est déjà rangée) et $2$ coups (la mettre en haut puis à sa place)</li>
-    <li>Pour $n$ crêpes, il faut entre $0$ coups (si toutes les crêpes sont déjà rangées) et $2n$ coups (pire situation)</li>
-  </ul>
-  <p>
-    On a donc une complexité algorithmique de $O(2n)$.
-  </p>
-</details>
+:::::
 
-:::note Prolongement 2
+:::::exercice Prolongement 2
 
-Chaque crêpe a un coté brûlé et un coté non brûlé. Le crêpier exige que les crêpes soient rangées par ordre de taille, de la plus petite en haut à la plus grande en bas, et que le coté non brûlé soit toujours visible.
+Chaque crêpe a un côté brûlé et un côté non brûlé. Le crêpier exige que les crêpes soient rangées par ordre de taille, de la plus petite en haut à la plus grande en bas, et que le côté non brûlé soit toujours visible.
 
-- Ecrire un algorithme qui permet de trier la pile de crêpes en respectant cette nouvelle contrainte.
+- Écrire un algorithme qui permet de trier la pile de crêpes en respectant cette nouvelle contrainte.
 - Calculer la complexité de cet algorithme.
 
+:::correction Solution
+
+Voici un algorithme qui permet de trier la pile de crêpes en respectant cette nouvelle contrainte :
+
+1. Amener la plus grande crêpe en haut de la pile.
+2. Mettre la face brûlée vers le haut.
+3. Retourner toute la pile : la crêpe est rangée.
+4. Recommencer en ignorant les crêpes rangées.
+
+On a donc une complexité algorithmique de $O(3n)$, c'est-à-dire $O(n)$.
+
 :::
 
-<details>
-  <summary>Solution au prolongement 2</summary>
-  <p>
-    Voici un algorithme qui permet de trier la pile de crêpes en respectant cette nouvelle contrainte :
-  </p>
-  <ol>
-    <li>Amener la plus grande crêpe en haut de la pile</li>
-    <li>Mettre la face brûlée vers le haut</li>
-    <li>Retourner toute la pile - la crêpe est rangée</li>
-    <li>Recommencer en ignorant les crêpes rangées</li>
-  </ol>
-  <p>
-    On a donc une complexité algorithmique de $O(3n)$.
-  </p>
-</details>
+:::::

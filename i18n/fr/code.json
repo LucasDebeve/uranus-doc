@@ -1,0 +1,42 @@
+{
+  "theme.SearchBar.label": {
+    "message": "Rechercher",
+    "description": "Libellé et texte indicatif de la barre de recherche"
+  },
+  "theme.SearchBar.noResultsText": {
+    "message": "Aucun résultat",
+    "description": "Message quand la recherche ne trouve rien"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "Voir tous les résultats",
+    "description": "Lien vers la page de tous les résultats"
+  },
+  "theme.SearchBar.searchInContext": {
+    "message": "Voir tous les résultats dans « {context} »",
+    "description": "Lien vers les résultats limités à une partie du site"
+  },
+  "theme.SearchBar.seeAllOutsideContext": {
+    "message": "Voir les résultats hors de « {context} »",
+    "description": "Lien vers les résultats hors de la partie du site en cours"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "Une page trouvée|{count} pages trouvées",
+    "description": "Nombre de pages trouvées (singulier|pluriel)"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Résultats pour « {query} »",
+    "description": "Titre de la page de résultats"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Rechercher dans les cours",
+    "description": "Titre de la page de recherche sans requête"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "Aucune page trouvée",
+    "description": "Message quand la page de recherche ne trouve rien"
+  },
+  "theme.SearchPage.searchContext.everywhere": {
+    "message": "Tout le site",
+    "description": "Option de recherche sur tout le site"
+  }
+}

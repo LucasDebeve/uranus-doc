@@ -1,0 +1,143 @@
+/*
+ * Encadrés de cours : une étiquette (comme un onglet de classeur) posée sur un cadre fin.
+ * Chaque type a sa couleur (--tone) et la couleur du texte de son étiquette (--on-tone).
+ */
+.encadre {
+  --tone: var(--ifm-color-primary);
+  --on-tone: #ffffff;
+  margin: 1.75rem 0;
+}
+
+.encadre[data-type='objectifs'] {
+  --tone: #0b7285;
+}
+
+.encadre[data-type='retenir'] {
+  --tone: #ff8b5e;
+  --on-tone: #0f1a3c;
+}
+
+.encadre[data-type='exercice'] {
+  --tone: #2f6fdd;
+}
+
+.encadre[data-type='methode'] {
+  --tone: #7a4fd6;
+}
+
+.encadre[data-type='vocabulaire'] {
+  --tone: #56607a;
+}
+
+.encadre[data-type='correction'] {
+  --tone: #1e7e34;
+}
+
+:global(html[data-theme='dark']) .encadre {
+  --on-tone: #0b1230;
+}
+
+:global(html[data-theme='dark']) .encadre[data-type='objectifs'] {
+  --tone: #7de3e1;
+}
+
+:global(html[data-theme='dark']) .encadre[data-type='exercice'] {
+  --tone: #8ab4ff;
+}
+
+:global(html[data-theme='dark']) .encadre[data-type='methode'] {
+  --tone: #c3a8ff;
+}
+
+:global(html[data-theme='dark']) .encadre[data-type='vocabulaire'] {
+  --tone: #c9d3ee;
+}
+
+:global(html[data-theme='dark']) .encadre[data-type='correction'] {
+  --tone: #5fd37a;
+}
+
+/* Étiquette */
+.tab {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.3rem 0.85rem 0.25rem;
+  border-radius: 6px 6px 0 0;
+  background: var(--tone);
+  color: var(--on-tone);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* Contenu */
+.content {
+  padding: 1rem 1.25rem;
+  border: 1.5px solid var(--tone);
+  border-radius: 0 8px 8px 8px;
+  background: color-mix(in srgb, var(--tone) 6%, var(--ifm-background-surface-color));
+}
+
+.content > :last-child {
+  margin-bottom: 0;
+}
+
+/* Les titres éventuels gardent une taille raisonnable dans un encadré */
+.content h2,
+.content h3 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+
+/* Encadré imbriqué (ex. une correction dans un exercice) */
+.content .encadre {
+  margin: 1rem 0 0.25rem;
+}
+
+/* ===== Correction repliable ===== */
+.correction {
+  display: block;
+}
+
+.summary {
+  cursor: pointer;
+  list-style: none;
+  border-radius: 6px;
+  user-select: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary:hover {
+  filter: brightness(1.08);
+}
+
+.correction[open] > .summary {
+  border-radius: 6px 6px 0 0;
+}
+
+.chevron {
+  display: inline-flex;
+  margin-left: 0.15rem;
+  transition: transform 0.15s ease;
+}
+
+.correction[open] .chevron {
+  transform: rotate(90deg);
+}
+
+/* À l'impression, le contenu des corrections n'est pas caché derrière un clic : on l'imprime ouvert. */
+@media print {
+  .correction > .content {
+    display: block !important;
+  }
+}

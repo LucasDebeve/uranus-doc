@@ -9,6 +9,8 @@ import '@fontsource/atkinson-hyperlegible/400-italic.css';
 import '@fontsource/atkinson-hyperlegible/700.css';
 import '@fontsource/opendyslexic/400.css';
 import '@fontsource/opendyslexic/700.css';
+// Styles des formules mathématiques, servis avec le site (même version que le paquet katex).
+import 'katex/dist/katex.min.css';
 
 function LastVisitTracker() {
   useTrackLastVisitedDoc();

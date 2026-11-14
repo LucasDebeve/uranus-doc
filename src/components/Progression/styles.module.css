@@ -1,0 +1,259 @@
+.progression {
+  --kind-chapitre: #0b7285;
+  --kind-projet: #7a4fd6;
+  --kind-evaluation: #c2410c;
+  --kind-vacances: #8a93a8;
+  margin-top: 1rem;
+}
+
+:global(html[data-theme='dark']) .progression {
+  --kind-chapitre: #7de3e1;
+  --kind-projet: #c3a8ff;
+  --kind-evaluation: #ff9f75;
+  --kind-vacances: #8a93a8;
+}
+
+.year {
+  margin-bottom: 1rem;
+  color: var(--ifm-color-emphasis-700);
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===== Résumé : en ce moment / prochaine évaluation ===== */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summaryPlaceholder {
+  min-height: 6rem;
+  margin-bottom: 1.5rem;
+}
+
+.summaryItem {
+  padding: 1rem 1.25rem;
+  border: 1.5px solid var(--ifm-toc-border-color);
+  border-radius: 10px;
+  background: var(--ifm-background-surface-color);
+}
+
+.summaryEval {
+  border-color: var(--kind-evaluation);
+}
+
+.summaryLabel {
+  margin: 0 0 0.25rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.summaryValue {
+  margin: 0;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.summaryDate {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--ifm-color-emphasis-800);
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+/* ===== Légende ===== */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Pastille de couleur selon le type */
+.dot {
+  flex-shrink: 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--kind-chapitre);
+}
+
+[data-kind='projet'] > .dot {
+  background: var(--kind-projet);
+}
+
+/* Évaluation : losange, pour ne pas dépendre de la seule couleur */
+[data-kind='evaluation'] > .dot {
+  border-radius: 2px;
+  background: var(--kind-evaluation);
+  transform: rotate(45deg) scale(0.9);
+}
+
+[data-kind='vacances'] > .dot {
+  border: 2px solid var(--kind-vacances);
+  background: transparent;
+}
+
+/* ===== Mois ===== */
+.month {
+  margin-top: 1.75rem;
+}
+
+.monthTitle {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto 9.5rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0 0.9rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.item > .dot {
+  align-self: center;
+}
+
+.dates {
+  color: var(--ifm-color-emphasis-800);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.kind {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.note {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+[data-kind='evaluation'] .kind {
+  color: var(--kind-evaluation);
+}
+
+[data-kind='vacances'] .title {
+  color: var(--ifm-color-emphasis-700);
+  font-weight: 400;
+}
+
+/* ===== États ===== */
+.past .title,
+.past .dates {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.past .title {
+  font-weight: 400;
+}
+
+.current {
+  margin: 0 -0.75rem;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  background: var(--uranus-primary-soft);
+}
+
+.status {
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status_past {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.status_past::before {
+  content: '✓ ';
+}
+
+.status_current {
+  color: var(--ifm-color-primary);
+}
+
+.status_current::before {
+  content: '● ';
+}
+
+.status_upcoming {
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* ===== Petits écrans ===== */
+@media (max-width: 700px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      'dot dates status'
+      '. body body';
+    row-gap: 0.2rem;
+  }
+
+  .item > .dot {
+    grid-area: dot;
+  }
+
+  .dates {
+    grid-area: dates;
+    font-size: 0.9rem;
+  }
+
+  .body {
+    grid-area: body;
+  }
+
+  .status {
+    grid-area: status;
+  }
+}

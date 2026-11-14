@@ -11,6 +11,7 @@ export function useTrackLastVisitedDoc(): void {
   useEffect(() => {
     // Seulement les chapitres SNT / NSI (pas les pages d'index de niveau).
     if (!/^\/docs\/[^/]+\/(snt\/.+|nsi\/(premiere|terminale)\/.+)/.test(pathname)) return;
+    if (pathname.endsWith('/progression/')) return;
     const timer = window.setTimeout(() => {
       const heading = document.querySelector('article h1, article header h1');
       const title = heading?.textContent?.trim() || document.title.split('|')[0].trim();

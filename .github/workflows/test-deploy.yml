@@ -15,14 +15,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # Version de pnpm lue dans le champ « packageManager » de package.json.
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-        
-      - name: Install pnpm
-        run: npm install -g pnpm
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Check types
+        run: pnpm typecheck
       - name: Test build website
         run: pnpm build

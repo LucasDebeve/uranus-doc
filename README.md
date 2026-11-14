@@ -19,6 +19,35 @@ Voir le fichier `LICENSE-COURS.txt` pour les détails.
 
 Pour ajouter un chapitre, créez un fichier `.mdx` dans le bon dossier : il apparaît automatiquement dans le menu et dans le compteur de la page d'accueil.
 
+## Encadrés de cours
+
+En plus des encadrés de Docusaurus (`:::info`, `:::tip`…), six encadrés sont disponibles :
+`:::objectifs`, `:::retenir`, `:::exercice`, `:::correction` (replié, s'ouvre au clic), `:::methode`, `:::vocabulaire`.
+
+```md
+::::exercice Exercice 1 : le pendu
+
+Énoncé de l'exercice.
+
+:::correction
+
+La solution, cachée tant qu'on ne clique pas.
+
+:::
+
+::::
+```
+
+Le texte après le mot-clé remplace le titre par défaut. Pour mettre un encadré dans un autre, l'encadré extérieur prend un `:` de plus (exemple ci-dessus). Le rendu est dans `src/components/Encadres/`.
+
+## Calendrier de l'année
+
+Les pages « Calendrier de l'année » de chaque niveau lisent `src/data/progression.ts` : chapitres, projets, évaluations et vacances avec leurs dates. L'état « Vu / En cours / À venir » et la prochaine évaluation sont calculés automatiquement chaque jour.
+
+## Signaler une erreur
+
+Le lien en bas de chaque cours ouvre un ticket GitHub pré-rempli. Pour utiliser un autre moyen (formulaire, ENT…), modifier `src/config/feedback.ts`.
+
 ## Thèmes saisonniers
 
 Les périodes (hiver, Halloween, journée de π…) sont définies dans `src/seasons/seasons.ts`. Ajoutez une entrée pour créer un nouvel événement.
@@ -30,13 +59,13 @@ Les réglages (taille du texte, police OpenDyslexic, contraste, animations…) s
 ### Installation
 
 ```
-$ yarn
+$ pnpm install
 ```
 
 ### Local Development
 
 ```
-$ yarn start
+$ pnpm start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
@@ -44,7 +73,7 @@ This command starts a local development server and opens up a browser window. Mo
 ### Build
 
 ```
-$ yarn build
+$ pnpm build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
@@ -54,13 +83,13 @@ This command generates static content into the `build` directory and can be serv
 Using SSH:
 
 ```
-$ USE_SSH=true yarn deploy
+$ USE_SSH=true pnpm deploy
 ```
 
 Not using SSH:
 
 ```
-$ GIT_USER=<Your GitHub username> yarn deploy
+$ GIT_USER=<Your GitHub username> pnpm deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
