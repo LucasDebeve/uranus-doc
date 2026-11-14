@@ -1,39 +1,81 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Charte graphique « Uranus »
+ * ---------------------------
+ * Bleu nuit  #0f1a3c : l'espace, la structure (titres, pied de page)
+ * Cyan glacé #7de3e1 : la planète (couleur principale en mode sombre)
+ * Sarcelle   #0b7285 : la planète, version lisible sur fond clair (contraste 5,6:1)
+ * Orange orbite #ff8b5e : l'anneau, l'accent (jamais pour du texte sur fond clair)
+ *
+ * Titres : Space Grotesk. Texte : Atkinson Hyperlegible (conçue pour la lisibilité).
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #0799B8;
-  --ifm-color-primary-dark: #0389a8;
-  --ifm-color-primary-darker: #016d85;
-  --ifm-color-primary-darkest: #004a5a;
-  --ifm-color-primary-light: #06aed4;
-  --ifm-color-primary-lighter: #00d0ff;
-  --ifm-color-primary-lightest: #6de4ff;
-  --ifm-code-font-size: 110%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 255, 200, 0.3);
-  --ifm-code-font-size: 1rem;
+  --uranus-night: #0f1a3c;
+  --uranus-ice: #7de3e1;
+  --uranus-teal: #0b7285;
+  --uranus-orbit: #ff8b5e;
+  /* Remplacé par la couleur du thème saisonnier lorsqu'il y en a un. */
+  --uranus-accent: var(--uranus-season-accent, var(--uranus-orbit));
 
-  --highlight-color-yellow: #FFD700;
-  --highlight-color-orange: #FFA500;
+  --ifm-color-primary: #0b7285;
+  --ifm-color-primary-dark: #0a6778;
+  --ifm-color-primary-darker: #096171;
+  --ifm-color-primary-darkest: #08505d;
+  --ifm-color-primary-light: #0e8fa7;
+  --ifm-color-primary-lighter: #0f9db8;
+  --ifm-color-primary-lightest: #13c9ea;
+  --uranus-primary-soft: #e3f4f6;
+  --uranus-on-primary: #ffffff;
+  --uranus-border-strong: #c9d2e3;
+
+  --ifm-background-color: #f6f8fc;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-font-color-base: #1c2541;
+  --ifm-heading-color: var(--uranus-night);
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: var(--uranus-night);
+
+  --ifm-font-family-base: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ifm-heading-font-family: 'Space Grotesk Variable', 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --ifm-font-size-base: calc(106.25% * var(--uranus-font-scale, 1));
+  --ifm-line-height-base: 1.65;
+  --ifm-heading-font-weight: 700;
+  --ifm-global-radius: 10px;
+  --ifm-code-font-size: 90%;
+  --ifm-link-decoration: none;
+  --ifm-navbar-height: 4rem;
+
+  --docusaurus-highlighted-code-line-bg: rgb(11 114 133 / 0.14);
+
+  --highlight-color-yellow: #ffd700;
+  --highlight-color-orange: #ffa500;
   --highlight-color-red: #ffa7a7;
   --highlight-color-green: #b8ebb8;
   --highlight-color-blue: #bedefd;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #07B880	; 
-  --ifm-color-primary-dark: #049769	;
-  --ifm-color-primary-darker: #037752;
-  --ifm-color-primary-darkest: #005238;
-  --ifm-color-primary-light: #0cdb99;
-  --ifm-color-primary-lighter: #00ffae;
-  --ifm-color-primary-lightest: #8dffdb;
-  --docusaurus-highlighted-code-line-bg: rgba(177, 255, 221, 0.2);
+html[data-theme='dark'] {
+  --ifm-color-primary: #7de3e1;
+  --ifm-color-primary-dark: #60ddda;
+  --ifm-color-primary-darker: #52dad7;
+  --ifm-color-primary-darkest: #2ccbc8;
+  --ifm-color-primary-light: #8ae6e4;
+  --ifm-color-primary-lighter: #90e7e6;
+  --ifm-color-primary-lightest: #a4ebea;
+  --uranus-primary-soft: rgb(125 227 225 / 0.12);
+  --uranus-on-primary: #0b1230;
+  --uranus-border-strong: #2c3a6b;
+
+  --ifm-background-color: #0b1230;
+  --ifm-background-surface-color: #121c42;
+  --ifm-font-color-base: #e3e8f5;
+  --ifm-heading-color: #f4f6fc;
+  --ifm-navbar-background-color: #0b1230;
+  --ifm-footer-background-color: #070c22;
+  --ifm-toc-border-color: #222d57;
+  --ifm-hr-background-color: #222d57;
+
+  --docusaurus-highlighted-code-line-bg: rgb(125 227 225 / 0.15);
 
   --highlight-color-yellow: #5e5608;
   --highlight-color-orange: #664512;
@@ -42,6 +84,178 @@
   --highlight-color-blue: #3a4249;
 }
 
+/* ===== Typographie ===== */
+h1,
+h2,
+h3,
+h4,
+.navbar__title,
+.hero__title {
+  letter-spacing: -0.02em;
+}
+
 code {
-  font-size: 1rem;
+  font-size: 0.95em;
+}
+
+/* ===== Barre de navigation ===== */
+/* La barre garde une taille fixe quand on agrandit le texte (sinon elle déborde) ;
+   le zoom du navigateur, lui, continue de tout agrandir. */
+.navbar__inner {
+  font-size: calc(1rem / var(--uranus-font-scale, 1));
+}
+
+.navbar {
+  /* Pas de backdrop-filter : il casserait le menu mobile (position fixe). */
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  box-shadow: none;
+}
+
+.navbar__title {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.navbar__link {
+  font-weight: 700;
+}
+
+/* Lien actif : petit « anneau » orange sous le libellé. */
+.navbar__link--active {
+  color: var(--ifm-navbar-link-color);
+  box-shadow: inset 0 -3px 0 var(--uranus-accent);
+}
+
+/* ===== Barre latérale ===== */
+.menu__link--active:not(.menu__link--sublist) {
+  background: var(--uranus-primary-soft);
+  box-shadow: inset 3px 0 0 var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+.theme-doc-sidebar-menu > .menu__list-item:first-child > .menu__list-item-collapsible > .menu__link {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* ===== Cartes des pages d'index ===== */
+.card {
+  border: 1.5px solid var(--ifm-toc-border-color);
+  box-shadow: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+a.card:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+}
+
+/* ===== Pied de page ===== */
+.footer--dark {
+  --ifm-footer-background-color: var(--uranus-night);
+  --ifm-footer-link-color: #c9d3ee;
+  --ifm-footer-title-color: #ffffff;
+  border-top: 4px solid var(--uranus-accent);
+}
+
+.footer__title {
+  font-family: var(--ifm-heading-font-family);
+}
+
+/* ===== Focus clavier bien visible partout ===== */
+:focus-visible {
+  outline: 3px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ===== Saisons : touche de couleur discrète sous la barre de navigation ===== */
+html[data-season] .navbar {
+  border-bottom: 2px solid var(--uranus-accent);
+}
+
+/* =====================================================================
+   Réglages d'accessibilité (voir src/components/A11y)
+   ===================================================================== */
+
+/* Police adaptée à la dyslexie */
+html[data-a11y-font='dyslexic'] {
+  --ifm-font-family-base: 'OpenDyslexic', 'Atkinson Hyperlegible', sans-serif;
+  --ifm-heading-font-family: 'OpenDyslexic', 'Atkinson Hyperlegible', sans-serif;
+}
+
+/* Police de l'appareil */
+html[data-a11y-font='system'] {
+  --ifm-font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, sans-serif;
+  --ifm-heading-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, sans-serif;
+}
+
+/* Espacement du texte (valeurs du critère WCAG 1.4.12) */
+html[data-a11y-spacing] {
+  --ifm-line-height-base: 1.9;
+}
+
+html[data-a11y-spacing] .markdown {
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
+}
+
+html[data-a11y-spacing] .markdown p,
+html[data-a11y-spacing] .markdown li {
+  margin-bottom: 1.5em;
+}
+
+/* Liens soulignés */
+html[data-a11y-links='underline'] a:not(.button):not(.card):not(.navbar__brand) {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* Contraste renforcé */
+html[data-a11y-contrast='high'] {
+  --ifm-color-primary: #064e5c;
+  --ifm-color-primary-dark: #053f4a;
+  --ifm-font-color-base: #000000;
+  --ifm-heading-color: #000000;
+  --ifm-background-color: #ffffff;
+  --ifm-color-emphasis-700: #1a1a1a;
+  --ifm-color-emphasis-300: #4d4d4d;
+  --ifm-toc-border-color: #4d4d4d;
+  --uranus-border-strong: #000000;
+}
+
+html[data-a11y-contrast='high'][data-theme='dark'] {
+  --ifm-footer-background-color: #000000;
+  --ifm-color-primary: #a6fffd;
+  --ifm-color-primary-dark: #8ff5f2;
+  --ifm-font-color-base: #ffffff;
+  --ifm-heading-color: #ffffff;
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #0a0a0a;
+  --ifm-color-emphasis-700: #e6e6e6;
+  --ifm-color-emphasis-300: #b3b3b3;
+  --ifm-toc-border-color: #b3b3b3;
+  --uranus-border-strong: #ffffff;
+}
+
+html[data-a11y-contrast='high'] .markdown a {
+  text-decoration: underline;
+}
+
+/* Réduction des animations (réglage du site ou du système) */
+html[data-a11y-motion='reduce'] *,
+html[data-a11y-motion='reduce'] *::before,
+html[data-a11y-motion='reduce'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
