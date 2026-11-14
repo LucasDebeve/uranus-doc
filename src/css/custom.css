@@ -127,17 +127,78 @@ code {
   box-shadow: inset 0 -3px 0 var(--uranus-accent);
 }
 
-/* ===== Barre latérale ===== */
+/* ===== Barre latérale =====
+   Pas de « pastille » : ni fond, ni arrondi, ni barre. Le lien actif est
+   repéré par sa couleur, sa graisse et un petit point orange (une planète). */
+.menu {
+  --ifm-menu-color-background-active: transparent;
+  --ifm-menu-color-background-hover: transparent;
+}
+
+.menu__link,
+.menu__caret {
+  position: relative;
+  border-radius: 0;
+}
+
+.menu__link:hover,
+.menu__caret:hover {
+  color: var(--ifm-color-primary);
+}
+
+.menu__link:hover:not(.menu__link--active) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+/* Seule la page réellement ouverte est mise en avant (pas ses catégories parentes). */
 .menu__link--active:not(.menu__link--sublist) {
-  background: var(--uranus-primary-soft);
-  box-shadow: inset 3px 0 0 var(--ifm-color-primary);
+  color: inherit;
+}
+
+.menu__link[aria-current='page'] {
+  color: var(--ifm-color-primary);
   font-weight: 700;
 }
 
+.menu__link[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -0.1rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--uranus-accent);
+  transform: translateY(-50%);
+}
+
+/* Catégorie ouverte ou contenant la page en cours : titre plus marqué, sans décor. */
+.menu__list-item:not(.menu__list-item--collapsed) > .menu__list-item-collapsible > .menu__link--sublist,
+.menu__list-item:not(.menu__list-item--collapsed) > .menu__link--sublist,
+.menu__link--sublist.menu__link--active {
+  color: var(--ifm-heading-color);
+  font-weight: 700;
+}
+
+.menu__list-item-collapsible,
+.menu__list-item-collapsible:hover,
+.menu__list-item-collapsible--active {
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Titre du cours en haut de la barre (ex. « NSI Première ») : jamais de point. */
 .theme-doc-sidebar-menu > .menu__list-item:first-child > .menu__list-item-collapsible > .menu__link {
+  color: var(--ifm-heading-color);
   font-family: var(--ifm-heading-font-family);
   font-size: 1.05rem;
   font-weight: 700;
+}
+
+.theme-doc-sidebar-menu > .menu__list-item:first-child > .menu__list-item-collapsible > .menu__link::before {
+  content: none;
 }
 
 /* ===== Cartes des pages d'index ===== */
