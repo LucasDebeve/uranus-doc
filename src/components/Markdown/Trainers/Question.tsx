@@ -24,13 +24,8 @@ type QuestionProps = {
 
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-const SUCCESS_MESSAGES = ['Bravo ! 🎉', 'Excellent ! 🚀', 'Bien joué ! 🌟', 'Parfait ! 🏆', 'Génial ! 🤩'];
-const FAIL_MESSAGES = [
-    'Raté… mais tu peux réessayer ! 💪',
-    'Pas tout à fait… retente ta chance ! 🎲',
-    'Oups ! Encore un essai ? 🙃',
-    'Presque ! Ne lâche rien ! 🔥',
-];
+const SUCCESS_MESSAGES = ['Tout juste !', 'Exact !', 'Bien vu !', 'C’est ça !'];
+const FAIL_MESSAGES = ['Pas cette fois.', 'Non, ce n’est pas ça.', 'Raté, essaie encore.'];
 
 const pick = (list: string[]) => list[Math.floor(Math.random() * list.length)];
 
@@ -45,7 +40,7 @@ const shuffle = (indices: number[]) => {
 
 const launchConfetti = () => {
     const end = Date.now() + 1000;
-    const colors = ['#00c851', '#007E33', '#ffbb33', '#33b5e5'];
+    const colors = ['#0799B8', '#FFC93C', '#1a1a1a'];
 
     (function frame() {
         confetti({ particleCount: 2, angle: 60, spread: 55, origin: { x: 0 }, colors });
@@ -112,12 +107,10 @@ export const Question: React.FC<QuestionProps> = ({
         <div className={clsx(styles.container, isFun ? styles.ludique : styles.serieux)}>
             <div className={styles.header}>
                 <p className={styles.title}>
-                    {isFun && <span className={styles.titleIcon} aria-hidden>❓</span>}
                     {question}
                 </p>
                 {attempts > 0 && (
                     <span className={styles.score} title="Bonnes réponses / tentatives">
-                        {isFun ? '⭐ ' : ''}
                         {successes} / {attempts}
                     </span>
                 )}
@@ -135,7 +128,6 @@ export const Question: React.FC<QuestionProps> = ({
                             type="button"
                             onClick={() => handleClick(choiceIndex)}
                             disabled={answered}
-                            style={isFun ? { animationDelay: `${position * 60}ms` } : undefined}
                             className={clsx(
                                 styles.button,
                                 answered && styles.disabled,
@@ -168,11 +160,11 @@ export const Question: React.FC<QuestionProps> = ({
                                 className={clsx(styles.action, styles.actionSecondary)}
                                 onClick={() => setRevealed(true)}
                             >
-                                {isFun ? '👀 Voir la réponse' : 'Afficher la réponse'}
+                                {isFun ? 'Voir la réponse' : 'Afficher la réponse'}
                             </button>
                         )}
                         <button type="button" className={styles.action} onClick={handleRetry}>
-                            {isRight ? (isFun ? '🔁 Rejouer' : 'Recommencer') : isFun ? '🎯 Réessayer' : 'Réessayer'}
+                            {isRight ? (isFun ? 'Rejouer' : 'Recommencer') : 'Réessayer'}
                         </button>
                     </div>
                 </div>
@@ -180,7 +172,7 @@ export const Question: React.FC<QuestionProps> = ({
 
             {showExplanation && (
                 <div className={styles.explanation}>
-                    <strong>{isFun ? '💡 Explication :' : 'Explication :'}</strong> {explanation}
+                    <strong>Explication :</strong> {explanation}
                 </div>
             )}
         </div>
