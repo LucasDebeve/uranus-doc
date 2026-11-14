@@ -6,6 +6,14 @@ import rehypeKatex from 'rehype-katex';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+/**
+ * Année scolaire en cours (dossier `docs/`) et dernière année archivée (`versioned_docs/`).
+ * À la rentrée : `pnpm docusaurus docs:version <année en cours>`, puis mettre à jour ces deux constantes
+ * et la liste `versions` plus bas.
+ */
+const CURRENT_YEAR = '2025-2026';
+const ARCHIVE_YEAR = '2024-2025';
+
 const config: Config = {
   title: 'Uranus',
   tagline: 'Les cours de SNT et de NSI, en orbite toute l\'année.',
@@ -46,13 +54,21 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           remarkPlugins: [remarkMath],
+          // Encadrés de cours (:::objectifs, :::exercice…) en plus des types de Docusaurus.
+          // Leur rendu est dans src/components/Encadres et src/theme/Admonition/Types.tsx.
+          admonitions: {
+            keywords: ['objectifs', 'retenir', 'exercice', 'correction', 'methode', 'vocabulaire'],
+            extendDefaults: true,
+          },
           rehypePlugins: [rehypeKatex],
+          // Date de dernière modification de chaque page, lue dans l'historique git.
+          showLastUpdateTime: true,
           // L'année en cours est la version de référence ; les années passées sont des archives.
           lastVersion: 'current',
           versions: {
             current: {
-              label: '2025-2026 (en cours)',
-              path: '2025-2026',
+              label: `${CURRENT_YEAR} (en cours)`,
+              path: CURRENT_YEAR,
               banner: 'none',
               badge: false,
             },
@@ -80,6 +96,26 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  themes: [
+    [
+      // Recherche entièrement locale : l'index est construit au build, aucun service externe.
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        language: ['fr'],
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: false,
+        docsRouteBasePath: '/docs',
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        searchResultLimits: 8,
+        searchBarShortcutHint: true,
+        // Seuls les cours de l'année en cours sont proposés (ni les archives, ni les calendriers).
+        ignoreFiles: [new RegExp(`docs/(?!${CURRENT_YEAR}/)`), /\/progression\/?$/],
+      },
+    ],
+  ],
   plugins: [
     'docusaurus-plugin-image-zoom',
     // Applique les réglages d'accessibilité avant le premier affichage (pas de flash).
@@ -87,7 +123,8 @@ const config: Config = {
     [
       '@docusaurus/plugin-client-redirects',
       {
-        // Anciennes adresses (avant la réorganisation SNT / NSI) → nouvelles pages.
+        // Anciennes adresses (avant la réorganisation SNT / NSI de 2025-2026) → nouvelles pages.
+        // Ces chemins sont historiques : ne pas les remplacer par CURRENT_YEAR.
         createRedirects(existingPath: string) {
           const base = '/docs/2025-2026/';
           if (existingPath === `${base}nsi/premiere/algorithmique/crepier/`) {
@@ -123,15 +160,6 @@ const config: Config = {
   headTags: [
     {tagName: 'link', attributes: {rel: 'apple-touch-icon', href: '/img/apple-touch-icon.png'}},
     {tagName: 'meta', attributes: {name: 'theme-color', content: '#0f1a3c'}},
-  ],
-  stylesheets: [
-    {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-      type: 'text/css',
-      integrity:
-        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-      crossorigin: 'anonymous',
-    },
   ],
   themeConfig: {
     image: 'img/uranus-social-card.png',
@@ -178,6 +206,10 @@ const config: Config = {
           position: 'right',
         },
         {
+          type: 'search',
+          position: 'right',
+        },
+        {
           type: 'custom-a11ySettings',
           position: 'right',
         },
@@ -201,10 +233,10 @@ const config: Config = {
         {
           title: 'Cours',
           items: [
-            {label: 'SNT — Seconde', to: '/docs/2025-2026/snt/presentation/'},
-            {label: 'NSI — Première', to: '/docs/2025-2026/nsi/premiere/'},
-            {label: 'NSI — Terminale', to: '/docs/2025-2026/nsi/terminale/'},
-            {label: 'Archives 2024-2025', to: '/docs/2024-2025/intro/'},
+            {label: 'SNT — Seconde', to: `/docs/${CURRENT_YEAR}/snt/presentation/`},
+            {label: 'NSI — Première', to: `/docs/${CURRENT_YEAR}/nsi/premiere/`},
+            {label: 'NSI — Terminale', to: `/docs/${CURRENT_YEAR}/nsi/terminale/`},
+            {label: `Archives ${ARCHIVE_YEAR}`, to: `/docs/${ARCHIVE_YEAR}/intro/`},
           ],
         },
         {

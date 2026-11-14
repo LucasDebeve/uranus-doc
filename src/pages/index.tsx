@@ -49,8 +49,8 @@ const COURSES: Course[] = [
 function useCourseLinks() {
   const version = useLatestVersion(undefined);
   return (sidebarId: string) => {
-    // Pages réelles du cours (sans les pages d'index générées, dont l'id commence par « / »).
-    const pages = version.docs.filter((doc) => doc.sidebar === sidebarId && !doc.id.startsWith('/') && !doc.unlisted);
+    // Pages réelles du cours (sans les pages d'index générées, dont l'id commence par « / », ni le calendrier).
+    const pages = version.docs.filter((doc) => doc.sidebar === sidebarId && !doc.id.startsWith('/') && !doc.id.endsWith('/progression') && !doc.unlisted);
     return {
       path: version.sidebars?.[sidebarId]?.link?.path ?? version.path,
       pageCount: pages.length,
