@@ -1,0 +1,58 @@
+.expr {
+  font-size: 1rem;
+}
+
+.table td {
+  min-width: 2.5rem;
+}
+
+.answerCell {
+  padding: 0.15rem !important;
+}
+
+.cell {
+  width: 2.6rem;
+  height: 2.2rem;
+  border: 1.5px dashed var(--ifm-color-emphasis-500);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cell:hover:not(:disabled) {
+  border-color: var(--ifm-color-primary);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.cellOk {
+  border-style: solid;
+  border-color: #1e7e34;
+  background: #e6f4ea;
+  color: #1e7e34;
+}
+
+.cellKo {
+  border-style: solid;
+  border-color: #b42318;
+  background: #fdecea;
+  color: #b42318;
+}
+
+:global(html[data-theme='dark']) .cellOk {
+  border-color: #5fd37a;
+  background: rgb(95 211 122 / 0.12);
+  color: #5fd37a;
+}
+
+:global(html[data-theme='dark']) .cellKo {
+  border-color: #ff8a80;
+  background: rgb(255 138 128 / 0.12);
+  color: #ff8a80;
+}

@@ -1,0 +1,68 @@
+---
+title: Représentation du texte
+sidebar_label: Texte et encodages
+description: Encodages ASCII, ISO-8859-1 et Unicode (UTF-8) ; intérêt de chaque système ; conversion d'un fichier texte.
+sidebar_position: 5
+---
+
+import Encodage from '@site/src/components/Entraineurs/Encodage';
+import ConvertisseurTexte from '@site/src/components/Entraineurs/ConvertisseurTexte';
+
+# Représentation du texte
+
+:::objectifs
+
+- Connaître les encodages ASCII, ISO-8859-1 et Unicode (UTF-8).
+- Identifier l'intérêt des différents systèmes d'encodage.
+- Convertir un fichier texte dans différents formats d'encodage.
+
+:::
+
+## Rappel de cours
+
+:::vocabulaire
+
+- **Encodage** : règle qui associe à chaque caractère une suite d'octets.
+- **ASCII** : 128 caractères (lettres sans accents, chiffres, ponctuation), codés sur 7 bits.
+- **ISO-8859-1** (ou **Latin-1**) : 256 caractères sur 1 octet ; ajoute les lettres accentuées d'Europe de l'Ouest.
+- **Unicode** : catalogue de tous les caractères du monde ; chacun a un numéro, son **point de code** (« é » est U+00E9).
+- **UTF-8** : encodage d'Unicode sur 1 à 4 octets, compatible avec l'ASCII. C'est l'encodage du Web.
+
+:::
+
+:::retenir Comparer les encodages
+
+| | ASCII | ISO-8859-1 | UTF-8 |
+| --- | --- | --- | --- |
+| Caractères | 128 | 256 | tous ceux d'Unicode |
+| Octets par caractère | 1 | 1 | 1 à 4 |
+| « é » | impossible | `E9` | `C3 A9` |
+| « € » | impossible | impossible | `E2 82 AC` |
+
+- Lire un fichier avec le **mauvais encodage** donne des caractères bizarres : « café » enregistré en UTF-8 puis lu en ISO-8859-1 s'affiche « cafÃ© ».
+- En Python, on précise toujours l'encodage d'un fichier : `open("notes.txt", encoding="utf-8")`.
+
+```python
+>>> "é".encode("utf-8")
+b'\xc3\xa9'
+>>> "é".encode("latin-1")
+b'\xe9'
+```
+
+:::
+
+## Entraînements
+
+<Encodage title="Codes ASCII" modes={['ascii']} />
+
+<Encodage title="Taille d'un texte selon l'encodage" modes={['taille']} />
+
+<Encodage title="Octets en UTF-8" modes={['octets']} />
+
+<Encodage title="Erreurs d'encodage" modes={['mojibake']} />
+
+## Convertir un texte ou un fichier
+
+Tape un texte ou ouvre un fichier pour voir ses octets dans chaque encodage, puis télécharge-le dans l'encodage de ton choix.
+
+<ConvertisseurTexte />

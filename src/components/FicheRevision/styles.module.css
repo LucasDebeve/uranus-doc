@@ -1,0 +1,70 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.print {
+  padding: 0.45rem 1rem;
+  border: 1.5px solid var(--ifm-color-primary);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ifm-color-primary);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.print:hover {
+  background: var(--uranus-primary-soft);
+}
+
+.section {
+  margin-top: 2rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--ifm-toc-border-color);
+}
+
+/* Une page sans encadré retenu n'apparaît pas. */
+.section:not(:has(> :nth-child(2))) {
+  display: none;
+}
+
+.sectionTitle {
+  margin: 0.75rem 0 0;
+  font-size: 1.35rem;
+}
+
+.sectionTitle a {
+  color: inherit;
+}
+
+/* Message affiché seulement si aucune section n'est visible. */
+.empty {
+  display: none;
+  margin-top: 1.5rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.fiche:not(:has(.section > :nth-child(2))) .empty {
+  display: block;
+}
+
+@media print {
+  .toolbar {
+    display: none;
+  }
+
+  .section {
+    break-inside: avoid-page;
+  }
+}

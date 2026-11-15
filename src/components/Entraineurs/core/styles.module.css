@@ -1,0 +1,344 @@
+/* ===== Cadre commun des entraîneurs ===== */
+.trainer {
+  --ok: #1e7e34;
+  --ok-bg: #e6f4ea;
+  --ko: #b42318;
+  --ko-bg: #fdecea;
+  margin: 1.75rem 0;
+  border: 1.5px solid var(--uranus-border-strong);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+}
+
+:global(html[data-theme='dark']) .trainer {
+  --ok: #5fd37a;
+  --ok-bg: rgb(95 211 122 / 0.12);
+  --ko: #ff8a80;
+  --ko-bg: rgb(255 138 128 / 0.12);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  column-gap: 1rem;
+  padding: 0.9rem 1.25rem 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.kicker {
+  grid-column: 1;
+  margin: 0;
+  color: var(--ifm-color-primary);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  grid-column: 1;
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.score {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.streak {
+  color: var(--uranus-accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+:global(html[data-theme='light']) .streak,
+.streak {
+  color: #c2410c;
+}
+
+:global(html[data-theme='dark']) .streak {
+  color: var(--uranus-orbit);
+}
+
+.body {
+  padding: 1.1rem 1.25rem 0.5rem;
+}
+
+.body > :last-child {
+  margin-bottom: 0.5rem;
+}
+
+.loading {
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Consigne */
+.prompt {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.num {
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.num sub {
+  font-family: var(--ifm-font-family-base);
+  font-weight: 400;
+}
+
+.mono {
+  font-family: var(--ifm-font-family-monospace);
+}
+
+/* Champ de réponse */
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.fieldLabel {
+  font-weight: 700;
+}
+
+.fieldRow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+.input {
+  max-width: 100%;
+  padding: 0.45rem 0.65rem;
+  border: 1.5px solid var(--ifm-color-emphasis-500);
+  border-radius: 8px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+}
+
+.input:focus-visible {
+  border-color: var(--ifm-color-primary);
+}
+
+.inputOk {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+}
+
+.inputKo {
+  border-color: var(--ko);
+  background: var(--ko-bg);
+}
+
+.suffix {
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* Choix (QCM) */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.choice {
+  min-width: 5rem;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--ifm-color-emphasis-400);
+  border-radius: 8px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.choice:hover:not(:disabled) {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.choice:disabled {
+  cursor: default;
+}
+
+.choiceOk {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+
+.choiceKo {
+  border-color: var(--ko);
+  background: var(--ko-bg);
+  color: var(--ko);
+  text-decoration: line-through;
+}
+
+/* Retour après vérification */
+.feedback {
+  margin: 0 1.25rem 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid;
+  border-radius: 10px;
+}
+
+.ok {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+}
+
+.ko {
+  border-color: var(--ko);
+  background: var(--ko-bg);
+}
+
+.verdict {
+  margin: 0;
+  font-weight: 700;
+}
+
+.ok .verdict {
+  color: var(--ok);
+}
+
+.ko .verdict {
+  color: var(--ko);
+}
+
+.expected {
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.correction {
+  margin-top: 0.6rem;
+  overflow-x: auto;
+}
+
+.correction > :last-child {
+  margin-bottom: 0;
+}
+
+/* Boutons */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.25rem 1.25rem 1.1rem;
+}
+
+.primary,
+.secondary {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary {
+  border: 1.5px solid var(--ifm-color-primary);
+  background: var(--ifm-color-primary);
+  color: var(--uranus-on-primary);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark);
+}
+
+.secondary {
+  border: 1.5px solid var(--ifm-color-emphasis-400);
+  background: transparent;
+  color: var(--ifm-font-color-base);
+}
+
+.secondary:hover:not(:disabled) {
+  border-color: var(--ifm-color-emphasis-700);
+}
+
+.primary:disabled,
+.secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Tableaux de correction / de vérité */
+.table {
+  display: table;
+  width: auto;
+  margin: 0.25rem 0 0.75rem;
+  border-collapse: collapse;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.table th,
+.table td {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  text-align: center;
+}
+
+.table thead th {
+  background: var(--ifm-color-emphasis-100);
+  font-family: var(--ifm-font-family-base);
+}
+
+/* Bits affichés comme des cases */
+.bits {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.bit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6em;
+  padding: 0.1em 0.2em;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.bitSign {
+  border-color: var(--uranus-accent);
+  background: color-mix(in srgb, var(--uranus-orbit) 18%, transparent);
+}
+
+.hint {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.steps {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.steps li {
+  margin-bottom: 0.2rem;
+}

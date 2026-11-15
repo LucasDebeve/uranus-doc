@@ -1,0 +1,57 @@
+---
+title: Entiers positifs et changements de base
+sidebar_label: Entiers positifs
+description: Écrire un entier positif dans une base b ⩾ 2 et passer d'une base à une autre (bases 2, 10 et 16).
+sidebar_position: 1
+---
+
+import ConversionBases from '@site/src/components/Entraineurs/ConversionBases';
+
+# Entiers positifs et changements de base
+
+:::objectifs
+
+- Écrire un entier positif dans une base $b \geqslant 2$.
+- Passer de la représentation d'une base dans une autre, en particulier entre les bases 2, 10 et 16.
+
+:::
+
+## Rappel de cours
+
+:::vocabulaire
+
+- **Base** $b$ : nombre de chiffres différents utilisés pour écrire les nombres (de $0$ à $b - 1$).
+- **Bit** (*binary digit*) : chiffre de la base 2, qui vaut 0 ou 1.
+- **Octet** : groupe de 8 bits.
+- **Bit de poids fort** : le bit le plus à gauche (celui qui « pèse » le plus) ; **bit de poids faible** : le plus à droite.
+- **Hexadécimal** : base 16, chiffres de 0 à 9 puis A (10), B (11), C (12), D (13), E (14), F (15).
+
+:::
+
+:::retenir Changer de base
+
+- **De la base $b$ vers la base 10** : chaque chiffre est multiplié par une puissance de $b$, selon sa position (0 à droite).
+  $1011_2 = 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 11_{10}$
+- **De la base 10 vers la base $b$** : on divise par $b$ jusqu'à obtenir un quotient nul, puis on lit les **restes de bas en haut**.
+- **Entre les bases 2 et 16** : 1 chiffre hexadécimal = 4 bits. On regroupe les bits par 4 en partant de la droite : $1010\,1111_2 = \text{AF}_{16}$.
+- Avec $n$ bits, on écrit les entiers de $0$ à $2^n - 1$.
+
+:::
+
+## Entraînements
+
+Chaque entraînement tire une nouvelle question à chaque fois : refais-les autant que nécessaire.
+
+<ConversionBases title="De la base 10 vers la base 2" from={10} to={2} />
+
+<ConversionBases title="De la base 2 vers la base 10" from={2} to={10} />
+
+<ConversionBases title="Base 10 et base 16" from="aleatoire" to="aleatoire" bases={[10, 16]} max={4095} />
+
+<ConversionBases title="Base 2 et base 16" from="aleatoire" to="aleatoire" bases={[2, 16]} max={4095} />
+
+### Pour aller plus loin : d'autres bases
+
+La méthode est la même pour toutes les bases $b \geqslant 2$.
+
+<ConversionBases title="Dans une base b quelconque" bases={[2, 3, 5, 8, 10, 16]} max={500} />
