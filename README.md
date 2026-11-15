@@ -50,6 +50,7 @@ Exercices générés au hasard, à refaire à l'infini, avec correction détaill
 
 | Composant | Exemple |
 | --- | --- |
+| `QCM` | question à choix écrite par l'enseignant, thèmes `serieux` / `ludique` : `<QCM theme="serieux" question="…" choices={[{label: 'CSS', isCorrect: true}, …]} explanation="…" />` (réponses en formule avec `isEquation: true`, ex. `2^32`) |
 | `ConversionBases` | `<ConversionBases from={10} to={2} />`, `<ConversionBases bases={[2, 8, 16]} max={500} />` |
 | `NombreDeBits` | `<NombreDeBits kinds={['entier', 'somme', 'produit']} />` |
 | `ComplementDeux` | `<ComplementDeux bits={8} modes={['coder', 'decoder', 'plage']} />` |

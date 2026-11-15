@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import confetti from 'canvas-confetti';
-import { Equation } from 'react-equation';
-import styles from './Question.module.css';
+import Tex from './core/Tex';
+
+/** « 2^32 - 1 » → LaTeX « 2^{32} - 1 » (exposants entre accolades, × pour *). */
+const toTex = (label: string) => label.replace(/\^\(?([\w.]+)\)?/g, '^{$1}').replace(/\*/g, '\\times ');
+import styles from './QCM.module.css';
 
 type Choice = {
     label: string;
@@ -10,14 +13,14 @@ type Choice = {
     isEquation?: boolean;
 };
 
-export type QuestionTheme = 'serieux' | 'ludique';
+export type QCMTheme = 'serieux' | 'ludique';
 
-type QuestionProps = {
+type QCMProps = {
     question: string;
     choices: Choice[];
     explanation: string;
     /** Thème visuel : « serieux » (sobre) ou « ludique » (coloré, animé, confettis). Par défaut : « ludique ». */
-    theme?: QuestionTheme;
+    theme?: QCMTheme;
     /** Mélange l'ordre des réponses à chaque nouvelle tentative. Par défaut : true. */
     shuffleOnRetry?: boolean;
 };
@@ -40,7 +43,8 @@ const shuffle = (indices: number[]) => {
 
 const launchConfetti = () => {
     const end = Date.now() + 1000;
-    const colors = ['#0799B8', '#FFC93C', '#1a1a1a'];
+    // Couleurs de la charte : cyan glacé, orange orbite, sarcelle, bleu nuit.
+    const colors = ['#7de3e1', '#ff8b5e', '#0b7285', '#0f1a3c'];
 
     (function frame() {
         confetti({ particleCount: 2, angle: 60, spread: 55, origin: { x: 0 }, colors });
@@ -51,7 +55,11 @@ const launchConfetti = () => {
     })();
 };
 
-export const Question: React.FC<QuestionProps> = ({
+/**
+ * QCM écrit par l'enseignant (une question, des choix, une explication), refaisable à l'infini.
+ * Deux thèmes : « serieux » (sobre) et « ludique » (style jeu, confettis).
+ */
+export const QCM: React.FC<QCMProps> = ({
     question,
     choices,
     explanation,
@@ -140,7 +148,7 @@ export const Question: React.FC<QuestionProps> = ({
                                 {LETTERS[position] ?? position + 1}
                             </span>
                             <span className={styles.label}>
-                                {choice.isEquation ? <Equation value={choice.label} /> : choice.label}
+                                {choice.isEquation ? <Tex tex={toTex(choice.label)} /> : choice.label}
                             </span>
                         </button>
                     );
@@ -179,4 +187,4 @@ export const Question: React.FC<QuestionProps> = ({
     );
 };
 
-export default Question;
+export default QCM;

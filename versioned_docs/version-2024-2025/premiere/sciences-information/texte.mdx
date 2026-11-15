@@ -83,9 +83,9 @@ Le principe de l'encodage UTF-8 est le suivant :
 ## Exercices
 
 :::note QCM
-import { Question } from '@site/src/components/Markdown/Trainers/Question';
+import QCM from '@site/src/components/Entraineurs/QCM';
 
-<Question
+<QCM
   question="Combien de caractères différents peuvent être encodés avec le code ASCII ?"
   choices={[
     { label: '127', isCorrect: false },
@@ -96,7 +96,7 @@ import { Question } from '@site/src/components/Markdown/Trainers/Question';
   explanation="C'était écrit plus haut... Le code ASCII permet de coder 128 caractères."
 />
 
-<Question
+<QCM
   question="Avec l'encodage UTF-8, les caractères sont codés sur ..."
   choices={[
     { label: 'un seul octet', isCorrect: false },
@@ -107,7 +107,7 @@ import { Question } from '@site/src/components/Markdown/Trainers/Question';
   explanation="C'était écrit plus haut... Le code ASCII permet de coder 128 caractères."
 />
 
-<Question
+<QCM
   question="Quel était le défaut principal de l'encodage ASCII qui empêchait qu'il devienne universel ?"
   choices={[
     { label: 'Il ne codait pas les lettres latines', isCorrect: false },
