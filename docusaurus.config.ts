@@ -202,20 +202,11 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          type: 'docsVersionDropdown',
-          position: 'right',
-        },
-        {
           type: 'search',
           position: 'right',
         },
         {
           type: 'custom-a11ySettings',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/LucasDebeve',
-          label: 'GitHub',
           position: 'right',
         },
       ],

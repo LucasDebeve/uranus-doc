@@ -1,12 +1,13 @@
 /*
- * Frise chronologique : même esprit « jeu » que le thème ludique des questions
+ * Frise chronologique : même esprit « jeu » que le thème ludique des QCM
  * (trait d'encre, ombres franches, cartes qui s'enfoncent), avec l'axe et les jalons d'Uranus.
+ * Couleurs de la charte : encre bleu nuit, fond de surface du site, orange « orbite ».
  */
 .frise {
-  --ink: #0f1a3c;
-  --paper: #fffdf6;
-  --card: #ffffff;
-  --sun: #ffc93c;
+  --ink: var(--uranus-night);
+  --paper: var(--ifm-background-surface-color);
+  --card: var(--ifm-background-surface-color);
+  --sun: var(--uranus-orbit);
   --ok: #1e7e34;
   --ok-bg: #d8f3df;
   --ko: #b42318;
@@ -22,8 +23,7 @@
 
 :global(html[data-theme='dark']) .frise {
   --ink: #e3e8f5;
-  --paper: #121c42;
-  --card: #0b1230;
+  --card: var(--ifm-background-color);
   --ok: #5fd37a;
   --ok-bg: rgb(95 211 122 / 0.15);
   --ko: #ff8a80;
@@ -74,7 +74,7 @@
 
 .stats span:first-child {
   background: var(--sun);
-  color: #0f1a3c;
+  color: var(--uranus-night);
 }
 
 /* Niveaux */
@@ -157,7 +157,7 @@
 .cardSelected,
 .cardSelected:hover {
   background: var(--sun);
-  color: #0f1a3c;
+  color: var(--uranus-night);
   transform: translate(3px, 3px);
   box-shadow: 0 0 0 var(--ink);
 }
@@ -243,7 +243,7 @@
 
 .slotTarget {
   border-color: #c2410c;
-  background: color-mix(in srgb, var(--sun) 25%, transparent);
+  background: color-mix(in srgb, var(--sun) 18%, transparent);
 }
 
 .empty {
@@ -363,7 +363,7 @@
 
 .primary {
   background: var(--sun);
-  color: #0f1a3c;
+  color: var(--uranus-night);
 }
 
 .secondary {

@@ -193,13 +193,14 @@
 
 /* ===== Thème ludique =====
    Esprit « carte de jeu » : trait d'encre épais, ombres portées franches,
-   boutons qui s'enfoncent au clic, couleurs du site + un jaune vif. */
+   boutons qui s'enfoncent au clic. Couleurs de la charte : encre bleu nuit,
+   fond de surface du site, orange « orbite » pour les accents. */
 .ludique {
-  --q-ink: #1a1a1a;
-  --q-paper: #fffdf6;
-  --q-card: #ffffff;
-  --q-accent: #0799b8;
-  --q-sun: #ffc93c;
+  --q-ink: var(--uranus-night);
+  --q-paper: var(--ifm-background-surface-color);
+  --q-card: var(--ifm-background-surface-color);
+  --q-accent: var(--ifm-color-primary);
+  --q-sun: var(--uranus-orbit);
   --q-shadow: 4px 4px 0 var(--q-ink);
   background: var(--q-paper);
   border: 2px solid var(--q-ink);
@@ -237,7 +238,7 @@
 }
 
 .ludique .button:hover:not(.disabled) {
-  background: #e6f6fa;
+  background: var(--uranus-primary-soft);
   transform: translate(-1px, -1px);
   box-shadow: 4px 4px 0 var(--q-ink);
 }
@@ -346,10 +347,8 @@
 
 .ludique .explanation {
   border: 2px solid var(--q-ink);
-  border-left-width: 8px;
-  border-left-color: var(--q-accent);
   border-radius: 6px;
-  background: var(--q-card);
+  background: var(--uranus-primary-soft);
   color: var(--q-ink);
 }
 
@@ -363,19 +362,14 @@
 
 /* Ludique en sombre : l'« encre » devient claire, le papier sombre. */
 :global([data-theme='dark']) .ludique {
-  --q-ink: #f2efe6;
-  --q-paper: #1d1f22;
-  --q-card: #26292d;
-  --q-accent: #07b880;
+  --q-ink: #e3e8f5;
+  --q-card: var(--ifm-background-color);
 }
 
-:global([data-theme='dark']) .ludique .button:hover:not(.disabled) {
-  background: #2e3a36;
-}
-
-:global([data-theme='dark']) .ludique .score,
-:global([data-theme='dark']) .ludique .action:not(.actionSecondary) {
-  color: #1a1a1a;
+/* Texte bleu nuit sur l'orange, dans les deux modes (contraste 7:1). */
+.ludique .score,
+.ludique .action:not(.actionSecondary) {
+  color: var(--uranus-night);
 }
 
 :global([data-theme='dark']) .ludique .correct {

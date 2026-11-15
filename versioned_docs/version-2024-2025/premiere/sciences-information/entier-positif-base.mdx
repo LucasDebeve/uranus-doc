@@ -132,24 +132,24 @@ Pour convertir rapidement :
 
 ## 💪 Entraînement interactif
 
-import { ConvertIntTrainer } from '@site/src/components/Markdown/Trainers/BaseConverter/ConvertIntTrainer';
+import ConversionBases from '@site/src/components/Entraineurs/ConversionBases';
 
-<ConvertIntTrainer fromBase='décimale' toBaseChoice='binaire' />
+<ConversionBases title="De la base 10 vers la base 2" from={10} to={2} />
 
-<ConvertIntTrainer fromBase='décimale' toBaseChoice='hexadécimale' />
+<ConversionBases title="De la base 10 vers la base 16" from={10} to={16} />
 
-<ConvertIntTrainer fromBase='binaire' toBaseChoice='décimale' /> 
+<ConversionBases title="De la base 2 vers la base 10" from={2} to={10} /> 
 
-<ConvertIntTrainer fromBase='hexadécimale' toBaseChoice='décimale' /> 
+<ConversionBases title="De la base 16 vers la base 10" from={16} to={10} /> 
 
 ---
 
 ## 📖 Entraînement
 
 :::note QCM
-import { Question } from '@site/src/components/Markdown/Trainers/Question';
+import QCM from '@site/src/components/Entraineurs/QCM';
 
-<Question
+<QCM
   question="Les entiers positifs écrits en base 2 et qui se terminent par un 0 sont tous ..."
   choices={[
     { label: 'pairs', isCorrect: true },
@@ -160,7 +160,7 @@ import { Question } from '@site/src/components/Markdown/Trainers/Question';
   explanation="Le dernier bit d'un nombre en binaire est égale à 1 si le nombre est impair et égale à 0 si le nombre est pair."
 />
 
-<Question
+<QCM
   question="Combien de nombres entiers différents peut-on coder avec 32 bits ?"
   choices={[
     { label: '2^32', isCorrect: true, isEquation: true },
