@@ -209,11 +209,6 @@ const config: Config = {
           type: 'custom-a11ySettings',
           position: 'right',
         },
-        {
-          href: 'https://github.com/LucasDebeve',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
