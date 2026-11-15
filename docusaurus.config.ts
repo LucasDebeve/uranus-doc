@@ -111,8 +111,8 @@ const config: Config = {
         explicitSearchResultPath: true,
         searchResultLimits: 8,
         searchBarShortcutHint: true,
-        // Seuls les cours de l'année en cours sont proposés (ni les archives, ni les calendriers).
-        ignoreFiles: [new RegExp(`docs/(?!${CURRENT_YEAR}/)`), /\/progression\/?$/],
+        // Seuls les cours de l'année en cours sont proposés (ni les archives, ni les calendriers, ni les fiches).
+        ignoreFiles: [new RegExp(`docs/(?!${CURRENT_YEAR}/)`), /\/(progression|fiche)\/?$/],
       },
     ],
   ],

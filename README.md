@@ -44,6 +44,29 @@ Le texte après le mot-clé remplace le titre par défaut. Pour mettre un encadr
 
 Les pages « Calendrier de l'année » de chaque niveau lisent `src/data/progression.ts` : chapitres, projets, évaluations et vacances avec leurs dates. L'état « Vu / En cours / À venir » et la prochaine évaluation sont calculés automatiquement chaque jour.
 
+## Entraîneurs
+
+Exercices générés au hasard, à refaire à l'infini, avec correction détaillée (`src/components/Entraineurs/`) :
+
+| Composant | Exemple |
+| --- | --- |
+| `ConversionBases` | `<ConversionBases from={10} to={2} />`, `<ConversionBases bases={[2, 8, 16]} max={500} />` |
+| `NombreDeBits` | `<NombreDeBits kinds={['entier', 'somme', 'produit']} />` |
+| `ComplementDeux` | `<ComplementDeux bits={8} modes={['coder', 'decoder', 'plage']} />` |
+| `Flottants` | `<Flottants modes={['ecriture', 'fini', 'python']} />` |
+| `TableVerite` | `<TableVerite deuxVariables />` |
+| `AdditionBinaire` | `<AdditionBinaire bits={6} />` |
+| `EvaluationSequentielle` | `<EvaluationSequentielle />` |
+| `Encodage` | `<Encodage modes={['ascii', 'taille', 'octets', 'mojibake']} />` |
+| `ConvertisseurTexte` | outil de conversion de texte et de fichiers entre encodages |
+| `Frise/FriseChronologique` | `<FriseChronologique themes={['reseaux']} niveau="moyen" />` (événements dans `src/data/histoire.ts`) |
+
+Pour créer un nouvel entraîneur, partir de `core/Entraineur.tsx` : il gère la question, la vérification, la correction et le score.
+
+## Fiches de révision
+
+Un fichier `fiche.mdx` contenant `<FicheRevision />` dans le dossier d'un chapitre affiche automatiquement tous les encadrés `:::retenir` et `:::vocabulaire` des pages de ce dossier (exemple : `docs/nsi/premiere/representation-donnees/fiche.mdx`).
+
 ## Signaler une erreur
 
 Le lien en bas de chaque cours ouvre un ticket GitHub pré-rempli. Pour utiliser un autre moyen (formulaire, ENT…), modifier `src/config/feedback.ts`.

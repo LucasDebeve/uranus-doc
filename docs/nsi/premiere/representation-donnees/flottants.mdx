@@ -1,0 +1,59 @@
+---
+title: Nombres réels et flottants
+sidebar_label: Nombres flottants
+description: Représentation approximative des nombres réels, écriture binaire de 0.1, 0.25 ou 1/3, et pourquoi 0.1 + 0.2 n'est pas égal à 0.3.
+sidebar_position: 3
+---
+
+import Flottants from '@site/src/components/Entraineurs/Flottants';
+
+# Nombres réels et flottants
+
+:::objectifs
+
+- Calculer sur quelques exemples la représentation de nombres réels : 0.1, 0.25 ou 1/3.
+- Comprendre pourquoi `0.1 + 0.2` n'est pas égal à `0.3`.
+- Savoir qu'il faut éviter de tester l'égalité de deux flottants.
+
+:::
+
+## Rappel de cours
+
+:::vocabulaire
+
+- **Nombre flottant** (*float*) : représentation en machine d'un nombre réel, avec un nombre de bits limité (souvent 64).
+- **Valeur approchée** : la plupart des réels ne peuvent pas être stockés exactement ; l'ordinateur garde le flottant le plus proche.
+
+:::
+
+:::retenir Écrire un nombre à virgule en binaire
+
+- Les chiffres après la virgule correspondent à $2^{-1} = 0{,}5$, $2^{-2} = 0{,}25$, $2^{-3} = 0{,}125$…
+- **Méthode** : on multiplie la partie après la virgule par 2 ; la partie entière du résultat donne le bit suivant ; on recommence avec ce qui reste, jusqu'à obtenir 0.
+  - $0{,}25 \to 0{,}5 \to 1{,}0$ : $0{,}25 = 0{,}01_2$
+- Une fraction irréductible a une écriture binaire **finie** seulement si son dénominateur est une **puissance de 2**.
+  - $0{,}1 = 1/10$ et $1/3$ ont une écriture binaire **infinie** : $0{,}1 = 0{,}0001100110011\ldots_2$
+
+:::
+
+:::retenir Conséquences en programmation
+
+- `0.1 + 0.2 == 0.3` vaut `False` en Python : `0.1 + 0.2` donne `0.30000000000000004`.
+- **On ne teste pas l'égalité de deux flottants** avec `==` : on vérifie que leur écart est très petit.
+
+```python
+>>> 0.1 + 0.2
+0.30000000000000004
+>>> abs((0.1 + 0.2) - 0.3) < 1e-9
+True
+```
+
+:::
+
+## Entraînements
+
+<Flottants title="Écrire un nombre à virgule en binaire" modes={['ecriture']} />
+
+<Flottants title="Écriture binaire finie ou infinie ?" modes={['fini']} />
+
+<Flottants title="Que renvoie Python ?" modes={['python']} />

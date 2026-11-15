@@ -70,7 +70,7 @@ export const PROGRESSIONS: Record<ProgressionLevel, Progression> = {
       {title: 'Projet : le jeu du pendu', from: '2026-10-05', to: '2026-10-16', kind: 'projet', doc: 'nsi/premiere/pendu/introduction'},
       {title: 'Algorithmique : le crêpier psychorigide', from: '2026-11-02', to: '2026-11-13', kind: 'chapitre', doc: 'nsi/premiere/algorithmique/crepier', note: 'Activité débranchée'},
       {title: 'Rendu du projet pendu', from: '2026-11-06', kind: 'evaluation'},
-      {title: 'Représentation des entiers (binaire, hexadécimal)', from: '2026-11-16', to: '2026-12-18', kind: 'chapitre'},
+      {title: 'Représentation des données : types et valeurs de base', from: '2026-11-16', to: '2026-12-18', kind: 'chapitre', doc: 'nsi/premiere/representation-donnees/entiers-positifs'},
       {title: 'Évaluation : représentation des données', from: '2026-12-18', kind: 'evaluation'},
       {title: 'Données en table (CSV)', from: '2027-01-04', to: '2027-02-05', kind: 'chapitre'},
       {title: 'Architecture et système d’exploitation', from: '2027-02-08', to: '2027-03-19', kind: 'chapitre'},

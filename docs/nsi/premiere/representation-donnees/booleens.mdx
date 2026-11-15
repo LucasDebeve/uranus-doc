@@ -1,0 +1,55 @@
+---
+title: Booléens et expressions booléennes
+sidebar_label: Booléens
+description: Valeurs booléennes, opérateurs and, or, not et xor, tables de vérité, addition binaire et évaluation séquentielle.
+sidebar_position: 4
+---
+
+import TableVerite from '@site/src/components/Entraineurs/TableVerite';
+import AdditionBinaire from '@site/src/components/Entraineurs/AdditionBinaire';
+import EvaluationSequentielle from '@site/src/components/Entraineurs/EvaluationSequentielle';
+
+# Booléens et expressions booléennes
+
+:::objectifs
+
+- Connaître les valeurs booléennes (0 et 1) et les opérateurs `and`, `or`, `not`, ainsi que le ou exclusif `xor`.
+- Dresser la table de vérité d'une expression booléenne.
+- Comprendre l'addition binaire comme application des opérateurs booléens.
+- Savoir que `and` et `or` sont évalués de façon séquentielle.
+
+:::
+
+## Rappel de cours
+
+:::vocabulaire
+
+- **Booléen** : valeur qui ne peut être que vraie (`True`, 1) ou fausse (`False`, 0).
+- **Table de vérité** : tableau qui donne la valeur d'une expression pour toutes les combinaisons de ses variables ($2^n$ lignes pour $n$ variables).
+- **Ou exclusif** (`xor`) : vrai quand exactement une des deux valeurs est vraie. En Python : `a ^ b`.
+
+:::
+
+:::retenir Les opérateurs booléens
+
+| a | b | `not a` | `a and b` | `a or b` | `a xor b` |
+| :-: | :-: | :-: | :-: | :-: | :-: |
+| 0 | 0 | 1 | 0 | 0 | 0 |
+| 0 | 1 | 1 | 0 | 1 | 1 |
+| 1 | 0 | 0 | 0 | 1 | 1 |
+| 1 | 1 | 0 | 1 | 1 | 0 |
+
+- **Addition de deux bits** : le bit du résultat vaut `a xor b`, la retenue vaut `a and b`.
+- **Évaluation séquentielle** : dans `a and b`, si `a` est faux, `b` n'est pas évalué ; dans `a or b`, si `a` est vrai, `b` n'est pas évalué. On place donc les tests de sécurité à gauche : `x != 0 and 10 / x > 2`.
+
+:::
+
+## Entraînements
+
+<TableVerite title="Table de vérité (2 variables)" deuxVariables />
+
+<TableVerite title="Table de vérité (2 ou 3 variables)" />
+
+<AdditionBinaire />
+
+<EvaluationSequentielle />

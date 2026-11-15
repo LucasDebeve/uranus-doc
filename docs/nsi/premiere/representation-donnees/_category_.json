@@ -1,0 +1,9 @@
+{
+  "label": "Représentation des données",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "title": "Représentation des données : types et valeurs de base",
+    "description": "Entiers, nombres flottants, booléens et texte : comment l'ordinateur les code en binaire. Chaque page propose un rappel de cours et des entraînements à refaire autant de fois que tu veux."
+  }
+}

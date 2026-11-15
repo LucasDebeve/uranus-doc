@@ -1,0 +1,76 @@
+---
+title: Entiers relatifs et nombre de bits
+sidebar_label: Entiers relatifs
+description: Nombre de bits nécessaires pour un entier, une somme ou un produit ; complément à 2 ; tailles courantes des entiers.
+sidebar_position: 2
+---
+
+import NombreDeBits from '@site/src/components/Entraineurs/NombreDeBits';
+import ComplementDeux from '@site/src/components/Entraineurs/ComplementDeux';
+
+# Entiers relatifs et nombre de bits
+
+:::objectifs
+
+- Évaluer le nombre de bits nécessaires à l'écriture en base 2 d'un entier, de la somme ou du produit de deux entiers.
+- Utiliser le complément à 2.
+- Connaître les tailles courantes des entiers (8, 16, 32 ou 64 bits).
+
+:::
+
+## Rappel de cours
+
+:::vocabulaire
+
+- **Entier signé** : entier qui peut être positif ou négatif (entier relatif).
+- **Complément à 2** : façon de coder les entiers signés utilisée par les ordinateurs.
+- **Dépassement de capacité** (*overflow*) : le résultat d'un calcul ne tient plus dans le nombre de bits disponibles.
+
+:::
+
+:::retenir Combien de bits ?
+
+- $n$ s'écrit sur $k$ bits quand $2^{k-1} \leqslant n < 2^k$. Exemple : $2^7 = 128 \leqslant 200 < 256 = 2^8$, donc 200 s'écrit sur 8 bits.
+- Si $a$ s'écrit sur $p$ bits et $b$ sur $q$ bits :
+  - $a + b$ s'écrit sur au plus $\max(p, q) + 1$ bits ;
+  - $a \times b$ s'écrit sur au plus $p + q$ bits.
+
+:::
+
+:::retenir Le complément à 2 sur n bits
+
+- Le bit de poids fort indique le signe : 0 pour un positif, 1 pour un négatif.
+- **Coder un négatif** : coder sa valeur absolue sur $n$ bits, inverser tous les bits, ajouter 1.
+  Sur 8 bits : $42 = 00101010$, inversé $11010101$, plus 1 : $-42 = 11010110$.
+- **Décoder** : le bit de poids fort compte pour $-2^{n-1}$, les autres comptent normalement.
+- Sur $n$ bits, on code les entiers de $-2^{n-1}$ à $2^{n-1} - 1$.
+
+:::
+
+:::retenir Tailles courantes
+
+| Taille | Entiers non signés | Entiers signés (complément à 2) |
+| --- | --- | --- |
+| 8 bits (1 octet) | 0 à 255 | −128 à 127 |
+| 16 bits | 0 à 65 535 | −32 768 à 32 767 |
+| 32 bits | 0 à 4 294 967 295 | −2 147 483 648 à 2 147 483 647 |
+| 64 bits | 0 à environ $1{,}8 \times 10^{19}$ | environ $-9{,}2 \times 10^{18}$ à $9{,}2 \times 10^{18}$ |
+
+En Python, les entiers n'ont **pas de taille fixe** : Python utilise autant d'octets que nécessaire.
+
+```python
+>>> 2 ** 100
+1267650600228229401496703205376
+```
+
+:::
+
+## Entraînements
+
+<NombreDeBits />
+
+<ComplementDeux title="Coder et décoder en complément à 2 (8 bits)" bits={8} modes={['coder', 'decoder']} />
+
+<ComplementDeux title="Tailles courantes des entiers" modes={['plage']} />
+
+<ComplementDeux title="Complément à 2 sur 4 bits (pour s'échauffer)" bits={4} modes={['coder', 'decoder']} />

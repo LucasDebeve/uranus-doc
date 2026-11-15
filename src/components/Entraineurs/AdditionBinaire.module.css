@@ -1,0 +1,45 @@
+.posee {
+  display: table;
+  width: auto;
+  margin: 0.25rem 0 1rem;
+  border-collapse: collapse;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1.15rem;
+}
+
+.posee tr,
+.posee th,
+.posee td {
+  border: 0;
+  background: transparent;
+}
+
+.posee th {
+  min-width: 2rem;
+  padding: 0.1rem 0.5rem 0.1rem 0;
+  color: var(--ifm-color-emphasis-700);
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+.posee td {
+  width: 1.4rem;
+  padding: 0.1rem 0.15rem;
+  text-align: center;
+}
+
+.carries td {
+  color: #c2410c;
+  font-size: 0.85rem;
+}
+
+:global(html[data-theme='dark']) .carries td {
+  color: var(--uranus-orbit);
+}
+
+.result td {
+  border-top: 2px solid var(--ifm-font-color-base);
+  font-weight: 700;
+}
