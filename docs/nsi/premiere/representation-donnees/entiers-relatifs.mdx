@@ -12,42 +12,92 @@ import ComplementDeux from '@site/src/components/Entraineurs/ComplementDeux';
 
 :::objectifs
 
+- Comprendre la représentation des entiers relatifs en binaire (valeurs positives et négatives)
 - Évaluer le nombre de bits nécessaires à l'écriture en base 2 d'un entier, de la somme ou du produit de deux entiers.
-- Utiliser le complément à 2.
-- Connaître les tailles courantes des entiers (8, 16, 32 ou 64 bits).
+- Appliquer la méthode du complément à 2 pour coder des entiers signés sur 8 bits
 
 :::
 
-## Rappel de cours
+## Représentation binaire d'un entier relatif (signé) 
 
-:::vocabulaire
+### Représentation signée : pourquoi ?
 
-- **Entier signé** : entier qui peut être positif ou négatif (entier relatif).
-- **Complément à 2** : façon de coder les entiers signés utilisée par les ordinateurs.
-- **Dépassement de capacité** (*overflow*) : le résultat d'un calcul ne tient plus dans le nombre de bits disponibles.
 
+Les ordinateurs représentent les nombres sous forme binaire, mais les entiers peuvent être positifs ou négatifs.
+
+On peut alors choisir de les représenter avec un bit de signe (0 pour positif, 1 pour négatif). 
+Par exemple, $7_{10}$ s'écrit $111_{2}$. Pour représenter $7_{10}$, on peut écrire $0111_{2}$ (avec un bit de signe). Pour $-7_{10}$, on peut écrire $1111_{2}$ (avec un bit de signe). Cependant, il y a un problème : $1111_{2}$ peut aussi être interprété comme $15_{10}$ (sans bit de signe).
+
+Pour lever cette ambiguïté, il faut décider :
+- de la **taille du mot binaire** qui va représenter l'entier, c'est-à-dire le nombre de bits
+- d'une façon efficace de représenter les nombres négatifs
+
+:::retenir Attention
+Fixons une taille de 8 bits (1 octet). On serait tenter de s'arrêter là, mais il y deux gros problèmes :
+- Le nombre $0_{10}$ peut être représenté de plusieurs façons, par exemple $00000000_{2}$ ou $10000000_{2}$.
+- L'addition telle qu'on l'a connait ne fonctionnerait plus.
 :::
 
-:::retenir Combien de bits ?
+Pour éviter ces problèmes, il existe une méthode magique, la technique du complément à 2 (ou C2).
 
-- $n$ s'écrit sur $k$ bits quand $2^{k-1} \leqslant n < 2^k$. Exemple : $2^7 = 128 \leqslant 200 < 256 = 2^8$, donc 200 s'écrit sur 8 bits.
-- Si $a$ s'écrit sur $p$ bits et $b$ sur $q$ bits :
-  - $a + b$ s'écrit sur au plus $\max(p, q) + 1$ bits ;
-  - $a \times b$ s'écrit sur au plus $p + q$ bits.
+### Le complément à 2
 
+#### Codage des entiers signés sur 8 bits
+
+:::retenir
+- Avec 8 bits, les valeurs possibles vont de -128 à 127
+- Le bit de poids fort est le bit de signe :
+    - `0xxxxxxx` ➜ positif
+    - `1xxxxxxx` ➜ négatif
 :::
 
-:::retenir Le complément à 2 sur n bits
+:::methode Pour coder un entier négatif :
+1. On prend la valeur positive de l'entier et on la code sur 8 bits
+2. On inverse les bits (complément à 1)
+3. On ajoute 1 au résultat
+:::
 
-- Le bit de poids fort indique le signe : 0 pour un positif, 1 pour un négatif.
-- **Coder un négatif** : coder sa valeur absolue sur $n$ bits, inverser tous les bits, ajouter 1.
-  Sur 8 bits : $42 = 00101010$, inversé $11010101$, plus 1 : $-42 = 11010110$.
+Exemple : $-42_{10}$ en binaire
+$$
+\begin{aligned}
+42_{10} &= 00101010_{2} \\
+\text{Inverse} &: \textcolor{red}{11010101}_{2} \\
++ 1 &: 110101\textcolor{red}{10}_{2} \\ 
+-42_{10} &= 11010110_{2}
+\end{aligned}
+$$
+
+:::methode Pour décoder un entier signé :
+1. On regarde le bit de poids fort :
+   - Si c'est `0`, l'entier est positif et on le lit normalement.
+   - Si c'est `1`, l'entier est négatif et on réapplique la méthode du complément à 2:
+      - On inverse les bits
+      - On ajoute 1
+      - On lit le résultat en décimal et on ajoute le signe $-$ à la valeur
+:::
+
+Exemple : $11111101_{2}$  
+Le bit de poids fort est à `1`, donc l'entier est négatif. On applique le complément à 2 :
+
+$$
+\begin{aligned}
+&: 11111101_{2} \\
+\text{Inverse} &: \textcolor{red}{00000010}_{2} \\
++ 1 &: 0000001\textcolor{red}{1}_{2} \\ 
+00000011_{2} &= 3_{10} \\
+11111101_{2} &= -3_{10}
+\end{aligned}
+$$
+
+#### Complément à 2 : généralités
+
+:::retenir Généralités
+Soit un entier relatif codé sur $n$ bits. Alors :
 - **Décoder** : le bit de poids fort compte pour $-2^{n-1}$, les autres comptent normalement.
 - Sur $n$ bits, on code les entiers de $-2^{n-1}$ à $2^{n-1} - 1$.
 
 :::
 
-:::retenir Tailles courantes
 
 | Taille | Entiers non signés | Entiers signés (complément à 2) |
 | --- | --- | --- |
@@ -63,14 +113,10 @@ En Python, les entiers n'ont **pas de taille fixe** : Python utilise autant d'oc
 1267650600228229401496703205376
 ```
 
-:::
-
 ## Entraînements
 
 <NombreDeBits />
 
 <ComplementDeux title="Coder et décoder en complément à 2 (8 bits)" bits={8} modes={['coder', 'decoder']} />
-
-<ComplementDeux title="Tailles courantes des entiers" modes={['plage']} />
 
 <ComplementDeux title="Complément à 2 sur 4 bits (pour s'échauffer)" bits={4} modes={['coder', 'decoder']} />

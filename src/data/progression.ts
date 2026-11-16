@@ -64,20 +64,37 @@ export const PROGRESSIONS: Record<ProgressionLevel, Progression> = {
     label: 'NSI — Première',
     schoolYear: '2026-2027',
     entries: [
+      // Période 1
       {title: 'Règles de classe', from: '2026-09-01', to: '2026-09-04', kind: 'chapitre', doc: 'nsi/premiere/regles-classe'},
-      {title: 'Python : types et valeurs de base', from: '2026-09-07', to: '2026-10-02', kind: 'chapitre'},
-      {title: 'Évaluation : bases de Python', from: '2026-10-02', kind: 'evaluation'},
-      {title: 'Projet : le jeu du pendu', from: '2026-10-05', to: '2026-10-16', kind: 'projet', doc: 'nsi/premiere/pendu/introduction'},
-      {title: 'Algorithmique : le crêpier psychorigide', from: '2026-11-02', to: '2026-11-13', kind: 'chapitre', doc: 'nsi/premiere/algorithmique/crepier', note: 'Activité débranchée'},
-      {title: 'Rendu du projet pendu', from: '2026-11-06', kind: 'evaluation'},
-      {title: 'Représentation des données : types et valeurs de base', from: '2026-11-16', to: '2026-12-18', kind: 'chapitre', doc: 'nsi/premiere/representation-donnees/entiers-positifs'},
-      {title: 'Évaluation : représentation des données', from: '2026-12-18', kind: 'evaluation'},
-      {title: 'Données en table (CSV)', from: '2027-01-04', to: '2027-02-05', kind: 'chapitre'},
-      {title: 'Architecture et système d’exploitation', from: '2027-02-08', to: '2027-03-19', kind: 'chapitre'},
-      {title: 'Algorithmes de tri', from: '2027-03-22', to: '2027-04-23', kind: 'chapitre'},
-      {title: 'Évaluation : algorithmes de tri', from: '2027-04-23', kind: 'evaluation'},
-      {title: 'Interactions sur le Web', from: '2027-04-26', to: '2027-05-21', kind: 'chapitre'},
-      {title: 'Projet de fin d’année', from: '2027-05-24', to: '2027-06-18', kind: 'projet'},
+      {title: 'Numération: entier en base b', from: '2026-09-07', to: '2026-09-18', kind: 'chapitre'},
+      {title: 'Python : variables, opérateurs et fonctions', from: '2026-09-21', to: '2026-10-02', kind: 'chapitre'},
+      {title: 'TP compétences : tracés mathématiques', from: '2026-10-02', kind: 'evaluation'},
+      {title: 'Les entiers relatifs', from: '2026-10-05', to: '2026-10-09', kind: 'chapitre'},
+      {title: 'Valeurs Booléennes et conditions', from: '2026-10-12', to: '2026-10-16', kind: 'chapitre'},
+      
+      // Période 2
+      {title: 'Boucles, tableaux et p-uplets (Spécification)', from: '2026-11-02', to: '2026-11-20', kind: 'chapitre'},
+      {title: 'Architecture et système d’exploitation', from: '2026-11-23', to: '2026-11-27', kind: 'chapitre'}, 
+      {title: 'TP compétences : embouteillage fantôme', from: '2026-11-27', kind: 'evaluation'},
+      {title: 'Réseaux : adresses IP, masques, paquets, protocoles', from: '2026-11-30', to: '2026-12-18', kind: 'chapitre'},
+      {title: 'TP compétences : LAN', from: '2026-12-18', kind: 'evaluation'},
+      
+      // Période 3
+      {title: 'Plan de travail 1 : flottants, texte, tableaux en compréhension', from: '2027-01-04', to: '2027-01-22', kind: 'chapitre'},
+      {title: 'TP compétences : Ariane 5', from: '2027-01-22', kind: 'evaluation'},
+      {title: 'Parcours séquentiels de tableaux', from: '2027-01-25', to: '2027-02-05', kind: 'chapitre'},
+      {title: 'TP compétences : embouteillage fantôme', from: '2027-02-05', kind: 'evaluation'},
+      {title: 'Tris par sélection et par insertion', from: '2027-02-08', to: '2027-02-19', kind: 'chapitre'},
+      
+      // Période 4
+      {title: 'Dictionnaires, tables CSV, tri et fusion', from: '2027-02-22', to: '2027-03-12', kind: 'chapitre'},
+      {title: 'TP compétences : données ouvertes', from: '2027-03-12', kind: 'evaluation'},
+      {title: 'Plan de travail 2 : Web (événements, interaction), client-serveur et formulaires', from: '2027-03-15', to: '2027-04-02', kind: 'chapitre'},
+      {title: 'Algorithmes : dichotomie, k plus proches et gloutons', from: '2027-04-05', to: '2027-04-30', kind: 'chapitre'},
+
+      // Période 5
+      {title: 'Projet d’IHM (retour sur fonctions, tableaux 2D, tests)', from: '2027-05-03', to: '2027-05-21', kind: 'chapitre'},
+      
       ...VACANCES,
     ],
   },
