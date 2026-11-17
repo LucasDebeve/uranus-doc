@@ -1,0 +1,144 @@
+---
+title: Variables et opérateurs en Python
+sidebar_label: 🪐​ Variables et opérateurs
+description: Introduction aux variables et aux opérateurs en Python.
+sidebar_position: 2
+---
+
+import Highlight from '@site/src/components/Markdown/Highlight';
+
+# Variables et opérateurs en Python
+
+## Variables
+
+:::vocabulaire
+- **Variable** : espace mémoire qui permet de stocker une valeur.
+- **Nom de variable** : identifiant qui permet de faire référence à une variable.
+- **Type de variable** : nature de la valeur stockée dans la variable (entier, flottant, chaîne de caractères, booléen, etc.).
+:::
+
+En Python, on peut créer une variable en lui donnant un nom et en lui affectant une valeur avec l'opérateur `=`.
+
+Une variable peut être de différents types : entier, flottant, chaîne de caractères, booléen, etc.
+
+```python
+prenom = "Alice"
+age = 30
+pi = 3.14
+en_retard = True
+```
+
+Python possède des règles pour nommer une variable :
+- Le nom d'une variable <Highlight>ne peut pas contenir d'espaces.</Highlight>
+- Le nom d'une variable <Highlight>ne peut pas commencer par un chiffre.</Highlight>
+- Le nom d'une variable <Highlight>ne peut pas être un mot réservé du langage</Highlight> (comme `if`, `else`, `for`, etc.).
+
+
+
+En plus de ces règles que Python impose, il existe des **bonnes pratiques** à respecter pour améliorer la lisibilité et la maintenabilité de son code.
+
+- Utiliser des noms de variables descriptifs et en minuscules.
+```python
+prenom = "Alice" # ✅
+Prenom = "Bob" # ❌
+```
+
+- Utiliser le snake_case pour les noms de variables.
+```python
+nom_utilisateur = "Alice" # ✅
+Prenom = "Bob" # ❌
+```
+- Ne pas utiliser des caractères accentués
+```python
+prenom = "André" # ✅
+prénom = "Alix" # ❌
+```
+
+- Éviter les abréviations et les noms de variables trop courts.
+```python
+nom = "Zidane" # ✅
+n = "Debuchy" # ❌
+```
+
+- Ne pas appeler 2 variables par le même nom, car la première valeur sera écrasée par la deuxième.
+
+On peut afficher la valeur d'une variable avec la fonction `print()`.
+
+```python
+prenom = "Alice"
+print(prenom) # Affiche "Alice"
+age = 30
+print(age) # Affiche 30
+```
+
+:::retenir
+- Une variable doit respecter des règles de nommage et des bonnes pratiques pour être lisible et compréhensible.
+- `print()` permet d'afficher la valeur d'une variable, ou d'une expression, dans la console.
+:::
+
+## Opérateurs
+
+On peut effectuer des opérations sur les variables avec des opérateurs.
+
+### Sur les entiers et flottants
+
+- `+` : addition
+- `-` : soustraction
+- `*` : multiplication
+- `/` : division
+- `//` : division entière
+- `%` : modulo (reste de la division entière)
+- `**` : puissance
+
+```python
+a = 10
+b = 3
+print(a + b) # Affiche 13
+print(a - b) # Affiche 7
+print(a * b) # Affiche 30
+print(a / b) # Affiche 3.3333333333333335
+print(a // b) # Affiche 3
+print(a % b) # Affiche 1
+print(a ** b) # Affiche 1000
+```
+
+Nous ne sommes pas obliger d'effectuer des opérations sur des variables mais on peut directement le faire sur des valeurs.
+
+```python
+print(10 + 3) # Affiche 13
+```
+
+### Sur les chaînes de caractères
+
+- `+` : concaténation
+- `*` : répétition
+
+```python
+prenom = "Alice"
+print(prenom + " Dupont") # Affiche "Alice Dupont"
+print(prenom * 3) # Affiche "AliceAliceAlice"
+```
+
+On ne peut concatérer que des **chaînes de caractères entre elles**. Si on veut concaténer une chaîne de caractères avec un entier ou un flottant, il faut convertir l'entier ou le flottant en chaîne de caractères avec la fonction `str()`.
+
+```python
+age = 30
+prenom = "Bob"
+print(prenom + " a " + str(age) + " ans") # Affiche "Bob a 30 ans"
+```
+
+Ou sinon, on peut utiliser la **f-string** pour concaténer une chaîne de caractères avec un entier ou un flottant.
+
+```python
+age = 30
+prenom = "Bob"
+print(f"{prenom} a {age} ans") # Affiche "Bob a 30 ans"
+```
+
+:::retenir
+- Les opérateurs permettent d'effectuer des opérations sur les variables.
+- On peut concaténer des chaînes de caractères avec l'opérateur `+` et les répéter avec l'opérateur `*`.
+- Les f-strings sont une manière concise et lisible de formater les chaînes de caractères en Python.
+:::
+
+Plus tard dans l'année, nous reviendrons sur les variables de type booléenne et leurs opérateurs. 

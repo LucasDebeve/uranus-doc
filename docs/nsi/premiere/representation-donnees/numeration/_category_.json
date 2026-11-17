@@ -1,0 +1,9 @@
+{
+  "label": "Entiers en base b",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "title": "Entiers en base b",
+    "description": "Cette section présente les différentes façons de représenter les entiers en base b, ainsi que les opérations associées."
+  }
+}

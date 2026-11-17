@@ -66,7 +66,7 @@ export const PROGRESSIONS: Record<ProgressionLevel, Progression> = {
     entries: [
       // Période 1
       {title: 'Règles de classe', from: '2026-09-01', to: '2026-09-04', kind: 'chapitre', doc: 'nsi/premiere/regles-classe'},
-      {title: 'Numération: entier en base b', from: '2026-09-07', to: '2026-09-18', kind: 'chapitre'},
+      {title: 'Numération: entier en base b', from: '2026-09-07', to: '2026-09-18', kind: 'chapitre', doc: 'nsi/premiere/representation-donnees/numeration/objectifs'},
       {title: 'Python : variables, opérateurs et fonctions', from: '2026-09-21', to: '2026-10-02', kind: 'chapitre'},
       {title: 'TP compétences : tracés mathématiques', from: '2026-10-02', kind: 'evaluation'},
       {title: 'Les entiers relatifs', from: '2026-10-05', to: '2026-10-09', kind: 'chapitre'},

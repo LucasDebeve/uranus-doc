@@ -1,0 +1,140 @@
+---
+title: Fonctions en Python
+sidebar_label: 🪐​ Fonctions
+description: Introduction aux fonctions en Python.
+sidebar_position: 3
+---
+
+import Highlight from '@site/src/components/Markdown/Highlight';
+
+# Fonctions en Python
+
+:::vocabulaire
+- **Fonction** : bloc de code qui effectue une tâche spécifique et peut être réutilisé.
+- **Paramètre** : variable utilisée dans la définition d'une fonction pour recevoir une valeur lors de son appel.
+- **Appel de fonction** : utilisation d'une fonction dans le code.
+:::
+
+Analogie aux mathématiques :
+$f(x) = x^2 + 2x + 1$ est une fonction qui prend un nombre $x$ en entrée et retourne le résultat de l'expression $x^2 + 2x + 1$.
+
+## Syntaxe d'une fonction
+
+En Python, une fonction est définie à l'aide du mot-clé `def`, suivi du nom de la fonction, des paramètres entre parenthèses et d'un deux-points. Le corps de la fonction est indenté.
+
+```python
+def nom_de_fonction(parametre1, parametre2):
+    # Corps de la fonction
+    return resultat
+```
+
+Une fonction peut ne pas avoir de paramètres et peut ne pas retourner de valeur.
+
+`print()` est un exemple de fonction qui affiche une valeur dans la console. Elle ne retourne pas de valeur, mais elle prend un à plusieurs paramètres. 
+
+Reprenons l'analogie mathématiques :
+
+En maths, on a $f(x) = x^2 + 2x + 1$
+
+En informatique, on peut définir une fonction équivalente en Python :
+
+```python
+def f(x):
+    return x**2 + 2*x + 1
+```
+
+## Appel d'une fonction
+
+Pour appeler une fonction, on utilise son nom suivi de parenthèses contenant les arguments (valeurs) à passer aux paramètres.
+
+```python
+resultat = f(3)  # Appel de la fonction f avec l'argument 3
+print(resultat)  # Affiche 16
+```
+
+## Bonnes pratiques
+
+Tout comme pour les variables, il est important de choisir des noms de fonctions clairs et descriptifs. 
+Les noms de fonctions doivent être en minuscules, avec des mots séparés par des underscores si nécessaire (snake_case).
+
+En Python, il est possible et recommandé de spécifier les types des paramètres et du retour d'une fonction à l'aide d'annotations de type. Cela améliore la lisibilité du code.
+
+```python
+def f(x: float) -> float:
+    return x**2 + 2*x + 1
+
+def ajoute_un(n: int) -> int:
+    return n + 1
+```
+
+Même si dans l'idéal, n'importe qui peut comprendre ce que fait une fonction en lisant son code, il est recommandé d'ajouter une **docstring** pour expliquer ce que fait la fonction, quels sont ses paramètres et ce qu'elle retourne.
+
+```python
+def f(x: float) -> float:
+    """
+    Calcule f(x) = x^2 + 2x + 1.
+    """
+    return x**2 + 2*x + 1
+
+def ajoute_un(n: int) -> int:
+    """
+    Ajoute 1 à un entier passé en paramètre.
+    """
+    return n + 1
+```
+
+Enfin, pour frôler la perfection en termes de lisibilité de code, il est recommandé d'utiliser un formatage de de docstring standardisé, comme le format Google ou le format NumPy.
+
+Le standard le plus utilisé est le format Google, qui est celui que nous allons utiliser dans ce cours.
+
+```python
+def f(x: float) -> float:
+    """
+    Calcule f(x) = x^2 + 2x + 1.
+
+    Args:
+        x (float): La valeur d'entrée pour laquelle on veut calculer f(x).
+    Returns:
+        float: La valeur de f(x).
+    """
+    return x**2 + 2*x + 1
+
+def ajoute_un(n: int) -> int:
+    """
+    Ajoute 1 à un entier passé en paramètre.
+
+    Args:
+        n (int): L'entier auquel on veut ajouter 1.
+    Returns:
+        int: La valeur de n + 1.
+    """
+    return n + 1
+```
+
+
+## Applications
+
+:::exercice Application 1
+Écrire une fonction `add` qui prend deux paramètres et retourne leur somme.
+
+```python
+print(add(3, 5)) # Devrait afficher 8
+```
+:::
+
+:::exercice Application 2
+Écrire une fonction `salutation` qui prend un nom en paramètre et affiche "Bonjour, [nom] !".
+
+```python
+salutation("Bob") # Devrait afficher "Bonjour, Bob !"
+```
+:::
+
+:::exercice Application 3
+Écrire une fonction `n_etoiles` qui prend un entier positif en paramètre et retourne une chaîne de caractères composée de ce nombre d'étoiles `*`.
+
+```python
+print(n_etoiles(5)) # Devrait afficher "*****"
+```
+:::
+
